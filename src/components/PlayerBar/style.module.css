@@ -1,0 +1,17 @@
+.container {
+  flex-grow: 1;
+}
+
+.topBarContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.topBarContainer.reverse {
+  flex-direction: row-reverse;
+}
+
+.padding {
+  padding: 10px;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Overlay from './Overlay';
-import useWar3Observer from './useWar3Observer';
+// import useWar3Observer from './useWar3Observer';
 
 import mockedData from './mock-data.json';
 import State from './models/State';
