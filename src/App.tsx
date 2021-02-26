@@ -1,12 +1,19 @@
 import React from 'react';
 
 import './App.css';
-import Ability from './components/Ability';
+import Overlay from './Overlay';
+import useWar3Observer from './useWar3Observer';
+
+import mockedData from './mock-data.json';
+import State from './models/State';
 
 function App() {
+  // const { data } = useWar3Observer();
+  const data = mockedData as State;
+
   return (
     <div className="App">
-      <Ability />
+      <Overlay data={data} />
     </div>
   );
 }

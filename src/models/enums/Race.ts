@@ -1,0 +1,14 @@
+export enum Race {
+  UNKNOWN = 'UNKNOWN',
+  HUMAN = 'HUMAN',
+  ORC = 'ORC',
+  UNDEAD = 'UNDEAD',
+  NIGHTELF = 'NIGHTELF',
+  DEMON = 'DEMON',
+  LAST = 'LAST',
+  OTHER = 'OTHER',
+  CREEP = 'CREEP',
+  COMMONER = 'COMMONER',
+  CRITTER = 'CRITTER',
+  NAGA = 'NAGA',
+}
