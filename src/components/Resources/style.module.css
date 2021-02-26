@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 32px;
+  margin-right: 5px;
+}
+
+.resourceContainer {
+  display: flex;
+  align-items: center;
+}

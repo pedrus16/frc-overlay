@@ -1,4 +1,4 @@
-import Cameo from './components/Cameo';
+import Header from './components/Header';
 import State from './models/State';
 
 interface Props {
@@ -6,9 +6,14 @@ interface Props {
 }
 
 const Overlay = ({ data }: Props) => {
-  const id = data.content.players[0].heroes[0].id;
-
-  return <Cameo id={id} />;
+  return (
+    <>
+      <Header
+        player1={data.content.players[0]}
+        player2={data.content.players[1]}
+      />
+    </>
+  );
 };
 
 export default Overlay;
