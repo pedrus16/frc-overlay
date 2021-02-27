@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+}
+
+.container.reverse {
+  flex-direction: row-reverse;
+}
+
+.hero {
+  display: grid;
+  grid-template:
+    "portrait level inventory" 2fr
+    "abilities abilities inventory" 1fr / 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.reverse .hero {
+  grid-template:
+    "inventory level portrait" 2fr
+    "inventory abilities abilities " 1fr / 1fr 1fr 1fr;
+}
+
+.portrait {
+  grid-area: portrait;
+  object-fit: contain;
+  width: 100%;
+}
+
+.level {
+  grid-area: level;
+  background: var(--bg-translucent);
+  color: var(--color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.levelProgress {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.levelProgress :global .CircularProgressbar-path {
+  stroke: var(--experience-color);
+  stroke-linecap: square;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.levelProgress :global .CircularProgressbar-trail {
+  stroke: var(--experience-color);
+  opacity: 0.2;
+}
+
+.levelProgress :global .CircularProgressbar-text {
+  fill: var(--color);
+  font-size: 2rem;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.abilities {
+  grid-area: abilities;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.abilities img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.inventory {
+  grid-area: inventory;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.inventory img {
+  object-fit: contain;
+  width: 100%;
+}

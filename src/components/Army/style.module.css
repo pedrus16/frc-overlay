@@ -10,10 +10,6 @@
   position: relative;
 }
 
-.item > .cameo {
-  height: 50px;
-}
-
 .count {
   position: absolute;
   bottom: 3px;
@@ -21,6 +17,7 @@
   right: 3px;
   color: var(--color);
   text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+  text-align: center;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,

@@ -9,15 +9,17 @@
   display: grid;
   justify-content: flex-end;
   align-items: center;
-  grid-template-columns: [army] 1fr [race] max-content [name] max-content;
+  grid-template-columns: [army] auto [race] auto [name] auto;
   justify-items: flex-end;
-  gap: 0 10px;
+  justify-content: flex-end;
+  gap: 10px;
   background: var(--bg);
 }
 
 .topBarContainer.reverse {
-  grid-template-columns: [name] max-content [race] max-content [army] 1fr;
+  grid-template-columns: [name] auto [race] auto [army] auto;
   justify-items: flex-start;
+  justify-content: flex-start;
 }
 
 .card {
@@ -28,13 +30,16 @@
 }
 
 .army {
-  grid-area: army;
+  grid-row: 1;
+  grid-column: army;
 }
 
 .race {
-  grid-area: race;
+  grid-row: 1;
+  grid-column: race;
 }
 
 .name {
-  grid-area: name;
+  grid-row: 1;
+  grid-column: name;
 }
