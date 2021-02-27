@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
 
-  background: var(--bg);
+  background: var(--bg-translucent);
   color: var(--color);
   border-radius: var(--border-radius);
   padding: var(--padding);

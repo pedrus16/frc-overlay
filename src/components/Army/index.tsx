@@ -16,7 +16,7 @@ const Army = ({ units, reverse, className }: Properties) => {
     <div className={`${style.container} ${reverseClass} ${className || ''}`}>
       {units.map((unit) => (
         <div key={unit.id} className={style.item}>
-          <Cameo id={unit.id} />
+          <Cameo className={style.cameo} id={unit.id} />
           <div className={style.count}>{unit.alive_count}</div>
         </div>
       ))}
