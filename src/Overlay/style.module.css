@@ -1,0 +1,20 @@
+.container {
+  height: 100%;
+  display: grid;
+  grid-template:
+    [header] "header header header header header" max-content
+    [body] "bodyLeft bodyLeft . bodyRight bodyRight" auto
+    [footer] "footerLeft . . . footerRight" 250px / 250px 50px auto 50px 250px;
+}
+
+.header {
+  grid-area: header;
+}
+
+.bodyLeft {
+  grid-area: bodyLeft;
+}
+
+.bodyRight {
+  grid-area: bodyRight;
+}

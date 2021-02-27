@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 10px;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}

@@ -1,0 +1,9 @@
+[*]
+end_of_line = lf
+
+[*.{ts,tsx}]
+quote_type = single
+
+[*.{ts,tsx,json}]
+indent_style = space
+indent_size = 2
