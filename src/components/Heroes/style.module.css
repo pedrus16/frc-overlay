@@ -1,9 +1,6 @@
 .container {
   display: flex;
-}
-
-.container.reverse {
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
 }
 
 .hero {
