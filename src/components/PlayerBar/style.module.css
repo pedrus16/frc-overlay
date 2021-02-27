@@ -1,17 +1,45 @@
 .container {
   flex-grow: 1;
+  display: grid;
+  grid-template-rows: 50px auto;
+  gap: 0px;
 }
 
 .topBarContainer {
-  display: flex;
+  display: grid;
   justify-content: flex-end;
   align-items: center;
+  grid-template-columns: [army] auto [race] auto [name] auto;
+  justify-items: flex-end;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--bg);
 }
 
 .topBarContainer.reverse {
-  flex-direction: row-reverse;
+  grid-template-columns: [name] auto [race] auto [army] auto;
+  justify-items: flex-start;
+  justify-content: flex-start;
 }
 
-.padding {
-  padding: 10px;
+.card {
+  background: var(--bg);
+  color: var(--color);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+}
+
+.army {
+  grid-row: 1;
+  grid-column: army;
+}
+
+.race {
+  grid-row: 1;
+  grid-column: race;
+}
+
+.name {
+  grid-row: 1;
+  grid-column: name;
 }

@@ -1,9 +1,19 @@
-import React from 'react';
-
 interface Properties {
   id: string;
+  className?: string;
+  width?: number;
+  height?: number;
 }
 
-const Cameo = ({ id }: Properties) => <img src={`/icons/${id}.jpg`} alt={id} />;
+const Cameo = ({ id, className, width, height }: Properties) => (
+  <img
+    className={className}
+    width={width}
+    height={height}
+    style={{ display: 'block' }}
+    src={`/icons/hd/${id}.jpg`}
+    alt={id}
+  />
+);
 
 export default Cameo;

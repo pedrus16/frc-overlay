@@ -1,6 +1,12 @@
 .container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.container.reverse {
+  justify-content: flex-start;
 }
 
 .icon {
@@ -11,4 +17,9 @@
 .resourceContainer {
   display: flex;
   align-items: center;
+
+  background: var(--bg-translucent);
+  color: var(--color);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
 }

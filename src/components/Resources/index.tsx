@@ -9,25 +9,30 @@ interface Properties {
   lumber: number;
   food: number;
   foodMax: number;
+  reverse?: boolean;
 }
 
-const Resources = ({ gold, lumber, food, foodMax }: Properties) => (
-  <div className={style.container}>
-    <div className={style.resourceContainer}>
-      <img className={style.icon} src={CoinImage} alt="gold" />{' '}
-      <span>{gold}</span>
+const Resources = ({ gold, lumber, food, foodMax, reverse }: Properties) => {
+  const reverseClass = reverse ? style.reverse : '';
+
+  return (
+    <div className={`${style.container} ${reverseClass}`}>
+      <div className={style.resourceContainer}>
+        <img className={style.icon} src={CoinImage} alt="gold" />{' '}
+        <span>{gold}</span>
+      </div>
+      <div className={style.resourceContainer}>
+        <img className={style.icon} src={LumberImage} alt="lumber" />
+        <span>{lumber}</span>
+      </div>
+      <div className={style.resourceContainer}>
+        <img className={style.icon} src={FoodImage} alt="food" />
+        <span>
+          {food}/{foodMax}
+        </span>
+      </div>
     </div>
-    <div className={style.resourceContainer}>
-      <img className={style.icon} src={LumberImage} alt="lumber" />
-      <span>{lumber}</span>
-    </div>
-    <div className={style.resourceContainer}>
-      <img className={style.icon} src={FoodImage} alt="food" />
-      <span>
-        {food}/{foodMax}
-      </span>
-    </div>
-  </div>
-);
+  );
+};
 
 export default Resources;
