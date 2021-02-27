@@ -8,19 +8,6 @@ import Cameo from '../Cameo';
 
 import style from './style.module.css';
 
-interface HeroLevelProps {
-  level: number;
-  progress: number;
-}
-
-const HeroLevel = ({ level, progress }: HeroLevelProps) => {
-  return (
-    <CircularProgressbarWithChildren value={progress}>
-      {level}
-    </CircularProgressbarWithChildren>
-  );
-};
-
 interface AbilitiesProps {
   abilities: AbilityModel[];
 }

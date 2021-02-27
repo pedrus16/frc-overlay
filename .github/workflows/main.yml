@@ -1,8 +1,9 @@
+name: 🚀 FTP Deploy
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
-name: 🚀 Deploy website on push
 jobs:
   ftp-deploy:
     name: 🎉 Deploy
@@ -10,9 +11,9 @@ jobs:
     steps:
       - name: 🚚 Get latest code
       - uses: actions/checkout@v2
-      
+
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.5 
+        uses: actions/setup-node@v2.1.5
         env:
           PUBLIC_URL: /w3overlay
       - run: npm ci
