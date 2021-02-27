@@ -11,7 +11,7 @@ const Cameo = ({ id, className, width, height }: Properties) => (
     width={width}
     height={height}
     style={{ display: 'block' }}
-    src={`/icons/hd/${id}.jpg`}
+    src={`${process.env.PUBLIC_URL}/icons/hd/${id}.jpg`}
     alt={id}
   />
 );
