@@ -18,11 +18,11 @@ const Resources = ({ gold, lumber, food, foodMax }: Properties) => (
       <span>{gold}</span>
     </div>
     <div className={style.resourceContainer}>
-      <img className={style.icon} src={FoodImage} alt="lumber" />
+      <img className={style.icon} src={LumberImage} alt="lumber" />
       <span>{lumber}</span>
     </div>
     <div className={style.resourceContainer}>
-      <img className={style.icon} src={LumberImage} alt="food" />
+      <img className={style.icon} src={FoodImage} alt="food" />
       <span>
         {food}/{foodMax}
       </span>
