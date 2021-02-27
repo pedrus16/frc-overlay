@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Header from '../components/Header';
 import Heroes from '../components/Heroes';
 import State from '../models/State';
@@ -6,15 +6,11 @@ import State from '../models/State';
 import style from './style.module.css';
 
 interface Props {
-  data: State;
+  data: State | null;
 }
 
 const Overlay = ({ data }: Props) => {
-  /* Define local state hook to store the "user input" data */
-  const [playerData, setPlayerData] = useState({
-    player1: data.content.players[0],
-    player2: data.content.players[1],
-  });
+  const [swapped, setSwapped] = useState(false);
 
   const switchPlayer = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,25 +18,29 @@ const Overlay = ({ data }: Props) => {
     /* Prevent button click's default behavior */
     event.preventDefault();
     /* Call the state's "setter" method to update "userInput" state */
-    setPlayerData((prev) => {
-      return {
-        player1: prev.player2,
-        player2: prev.player1,
-      };
-    });
+    setSwapped((prev) => !prev);
   };
+
+  const player1 = useMemo(
+    () => (swapped ? data?.content.players[0] : data?.content.players[1]),
+    [data, swapped]
+  );
+  const player2 = useMemo(
+    () => (swapped ? data?.content.players[1] : data?.content.players[0]),
+    [data, swapped]
+  );
 
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <Header player1={playerData.player1} player2={playerData.player2} />
+        <Header player1={player1} player2={player2} />
         <button onClick={switchPlayer}>Swap</button>
       </div>
       <div className={style.bodyLeft}>
-        <Heroes player={playerData.player1} />
+        {player1 && <Heroes player={player1} />}
       </div>
       <div className={style.bodyRight}>
-        <Heroes player={playerData.player2} reverse />
+        {player2 && <Heroes player={player2} reverse />}
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
+import State from './models/State';
+import useWebSocket from 'react-use-websocket';
 
 const useWar3Observer = () => {
-    const data = useState({})
-    
-    useEffect(() => {
+  const { lastJsonMessage } = useWebSocket('ws://localhost:8124/', {
+    onOpen: () => console.log('opened'),
+    shouldReconnect: (closeEvent) => true,
+  });
 
-    })
+  return { data: lastJsonMessage as State };
+};
 
-    return { data }
-}
-
-export default useWar3Observer
+export default useWar3Observer;
