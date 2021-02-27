@@ -12,9 +12,9 @@ const Overlay = ({ data }: Props) => {
   const [playerData, setPlayerData] = useState({player1: data.content.players[0],
   player2: data.content.players[1]});
 
-  const switchPlayer = (e: { preventDefault: () => void; }) => {
+  const switchPlayer = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       /* Prevent button click's default behavior */
-      e.preventDefault();
+      event.preventDefault();
       /* Call the state's "setter" method to update "userInput" state */
       setPlayerData((prev) => {
         return {
