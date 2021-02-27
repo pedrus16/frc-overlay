@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FRC Overlay",
+  "name": "FRC Warcraft3 Overlay",
   "icons": [
     {
       "src": "favicon.ico",
