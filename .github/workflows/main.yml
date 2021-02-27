@@ -8,14 +8,15 @@ jobs:
   ftp-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_URL: /w3overlay
     steps:
       - name: 🚚 Get latest code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
-        env:
-          PUBLIC_URL: /w3overlay
+
       - run: npm ci
       - run: npm run build --if-present
 
@@ -25,6 +26,5 @@ jobs:
           server: ftp.cluster029.hosting.ovh.net
           username: tinkern
           password: ${{ secrets.ftp_password }}
-          local-dir: ./build
-          server-dir: /wwww/resume/w3overlay
-          dry-run: true
+          local-dir: ./build/
+          server-dir: /www/resume/w3overlay/
