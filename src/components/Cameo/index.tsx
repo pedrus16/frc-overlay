@@ -4,6 +4,8 @@ interface Properties {
   id: string;
 }
 
-const Cameo = ({ id }: Properties) => <img src={`/icons/${id}.jpg`} alt={id} />;
+const Cameo = ({ id }: Properties) => (
+  <img style={{ display: 'block' }} src={`/icons/${id}.jpg`} alt={id} />
+);
 
 export default Cameo;

@@ -18,15 +18,16 @@ const PlayerBar = ({ player, reverse }: Properties) => {
   return (
     <div className={style.container}>
       <div className={`${style.topBarContainer} ${reverseClass}`}>
-        <Army units={units} />
-        <div className={style.padding}>{raceTrigram}</div>
-        <div className={style.padding}>{player.name}</div>
+        <Army className={style.army} units={units} reverse={reverse} />
+        <div className={`${style.card} ${style.race}`}>{raceTrigram}</div>
+        <div className={`${style.card} ${style.name}`}>{player.name}</div>
       </div>
       <Resources
         gold={player.gold}
         lumber={player.lumber}
         food={player.food}
         foodMax={player.food_max}
+        reverse={reverse}
       />
     </div>
   );
