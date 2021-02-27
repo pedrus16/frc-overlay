@@ -10,6 +10,7 @@ interface Properties {
 }
 
 const Header = ({ player1, player2 }: Properties) => {
+
   return (
     <div className={style.container}>
       <PlayerBar player={player1} />
