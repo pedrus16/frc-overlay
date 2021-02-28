@@ -2,14 +2,10 @@ import React from 'react';
 
 import './App.css';
 import Overlay from './Overlay';
-import useWar3Observer from './useWar3Observer';
-
-// import mockedData from './mock/data-sample2.json';
-// import State from './models/State';
+import useDataObserver from './hooks/useWar3Observer';
 
 function App() {
-  const { data } = useWar3Observer();
-  // const data = mockedData as State;
+  const { data } = useDataObserver();
 
   if (!data || data.type !== 'state') return null;
 
