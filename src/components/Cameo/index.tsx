@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ReforgedStyleContext } from '../../Overlay';
+
 interface Properties {
   id: string;
   className?: string;
@@ -5,15 +8,21 @@ interface Properties {
   height?: number;
 }
 
-const Cameo = ({ id, className, width, height }: Properties) => (
-  <img
-    className={className}
-    width={width}
-    height={height}
-    style={{ display: 'block' }}
-    src={`${process.env.PUBLIC_URL}/icons/hd/${id}.jpg`}
-    alt={id}
-  />
-);
+const Cameo = ({ id, className, width, height }: Properties) => {
+  const reforgedStyle = useContext(ReforgedStyleContext);
+
+  return (
+    <img
+      className={className}
+      width={width}
+      height={height}
+      style={{ display: 'block' }}
+      src={`${process.env.PUBLIC_URL}/icons${
+        reforgedStyle ? '/reforged' : '/classic'
+      }/${id}.jpg`}
+      alt={id}
+    />
+  );
+};
 
 export default Cameo;

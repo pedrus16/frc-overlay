@@ -1,9 +1,11 @@
-import { useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import Header from '../components/Header';
 import Heroes from '../components/Heroes';
 import State from '../models/State';
 
 import style from './style.module.css';
+
+export const ReforgedStyleContext = createContext(false);
 
 interface Props {
   data: State | null;
@@ -11,6 +13,7 @@ interface Props {
 
 const Overlay = ({ data }: Props) => {
   const [swapped, setSwapped] = useState(false);
+  const [reforgedStyle, setReforgedStyle] = useState(false);
 
   const switchPlayer = () => {
     setSwapped((prev) => !prev);
@@ -26,17 +29,24 @@ const Overlay = ({ data }: Props) => {
   );
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
-        <Header player1={player1} player2={player2} onSwap={switchPlayer} />
+    <ReforgedStyleContext.Provider value={reforgedStyle}>
+      <div className={style.container}>
+        <div className={style.header}>
+          <Header
+            player1={player1}
+            player2={player2}
+            onSwap={switchPlayer}
+            onReforgedStyleChange={setReforgedStyle}
+          />
+        </div>
+        <div className={style.bodyLeft}>
+          {player1 && <Heroes player={player1} />}
+        </div>
+        <div className={style.bodyRight}>
+          {player2 && <Heroes player={player2} reverse />}
+        </div>
       </div>
-      <div className={style.bodyLeft}>
-        {player1 && <Heroes player={player1} />}
-      </div>
-      <div className={style.bodyRight}>
-        {player2 && <Heroes player={player2} reverse />}
-      </div>
-    </div>
+    </ReforgedStyleContext.Provider>
   );
 };
 

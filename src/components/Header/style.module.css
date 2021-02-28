@@ -11,10 +11,14 @@
   position: relative;
 }
 
-.swapButton {
+.controls {
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+}
+
+.swapButton {
   display: block;
   background: transparent;
   border: 0;
