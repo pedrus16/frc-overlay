@@ -110,7 +110,7 @@ const Heroes = ({ player, reverse }: Props) => {
   return (
     <div className={`${style.container} ${reverseClass}`}>
       {sortedHeroes.map((hero) => (
-        <div key={hero.id} className={style.item}>
+        <div key={hero.id} className={style.heroContainer}>
           <Hero hero={hero} reverse={reverse} />
           <Inventory items={hero.inventory} />
         </div>

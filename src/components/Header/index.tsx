@@ -39,7 +39,11 @@ const Header = ({
       <div className={style.controls}>
         <FormControlLabel
           control={
-            <Switch onChange={handleReforceIconClick} name="reforgedStyle" />
+            <Switch
+              onChange={handleReforceIconClick}
+              name="reforgedStyle"
+              size="small"
+            />
           }
           label="HD" /* TODO Change to Reforged/Classic label */
         />

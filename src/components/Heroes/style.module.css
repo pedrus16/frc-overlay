@@ -1,22 +1,38 @@
 .container {
   display: flex;
   flex-direction: column;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding-left: 10px;
 }
 
 .container.reverse {
   align-items: flex-end;
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding-left: 0px;
+  padding-right: 10px;
 }
 
-.item {
+.heroContainer {
   display: grid;
   gap: 10px;
   grid-template-columns: [hero] auto [inventory] auto;
   grid-auto-flow: column;
   justify-content: flex-start;
-  margin-bottom: 50px;
 }
 
-.reverse .item {
+.heroContainer:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.reverse .heroContainer {
   grid-template-columns: [inventory] auto [hero] auto;
   justify-content: flex-end;
 }
@@ -26,14 +42,14 @@
   display: grid;
   grid-template:
     "portrait level" 80px
-    "abilities abilities" auto / 64px 64px;
+    "abilities abilities" 40px / 64px 64px;
   gap: 0;
 }
 
 .reverse .hero {
   grid-template:
     "level portrait" 80px
-    "abilities abilities " auto / 64px 64px;
+    "abilities abilities " 40px / 64px 64px;
 }
 
 .portrait {
@@ -46,7 +62,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-translucent);
 }
 
 .levelProgress {
@@ -100,5 +115,5 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  width: 75px;
+  width: 80px;
 }
