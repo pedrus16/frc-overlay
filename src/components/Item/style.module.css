@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+}
+
+.charges {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: var(--color);
+  background: var(--bg-translucent);
+  padding: 0 0.4em;
+  font-size: 10px;
+}

@@ -13,7 +13,11 @@
   justify-items: flex-end;
   justify-content: flex-end;
   gap: 10px;
-  background: var(--bg);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .topBarContainer.reverse {
@@ -23,7 +27,7 @@
 }
 
 .card {
-  background: var(--bg);
+  /* background: var(--bg); */
   color: var(--color);
   border-radius: var(--border-radius);
   padding: var(--padding);

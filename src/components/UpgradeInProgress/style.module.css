@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  color: var(--color);
+  line-height: 25px;
+  overflow: hidden;
+}
+
+.container > img {
+  width: 50px;
+}
+
+.rightColumn {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.progress {
+  width: 100%;
+}

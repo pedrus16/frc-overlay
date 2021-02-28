@@ -15,8 +15,11 @@ code {
 :root {
   --bg: rgba(0, 0, 0, 1);
   --bg-translucent: rgba(0, 0, 0, 0.8);
+  --bg-light-translucent: rgba(255 255 255 / 10%);
   --color: #ffffff;
   --border-radius: 2px;
   --padding: 8px;
   --experience-color: #eec12d;
+  --health-color: #88d86f;
+  --mana-color: #1a75ec;
 }

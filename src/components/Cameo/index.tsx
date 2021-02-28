@@ -21,7 +21,12 @@ const Cameo = ({ id, className, width, height }: Properties) => {
       className={className}
       width={width}
       height={height}
-      style={{ display: 'block' }}
+      style={{
+        display: 'block',
+        objectFit: 'contain',
+        maxWidth: '100%',
+        maxHeight: '100%',
+      }}
       src={`${process.env.PUBLIC_URL}/icons${
         reforgedStyle ? '/reforged' : '/classic'
       }/${id}.jpg`}

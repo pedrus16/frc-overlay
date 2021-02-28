@@ -1,10 +1,12 @@
+import { CircularProgress } from '@material-ui/core';
 import { useMemo } from 'react';
-import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import { default as AbilityModel } from '../../models/Ability';
 import { default as HeroModel } from '../../models/Hero';
-import Item from '../../models/Item';
+import { default as ItemModel } from '../../models/Item';
 import Player from '../../models/Player';
-import Cameo from '../Cameo';
+import Ability from '../Ability';
+import Item from '../Item';
+import HeroPortrait from './HeroPortrait';
 
 import style from './style.module.css';
 
@@ -16,23 +18,23 @@ const Abilities = ({ abilities }: AbilitiesProps) => {
   return (
     <>
       {abilities.map((ability) => (
-        <Cameo key={ability.id} id={ability.id} />
+        <Ability key={ability.id} ability={ability} />
       ))}
     </>
   );
 };
 
 interface InventoryProps {
-  items: Item[];
+  items: ItemModel[];
 }
 
 const Inventory = ({ items }: InventoryProps) => {
   return (
-    <>
+    <div className={style.inventory}>
       {items.map((item) => (
-        <Cameo key={item.slot} id={item.id} />
+        <Item key={item.slot} item={item} />
       ))}
-    </>
+    </div>
   );
 };
 
@@ -49,30 +51,49 @@ const Hero = ({ hero, reverse }: HeroProps) => {
     [hero]
   );
 
-  const levelProgress = useMemo(
+  const levelPercent = useMemo(
     () => (hero.experience / hero.experience_max) * 100,
     [hero]
   );
 
   return (
     <div className={`${style.hero} ${reverseClass}`}>
-      <Cameo className={style.portrait} id={hero.id} />
+      <div className={style.portrait}>
+        <HeroPortrait hero={hero} />
+      </div>
+
       <div className={style.level}>
-        <CircularProgressbarWithChildren
-          className={style.levelProgress}
-          value={levelProgress}
-          text={`${hero.level}`}
-        />
+        <div className={style.levelProgress}>
+          <CircularProgress
+            variant="determinate"
+            className={style.levelProgressBackground}
+            size={50}
+            thickness={6}
+            value={100}
+            color="inherit"
+          />
+          <CircularProgress
+            variant="determinate"
+            className={style.levelProgressForeground}
+            value={levelPercent}
+            size={50}
+            thickness={6}
+            color="inherit"
+          />
+          <div className={style.levelLabel}>
+            <div>{hero.level}</div>
+          </div>
+        </div>
       </div>
-      <div className={style.inventory}>
-        <Inventory items={hero.inventory} />
-      </div>
+
       <div className={style.abilities}>
         <Abilities abilities={abilities} />
       </div>
     </div>
   );
 };
+
+const sortByIndex = (a: HeroModel, b: HeroModel) => a.index - b.index;
 
 interface Props {
   player: Player;
@@ -82,10 +103,17 @@ interface Props {
 const Heroes = ({ player, reverse }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
+  const sortedHeroes = useMemo(() => player.heroes.concat().sort(sortByIndex), [
+    player,
+  ]);
+
   return (
     <div className={`${style.container} ${reverseClass}`}>
-      {player.heroes.map((hero) => (
-        <Hero hero={hero} key={hero.id} reverse={reverse} />
+      {sortedHeroes.map((hero) => (
+        <div key={hero.id} className={style.item}>
+          <Hero hero={hero} reverse={reverse} />
+          <Inventory items={hero.inventory} />
+        </div>
       ))}
     </div>
   );

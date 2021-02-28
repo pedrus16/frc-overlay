@@ -1,81 +1,104 @@
 .container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+}
+
+.container.reverse {
+  align-items: flex-end;
+}
+
+.item {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: [hero] auto [inventory] auto;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.reverse .item {
+  grid-template-columns: [inventory] auto [hero] auto;
+  justify-content: flex-end;
 }
 
 .hero {
+  grid-column: hero;
   display: grid;
   grid-template:
-    "portrait level inventory" 2fr
-    "abilities abilities inventory" 1fr / 1fr 1fr 1fr;
+    "portrait level" 80px
+    "abilities abilities" auto / 64px 64px;
   gap: 0;
-  margin-bottom: 10px;
 }
 
 .reverse .hero {
   grid-template:
-    "inventory level portrait" 2fr
-    "inventory abilities abilities " 1fr / 1fr 1fr 1fr;
+    "level portrait" 80px
+    "abilities abilities " auto / 64px 64px;
 }
 
 .portrait {
   grid-area: portrait;
-  object-fit: contain;
-  width: 100%;
 }
 
 .level {
   grid-area: level;
-  background: var(--bg-translucent);
   color: var(--color);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  background: var(--bg-translucent);
 }
 
 .levelProgress {
-  width: 100%;
-  vertical-align: middle;
+  position: relative;
 }
 
-.levelProgress :global .CircularProgressbar-path {
-  stroke: var(--experience-color);
-  stroke-linecap: square;
-  transition: stroke-dashoffset 0.5s ease 0s;
+.levelProgressBackground {
+  color: var(--bg-light-translucent);
+  display: block;
 }
 
-.levelProgress :global .CircularProgressbar-trail {
-  stroke: var(--experience-color);
-  opacity: 0.2;
+.levelProgressForeground {
+  color: var(--experience-color);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.levelProgress :global .CircularProgressbar-text {
-  fill: var(--color);
-  font-size: 2rem;
-  dominant-baseline: middle;
-  text-anchor: middle;
+.levelLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.levelLabel > div {
+  height: 1.6em;
 }
 
 .abilities {
   grid-area: abilities;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 
-.abilities img {
-  object-fit: contain;
-  width: 100%;
+.reverse .abilities {
+  justify-content: flex-start;
 }
 
 .inventory {
-  grid-area: inventory;
+  grid-column: inventory;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-}
-
-.inventory img {
-  object-fit: contain;
-  width: 100%;
+  width: 75px;
 }

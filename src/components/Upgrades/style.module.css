@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container.reverse {
+  justify-content: flex-start;
+}
+
+.upgrade {
+  width: 40px;
+}
