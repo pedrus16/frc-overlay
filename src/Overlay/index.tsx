@@ -12,12 +12,7 @@ interface Props {
 const Overlay = ({ data }: Props) => {
   const [swapped, setSwapped] = useState(false);
 
-  const switchPlayer = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    /* Prevent button click's default behavior */
-    event.preventDefault();
-    /* Call the state's "setter" method to update "userInput" state */
+  const switchPlayer = () => {
     setSwapped((prev) => !prev);
   };
 
@@ -33,8 +28,7 @@ const Overlay = ({ data }: Props) => {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <Header player1={player1} player2={player2} />
-        <button onClick={switchPlayer}>Swap</button>
+        <Header player1={player1} player2={player2} onSwap={switchPlayer} />
       </div>
       <div className={style.bodyLeft}>
         {player1 && <Heroes player={player1} />}
