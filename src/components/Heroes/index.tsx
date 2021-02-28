@@ -1,10 +1,11 @@
+import { CircularProgress } from '@material-ui/core';
 import { useMemo } from 'react';
-import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import { default as AbilityModel } from '../../models/Ability';
 import { default as HeroModel } from '../../models/Hero';
 import Item from '../../models/Item';
 import Player from '../../models/Player';
 import Cameo from '../Cameo';
+import HeroPortrait from './HeroPortrait';
 
 import style from './style.module.css';
 
@@ -49,20 +50,38 @@ const Hero = ({ hero, reverse }: HeroProps) => {
     [hero]
   );
 
-  const levelProgress = useMemo(
+  const levelPercent = useMemo(
     () => (hero.experience / hero.experience_max) * 100,
     [hero]
   );
 
   return (
     <div className={`${style.hero} ${reverseClass}`}>
-      <Cameo className={style.portrait} id={hero.id} />
+      <div className={style.portrait}>
+        <HeroPortrait hero={hero} />
+      </div>
       <div className={style.level}>
-        <CircularProgressbarWithChildren
-          className={style.levelProgress}
-          value={levelProgress}
-          text={`${hero.level}`}
-        />
+        <div className={style.levelProgress}>
+          <CircularProgress
+            variant="determinate"
+            className={style.levelProgressBackground}
+            size={70}
+            thickness={4}
+            value={100}
+            color="inherit"
+          />
+          <CircularProgress
+            variant="determinate"
+            className={style.levelProgressForeground}
+            value={levelPercent}
+            size={70}
+            thickness={4}
+            color="inherit"
+          />
+          <div className={style.levelLabel}>
+            <div>{hero.level}</div>
+          </div>
+        </div>
       </div>
       <div className={style.inventory}>
         <Inventory items={hero.inventory} />

@@ -31,30 +31,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
 }
 
 .levelProgress {
-  width: 100%;
-  vertical-align: middle;
+  position: relative;
 }
 
-.levelProgress :global .CircularProgressbar-path {
-  stroke: var(--experience-color);
-  stroke-linecap: square;
-  transition: stroke-dashoffset 0.5s ease 0s;
+.levelProgressBackground {
+  color: var(--bg-translucent);
+  display: block;
 }
 
-.levelProgress :global .CircularProgressbar-trail {
-  stroke: var(--experience-color);
-  opacity: 0.2;
+.levelProgressForeground {
+  color: var(--experience-color);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.levelProgress :global .CircularProgressbar-text {
-  fill: var(--color);
-  font-size: 2rem;
-  dominant-baseline: middle;
-  text-anchor: middle;
+.levelLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.levelLabel > div {
+  height: 48px;
 }
 
 .abilities {

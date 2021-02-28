@@ -19,4 +19,6 @@ code {
   --border-radius: 2px;
   --padding: 8px;
   --experience-color: #eec12d;
+  --health-color: #88d86f;
+  --mana-color: #1a75ec;
 }
