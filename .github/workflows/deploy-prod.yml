@@ -1,8 +1,6 @@
-name: 🚀 FTP Deploy
+name: 🚀 FTP Deploy Prod
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 jobs:
   ftp-deploy:
@@ -20,11 +18,13 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          server: ftp.cluster029.hosting.ovh.net
-          username: tinkern
-          password: ${{ secrets.ftp_password }}
-          local-dir: ./build/
-          server-dir: /www/resume/w3overlay/
+          username: "FrenchCraft"
+          server: "arbre.dyndns.org"
+          port: "5122"
+          ssh_private_key: cNfM%}Hh151841585{
+          local_path: "./build/*"
+          remote_path: "/FrenchCraft/w3overlay/"
+          args: "-o ConnectTimeout=5"
