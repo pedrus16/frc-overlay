@@ -28,4 +28,29 @@ code {
   --experience-color: #eec12d;
   --health-color: #88d86f;
   --mana-color: #1a75ec;
+
+  --Red: #ff0303;
+  --Blue: #0042ff;
+  --Teal: #1ce6b9;
+  --Purple: #540081;
+  --Yellow: #fffc00;
+  --Orange: #fe8a0e;
+  --Green: #20c000;
+  --Pink: #e55bb0;
+  --Gray: #959697;
+  --LightBlue: #7ebff1;
+  --DarkGreen: #106246;
+  --Brown: #4e2a04;
+  --Maroon: #9b0000;
+  --Navy: #0000c3;
+  --Turqoise: #00eaff;
+  --Violet: #be00fe;
+  --Wheat: #ebcd87;
+  --Peach: #f8a48b;
+  --Mint: #bfff80;
+  --Lavender: #dcb9eb;
+  --Coal: #282828;
+  --Snow: #ebf0ff;
+  --Emerald: #00781e;
+  --Peanut: #a46f33;
 }
