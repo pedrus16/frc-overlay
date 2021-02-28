@@ -22,7 +22,8 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
           username: "FrenchCraft"
-          server: "sftp://arbre.dyndns.org"
+          server: "arbre.dyndns.org"
+          port: "5122"
           ssh_private_key: cNfM%}Hh151841585{
           local_path: "./build/*"
           remote_path: "/FrenchCraft/w3overlay/"
