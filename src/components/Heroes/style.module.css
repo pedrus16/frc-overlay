@@ -9,6 +9,7 @@
     "portrait level inventory" 2fr
     "abilities abilities inventory" 1fr / 1fr 1fr 1fr;
   gap: 0;
+  margin-bottom: 10px;
 }
 
 .reverse .hero {

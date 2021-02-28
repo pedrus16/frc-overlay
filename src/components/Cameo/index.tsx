@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ReforgedStyleContext } from '../../Overlay';
 
 interface Properties {
@@ -10,6 +10,11 @@ interface Properties {
 
 const Cameo = ({ id, className, width, height }: Properties) => {
   const reforgedStyle = useContext(ReforgedStyleContext);
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return null;
+  }
 
   return (
     <img
@@ -21,6 +26,7 @@ const Cameo = ({ id, className, width, height }: Properties) => {
         reforgedStyle ? '/reforged' : '/classic'
       }/${id}.jpg`}
       alt={id}
+      onError={() => setError(true)}
     />
   );
 };
