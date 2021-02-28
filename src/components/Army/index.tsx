@@ -13,8 +13,12 @@ interface Properties {
 
 const Army = ({ units, reverse, className }: Properties) => {
   const reverseClass = reverse ? style.reverse : '';
-  const workers = units.filter((unit) => unit.is_worker).sort(sortByCount);
-  const soldiers = units.filter((unit) => !unit.is_worker).sort(sortByCount);
+  const workers = units
+    .filter((unit) => unit.is_worker && unit.alive_count > 0)
+    .sort(sortByCount);
+  const soldiers = units
+    .filter((unit) => !unit.is_worker && unit.alive_count > 0)
+    .sort(sortByCount);
 
   return (
     <div className={`${style.container} ${reverseClass} ${className || ''}`}>
