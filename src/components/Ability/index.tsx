@@ -18,6 +18,7 @@ const AbilityLevel = ({ level, levelMax }: AbilityLevelProps) => {
     >
       {slots.map((_, index) => (
         <div
+          key={index}
           className={`${style.slot} ${level > index ? style.active : ''}`}
         ></div>
       ))}

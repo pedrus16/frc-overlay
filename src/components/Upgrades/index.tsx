@@ -26,7 +26,7 @@ const Upgrades = ({ upgrades, reverse }: Props) => {
   return (
     <div className={`${style.container} ${reverseClass}`}>
       {upgrades.map((upgrade) => (
-        <Upgrade upgrade={upgrade} />
+        <Upgrade key={upgrade.id} upgrade={upgrade} />
       ))}
     </div>
   );

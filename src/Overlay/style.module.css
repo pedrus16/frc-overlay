@@ -27,3 +27,19 @@
 .upgradesRight {
   grid-area: upgradesRight;
 }
+
+.production {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+.productionLeft {
+  grid-area: footerLeft;
+}
+
+.productionRight {
+  grid-area: footerRight;
+  justify-content: flex-end;
+}
