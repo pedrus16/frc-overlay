@@ -25,7 +25,7 @@
   grid-column: hero;
   display: grid;
   grid-template:
-    "portrait level" auto
+    "portrait level" 80px
     "abilities abilities" auto / 64px 64px;
   gap: 0;
 }
@@ -33,7 +33,7 @@
 .reverse .hero {
   grid-template:
     "level portrait" 80px
-    "abilities abilities " 32px / 64px 64px;
+    "abilities abilities " auto / 64px 64px;
 }
 
 .portrait {
