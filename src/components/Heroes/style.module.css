@@ -87,11 +87,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 
 .reverse .abilities {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .inventory {
@@ -100,9 +101,4 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   width: 75px;
-}
-
-.inventory img {
-  object-fit: contain;
-  width: 100%;
 }

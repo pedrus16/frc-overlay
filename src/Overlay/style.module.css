@@ -3,18 +3,27 @@
   display: grid;
   grid-template:
     [header] "header header header header header" max-content
-    [body] "bodyLeft bodyLeft . bodyRight bodyRight" auto
-    [footer] "footerLeft . . . footerRight" 250px / 250px 50px auto 50px 250px;
+    [body] "heroLeft upgradesLeft . upgradesRight heroRight" auto
+    [footer] "footerLeft . . . footerRight" 250px / 250px 1fr 120px 1fr 250px;
+  gap: 10px 0;
 }
 
 .header {
   grid-area: header;
 }
 
-.bodyLeft {
-  grid-area: bodyLeft;
+.heroLeft {
+  grid-area: heroLeft;
 }
 
-.bodyRight {
-  grid-area: bodyRight;
+.heroRight {
+  grid-area: heroRight;
+}
+
+.upgradesLeft {
+  grid-area: upgradesLeft;
+}
+
+.upgradesRight {
+  grid-area: upgradesRight;
 }

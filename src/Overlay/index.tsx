@@ -1,6 +1,7 @@
 import { createContext, useMemo, useState } from 'react';
 import Header from '../components/Header';
 import Heroes from '../components/Heroes';
+import Upgrades from '../components/Upgrades';
 import State from '../models/State';
 
 import style from './style.module.css';
@@ -39,12 +40,26 @@ const Overlay = ({ data }: Props) => {
             onReforgedStyleChange={setReforgedStyle}
           />
         </div>
-        <div className={style.bodyLeft}>
-          {player1 && <Heroes player={player1} />}
-        </div>
-        <div className={style.bodyRight}>
-          {player2 && <Heroes player={player2} reverse />}
-        </div>
+        {player1 && (
+          <>
+            <div className={style.heroLeft}>
+              <Heroes player={player1} />
+            </div>
+            <div className={style.upgradesLeft}>
+              <Upgrades upgrades={player1.upgrades_completed} />
+            </div>
+          </>
+        )}
+        {player2 && (
+          <>
+            <div className={style.heroRight}>
+              <Heroes player={player2} reverse />
+            </div>
+            <div className={style.upgradesRight}>
+              <Upgrades upgrades={player2.upgrades_completed} reverse />
+            </div>
+          </>
+        )}
       </div>
     </ReforgedStyleContext.Provider>
   );
