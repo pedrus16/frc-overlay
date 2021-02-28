@@ -2,9 +2,10 @@ import { CircularProgress } from '@material-ui/core';
 import { useMemo } from 'react';
 import { default as AbilityModel } from '../../models/Ability';
 import { default as HeroModel } from '../../models/Hero';
-import Item from '../../models/Item';
+import { default as ItemModel } from '../../models/Item';
 import Player from '../../models/Player';
-import Cameo from '../Cameo';
+import Ability from '../Ability';
+import Item from '../Item';
 import HeroPortrait from './HeroPortrait';
 
 import style from './style.module.css';
@@ -17,21 +18,21 @@ const Abilities = ({ abilities }: AbilitiesProps) => {
   return (
     <>
       {abilities.map((ability) => (
-        <Cameo key={ability.id} id={ability.id} />
+        <Ability key={ability.id} ability={ability} />
       ))}
     </>
   );
 };
 
 interface InventoryProps {
-  items: Item[];
+  items: ItemModel[];
 }
 
 const Inventory = ({ items }: InventoryProps) => {
   return (
     <div className={style.inventory}>
       {items.map((item) => (
-        <Cameo key={item.slot} id={item.id} />
+        <Item key={item.slot} item={item} />
       ))}
     </div>
   );
@@ -66,7 +67,7 @@ const Hero = ({ hero, reverse }: HeroProps) => {
           <CircularProgress
             variant="determinate"
             className={style.levelProgressBackground}
-            size={40}
+            size={50}
             thickness={6}
             value={100}
             color="inherit"
@@ -75,7 +76,7 @@ const Hero = ({ hero, reverse }: HeroProps) => {
             variant="determinate"
             className={style.levelProgressForeground}
             value={levelPercent}
-            size={40}
+            size={50}
             thickness={6}
             color="inherit"
           />
