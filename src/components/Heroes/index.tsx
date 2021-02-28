@@ -29,11 +29,11 @@ interface InventoryProps {
 
 const Inventory = ({ items }: InventoryProps) => {
   return (
-    <>
+    <div className={style.inventory}>
       {items.map((item) => (
         <Cameo key={item.slot} id={item.id} />
       ))}
-    </>
+    </div>
   );
 };
 
@@ -60,13 +60,14 @@ const Hero = ({ hero, reverse }: HeroProps) => {
       <div className={style.portrait}>
         <HeroPortrait hero={hero} />
       </div>
+
       <div className={style.level}>
         <div className={style.levelProgress}>
           <CircularProgress
             variant="determinate"
             className={style.levelProgressBackground}
-            size={70}
-            thickness={4}
+            size={40}
+            thickness={6}
             value={100}
             color="inherit"
           />
@@ -74,8 +75,8 @@ const Hero = ({ hero, reverse }: HeroProps) => {
             variant="determinate"
             className={style.levelProgressForeground}
             value={levelPercent}
-            size={70}
-            thickness={4}
+            size={40}
+            thickness={6}
             color="inherit"
           />
           <div className={style.levelLabel}>
@@ -83,15 +84,15 @@ const Hero = ({ hero, reverse }: HeroProps) => {
           </div>
         </div>
       </div>
-      <div className={style.inventory}>
-        <Inventory items={hero.inventory} />
-      </div>
+
       <div className={style.abilities}>
         <Abilities abilities={abilities} />
       </div>
     </div>
   );
 };
+
+const sortByIndex = (a: HeroModel, b: HeroModel) => a.index - b.index;
 
 interface Props {
   player: Player;
@@ -101,10 +102,17 @@ interface Props {
 const Heroes = ({ player, reverse }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
+  const sortedHeroes = useMemo(() => player.heroes.concat().sort(sortByIndex), [
+    player,
+  ]);
+
   return (
     <div className={`${style.container} ${reverseClass}`}>
-      {player.heroes.map((hero) => (
-        <Hero hero={hero} key={hero.id} reverse={reverse} />
+      {sortedHeroes.map((hero) => (
+        <div key={hero.id} className={style.item}>
+          <Hero hero={hero} reverse={reverse} />
+          <Inventory items={hero.inventory} />
+        </div>
       ))}
     </div>
   );

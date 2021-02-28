@@ -3,6 +3,7 @@ import Item from './Item';
 
 export default interface Hero {
   id: string;
+  index: number;
   level: number;
   experience: number;
   experience_max: number;

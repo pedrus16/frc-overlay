@@ -1,27 +1,43 @@
 .container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+}
+
+.container.reverse {
+  align-items: flex-end;
+}
+
+.item {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: [hero] auto [inventory] auto;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.reverse .item {
+  grid-template-columns: [inventory] auto [hero] auto;
+  justify-content: flex-end;
 }
 
 .hero {
+  grid-column: hero;
   display: grid;
   grid-template:
-    "portrait level inventory" 2fr
-    "abilities abilities inventory" 1fr / 1fr 1fr 1fr;
+    "portrait level" 80px
+    "abilities abilities" 32px / 64px 64px;
   gap: 0;
-  margin-bottom: 10px;
 }
 
 .reverse .hero {
   grid-template:
-    "inventory level portrait" 2fr
-    "inventory abilities abilities " 1fr / 1fr 1fr 1fr;
+    "level portrait" 80px
+    "abilities abilities " 32px / 64px 64px;
 }
 
 .portrait {
   grid-area: portrait;
-  object-fit: contain;
-  width: 100%;
 }
 
 .level {
@@ -31,7 +47,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
 }
 
 .levelProgress {
@@ -59,29 +74,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 15px;
 }
 
 .levelLabel > div {
-  height: 48px;
+  height: 24px;
 }
 
 .abilities {
   grid-area: abilities;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.reverse .abilities {
+  justify-content: flex-end;
 }
 
 .abilities img {
   object-fit: contain;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .inventory {
-  grid-area: inventory;
+  grid-column: inventory;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  width: 75px;
 }
 
 .inventory img {
