@@ -6,18 +6,26 @@
     [body] "heroLeft upgradesLeft . upgradesRight heroRight" 1fr
     [footer] "footerLeft . . . footerRight" 250px / 250px 1fr 120px 1fr 250px;
   gap: 10px 0;
+  position: relative;
 }
 
 .header {
-  grid-area: header;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .heroLeft {
-  grid-area: heroLeft;
+  position: absolute;
+  top: 45px;
+  left: 0;
 }
 
 .heroRight {
-  grid-area: heroRight;
+  position: absolute;
+  top: 45px;
+  right: 0;
 }
 
 .upgradesLeft {
