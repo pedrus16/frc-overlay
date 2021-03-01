@@ -2,7 +2,7 @@
   height: 100%;
   display: grid;
   grid-template:
-    [header] "header header header header header" max-content
+    [header] "header header header header header" 100px
     [body] "heroLeft upgradesLeft . upgradesRight heroRight" 1fr
     [footer] "footerLeft . . . footerRight" 250px / 250px 1fr 120px 1fr 250px;
   gap: 10px 0;
