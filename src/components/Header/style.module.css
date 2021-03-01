@@ -17,6 +17,7 @@
   right: 0;
   display: flex;
   padding: 0 10px;
+  color: var(--color);
 }
 
 .swapButton {
