@@ -41,9 +41,13 @@
 .race {
   grid-row: 1;
   grid-column: race;
+  font-weight: bold;
 }
 
 .name {
   grid-row: 1;
   grid-column: name;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 1px;
 }

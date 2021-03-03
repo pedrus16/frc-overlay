@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
+        with:
+          ref: frc-prod
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5

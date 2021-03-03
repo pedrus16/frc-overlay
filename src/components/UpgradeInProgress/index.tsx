@@ -36,7 +36,7 @@ const UpgradeInProgress = ({ id, progressPercent }: Props) => {
     <div className={style.container}>
       <Cameo id={id} />
       <div className={style.rightColumn}>
-        <div className={style.textOverflow}>Unknown</div>
+        <div className={style.textOverflow}>{/* TODO */}</div>
         <UpgradeProgressBar
           className={style.progressBar}
           variant="determinate"
