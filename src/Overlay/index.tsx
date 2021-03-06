@@ -27,6 +27,35 @@ const usePlayerProduction = (
   return [...buildings, ...units];
 };
 
+interface ProductionAndResearchProps {
+  productions: any[];
+  researches: any[];
+}
+
+const ProductionAndResearch = ({
+  productions,
+  researches,
+}: ProductionAndResearchProps) => {
+  return (
+    <>
+      {productions.map((production, index) => (
+        <Production
+          key={index}
+          id={production.id}
+          progressPercent={production.progress_percent}
+        />
+      ))}
+      {researches.map((upgrade, index) => (
+        <UpgradeInProgress
+          key={index}
+          id={upgrade.id}
+          progressPercent={upgrade.progress_percent}
+        />
+      ))}
+    </>
+  );
+};
+
 interface Props {
   data: State | null;
 }
@@ -79,20 +108,10 @@ const Overlay = ({ data }: Props) => {
               <Upgrades upgrades={player1.upgrades_completed} />
             </div>
             <div className={`${style.production} ${style.productionLeft}`}>
-              {player1Production.map((production) => (
-                <Production
-                  key={production.id}
-                  id={production.id}
-                  progressPercent={production.progress_percent}
-                />
-              ))}
-              {player1UpgradesInProgress.map((upgrade) => (
-                <UpgradeInProgress
-                  key={upgrade.id}
-                  id={upgrade.id}
-                  progressPercent={upgrade.progress_percent}
-                />
-              ))}
+              <ProductionAndResearch
+                productions={player1Production}
+                researches={player1UpgradesInProgress}
+              />
             </div>
           </>
         )}
@@ -105,20 +124,10 @@ const Overlay = ({ data }: Props) => {
               <Upgrades upgrades={player2.upgrades_completed} reverse />
             </div>
             <div className={`${style.production} ${style.productionRight}`}>
-              {player2Production.map((production) => (
-                <Production
-                  key={production.id}
-                  id={production.id}
-                  progressPercent={production.progress_percent}
-                />
-              ))}
-              {player2UpgradesInProgress.map((upgrade) => (
-                <UpgradeInProgress
-                  key={upgrade.id}
-                  id={upgrade.id}
-                  progressPercent={upgrade.progress_percent}
-                />
-              ))}
+              <ProductionAndResearch
+                productions={player2Production}
+                researches={player2UpgradesInProgress}
+              />
             </div>
           </>
         )}

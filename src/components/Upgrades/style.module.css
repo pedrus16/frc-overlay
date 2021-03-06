@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .container.reverse {
