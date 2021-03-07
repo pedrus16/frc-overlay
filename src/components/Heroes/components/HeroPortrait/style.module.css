@@ -1,0 +1,55 @@
+.container {
+  width: 64px;
+}
+
+.cameoContainer {
+  position: relative;
+}
+
+.level {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 1.5em;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-color);
+  background: var(--black-60);
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 200ms ease-out;
+  opacity: 1;
+}
+
+.overlay.hide {
+  opacity: 0;
+}
+
+.cooldown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock {
+  color: var(--black-40);
+}
+
+.cooldown > .countdown {
+  display: inline-block;
+  position: relative;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  text-shadow: 0px 0px 4px #000000;
+}

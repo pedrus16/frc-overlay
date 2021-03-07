@@ -9,7 +9,7 @@ function App() {
 
   if (!data || data.type !== 'state') return null;
 
-  return <Overlay data={data} />;
+  return <Overlay state={data} />;
 }
 
 export default App;

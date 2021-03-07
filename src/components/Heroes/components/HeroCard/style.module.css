@@ -1,0 +1,30 @@
+.container {
+  background: var(--black-60);
+  display: grid;
+  grid-template: auto auto / auto;
+  gap: 0.25rem;
+  width: fit-content;
+  padding: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.container.reverse {
+  padding: 0.25rem 0 0.25rem 0.25rem;
+}
+
+.topRow {
+  display: grid;
+  gap: 0.25rem;
+  grid-template: "portrait . inventory" auto / auto 0.875rem auto;
+}
+
+.portrait {
+  grid-area: portrait;
+}
+
+.inventory {
+  grid-area: inventory;
+}
+
+.reverse .topRow {
+  grid-template-areas: "inventory . portrait";
+}

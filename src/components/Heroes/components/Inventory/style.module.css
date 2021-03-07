@@ -1,0 +1,8 @@
+.grid {
+  display: grid;
+  grid-template: 1.5rem 1.5rem 1.5rem / 1.5rem 1.5rem;
+  align-items: center;
+  justify-items: center;
+  justify-self: center;
+  width: fit-content;
+}

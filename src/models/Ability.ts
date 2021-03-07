@@ -4,4 +4,5 @@ export default interface Ability {
   cooldown: number;
   level: number;
   is_hero_ability: boolean;
+  art: string;
 }

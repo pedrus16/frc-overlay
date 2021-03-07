@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template: 2rem / repeat(4, 2rem);
+  gap: 0.125rem;
+}
+
+.slot {
+  width: 100%;
+  height: 100%;
+  background: var(--white-10);
+}

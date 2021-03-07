@@ -1,19 +1,39 @@
 import { useContext, useState } from 'react';
-import { ReforgedStyleContext } from '../../Overlay';
 
-interface Properties {
+import { ReforgedStyleContext } from '../../contexts';
+
+import style from './style.module.css';
+
+export interface Props {
   id: string;
   className?: string;
   width?: number;
   height?: number;
 }
 
-const Cameo = ({ id, className, width, height }: Properties) => {
+const DEFAULT_SIZE_PX = 64;
+
+const Cameo = ({ id, className, width, height }: Props) => {
   const reforgedStyle = useContext(ReforgedStyleContext);
   const [error, setError] = useState(false);
 
+  const handleError = () => setError(true);
+
   if (error) {
-    return null;
+    return (
+      <div
+        className={`${className} ${style.fallback}`}
+        style={{
+          width,
+          height,
+          fontSize: `${
+            ((height || DEFAULT_SIZE_PX) / DEFAULT_SIZE_PX) * 2.5
+          }rem`,
+        }}
+      >
+        ?
+      </div>
+    );
   }
 
   return (
@@ -31,7 +51,7 @@ const Cameo = ({ id, className, width, height }: Properties) => {
         reforgedStyle ? '/reforged' : '/classic'
       }/${id}.jpg`}
       alt={id}
-      onError={() => setError(true)}
+      onError={handleError}
     />
   );
 };

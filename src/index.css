@@ -28,4 +28,39 @@ code {
   --experience-color: #eec12d;
   --health-color: #88d86f;
   --mana-color: #1a75ec;
+
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-20: rgba(255, 255, 255, 0.2);
+  --black-40: rgba(0, 0, 0, 0.4);
+  --black-60: rgba(0, 0, 0, 0.6);
+  --black: #000000;
+  --gray-2: #4f4f4f;
+  --yellow: #f2c94c;
+  --text-color: #f2f2f2;
+  --default-team-color: #ff00ff;
+
+  --Red: #ff0303;
+  --Blue: #0042ff;
+  --Teal: #1ce6b9;
+  --Purple: #540081;
+  --Yellow: #fffc00;
+  --Orange: #fe8a0e;
+  --Green: #20c000;
+  --Pink: #e55bb0;
+  --Gray: #959697;
+  --LightBlue: #7ebff1;
+  --DarkGreen: #106246;
+  --Brown: #4e2a04;
+  --Maroon: #9b0000;
+  --Navy: #0000c3;
+  --Turqoise: #00eaff;
+  --Violet: #be00fe;
+  --Wheat: #ebcd87;
+  --Peach: #f8a48b;
+  --Mint: #bfff80;
+  --Lavender: #dcb9eb;
+  --Coal: #282828;
+  --Snow: #ebf0ff;
+  --Emerald: #00781e;
+  --Peanut: #a46f33;
 }

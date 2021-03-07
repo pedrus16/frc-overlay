@@ -1,17 +1,19 @@
-import { createContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+
 import Header from '../components/Header';
 import Heroes from '../components/Heroes';
 import Production from '../components/Production';
 import UpgradeInProgress from '../components/UpgradeInProgress';
 import Upgrades from '../components/Upgrades';
+import { ReforgedStyleContext } from '../contexts';
 import { ResearchType } from '../models';
 import Player from '../models/Player';
 import State from '../models/State';
+import { buildHeroesData } from './buildData';
 
 import style from './style.module.css';
 
-export const ReforgedStyleContext = createContext(false);
-
+/* TODO This is not a hook! Rename with a conventionnal function name */
 const usePlayerProduction = (
   player: Player | undefined
 ): Array<{ id: string; progress_percent: number }> => {
@@ -57,10 +59,10 @@ const ProductionAndResearch = ({
 };
 
 interface Props {
-  data: State | null;
+  state: State;
 }
 
-const Overlay = ({ data }: Props) => {
+const Overlay = ({ state }: Props) => {
   const [swapped, setSwapped] = useState(false);
   const [reforgedStyle, setReforgedStyle] = useState(false);
 
@@ -69,12 +71,22 @@ const Overlay = ({ data }: Props) => {
   };
 
   const player1 = useMemo(
-    () => (swapped ? data?.content.players[0] : data?.content.players[1]),
-    [data, swapped]
+    () => (swapped ? state.content.players[0] : state.content.players[1]),
+    [state, swapped]
   );
   const player2 = useMemo(
-    () => (swapped ? data?.content.players[1] : data?.content.players[0]),
-    [data, swapped]
+    () => (swapped ? state.content.players[1] : state.content.players[0]),
+    [state, swapped]
+  );
+
+  /* TODO Temporary variables until all of the State is converted to component data */
+  const p1Heroes = useMemo(
+    () => buildHeroesData(player1.heroes, player1.researches_in_progress),
+    [player1]
+  );
+  const p2Heroes = useMemo(
+    () => buildHeroesData(player2.heroes, player2.researches_in_progress),
+    [player2]
   );
 
   const player1Production = usePlayerProduction(player1);
@@ -102,7 +114,7 @@ const Overlay = ({ data }: Props) => {
         {player1 && (
           <>
             <div className={style.heroLeft}>
-              <Heroes player={player1} />
+              <Heroes heroes={p1Heroes} />
             </div>
             <div className={style.upgradesLeft}>
               <Upgrades upgrades={player1.upgrades_completed} />
@@ -118,7 +130,7 @@ const Overlay = ({ data }: Props) => {
         {player2 && (
           <>
             <div className={style.heroRight}>
-              <Heroes player={player2} reverse />
+              <Heroes heroes={p2Heroes} reverse />
             </div>
             <div className={style.upgradesRight}>
               <Upgrades upgrades={player2.upgrades_completed} reverse />

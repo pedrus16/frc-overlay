@@ -1,0 +1,20 @@
+.container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.charges {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: var(--color);
+  background: var(--bg-translucent);
+  padding: 0 0.2em;
+  min-width: 1em;
+  font-size: 0.75rem;
+  line-height: 1em;
+  font-weight: 400;
+  text-align: center;
+  box-sizing: border-box;
+}
