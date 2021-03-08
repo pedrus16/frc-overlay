@@ -52,7 +52,7 @@ const HeroPortrait = ({
   manaPercent,
   level,
   respawn,
-  className,
+  className = '',
 }: Props) => {
   const isDead = useMemo(() => healthPercent <= 0, [healthPercent]);
   const progress = useMemo(

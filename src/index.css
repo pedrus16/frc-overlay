@@ -34,10 +34,16 @@ code {
   --black-40: rgba(0, 0, 0, 0.4);
   --black-60: rgba(0, 0, 0, 0.6);
   --black: #000000;
+
+  --gray-0: #111111;
+  --gray-1: #333333;
   --gray-2: #4f4f4f;
+  --gray-4: #bdbdbd;
+  --gray-5: #e0e0e0;
+
   --yellow: #f2c94c;
   --text-color: #f2f2f2;
-  --default-team-color: #ff00ff;
+  --team-color: #ff00ff;
 
   --Red: #ff0303;
   --Blue: #0042ff;

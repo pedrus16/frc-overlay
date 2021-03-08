@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import Cameo from '../../../Cameo';
 import Cooldown from '../../../Cooldown';
+import LevelBar from '../../../LevelBar';
 
 import style from './style.module.css';
 
@@ -33,17 +34,7 @@ const Spell = ({ id, level, cooldown }: Props) => {
           </div>
         </div>
       )}
-      <div className={style.level}>
-        <div
-          className={`${style.levelDot} ${level >= 1 ? style.active : ''}`}
-        ></div>
-        <div
-          className={`${style.levelDot} ${level >= 2 ? style.active : ''}`}
-        ></div>
-        <div
-          className={`${style.levelDot} ${level >= 3 ? style.active : ''}`}
-        ></div>
-      </div>
+      <LevelBar className={style.levelBar} level={level} levelMax={3} />
     </div>
   );
 };

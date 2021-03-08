@@ -1,8 +1,13 @@
 import Ability from '../models/Ability';
 import Hero from '../models/Hero';
 import { Props as HeroesProps } from '../components/Heroes';
+import { Props as PlayerBarProps } from '../components/PlayerBar';
+import { Props as UpgradeProps } from '../components/Upgrade';
 import Research from '../models/Research';
-import { ResearchType } from '../models';
+import { Race, ResearchType } from '../models';
+import Player from '../models/Player';
+import Unit from '../models/Unit';
+import Upgrade from '../models/Upgrade';
 
 const toPercent = (value: number, max: number) => {
   return (value / max) * 100;
@@ -39,7 +44,7 @@ const getHeroRespawnTime = (id: string, researches: Research[]) => {
   };
 };
 
-export const buildHeroesData = (
+const buildHeroesData = (
   heroes: Hero[],
   researches: Research[]
 ): HeroesProps['heroes'] => {
@@ -56,4 +61,87 @@ export const buildHeroesData = (
       spells: buildSpellList(hero.abilities),
       respawn: getHeroRespawnTime(hero.id, researches),
     }));
+};
+
+const buildSoldiers = (units: Unit[]) =>
+  units
+    .filter((unit) => !unit.is_worker)
+    .map((unit) => ({ id: unit.id, count: unit.alive_count }));
+const buildWorkers = (units: Unit[]) => {
+  const worker = units.find((unit) => unit.is_worker);
+
+  if (!worker) {
+    return { id: '', count: 0 };
+  }
+
+  return {
+    id: worker.id,
+    count: worker.alive_count,
+  };
+};
+
+const buildPlayerUpgrades = (upgrades: Upgrade[]): UpgradeProps[] => {
+  return upgrades.map((upgrade) => ({
+    id: upgrade.id,
+    level: upgrade.level,
+    levelMax: upgrade.level_max,
+  }));
+};
+
+const colorList = [
+  'Red',
+  'Blue',
+  'Teal',
+  'Purple',
+  'Yellow',
+  'Orange',
+  'Green',
+  'Pink',
+  'Gray',
+  'LightBlue',
+  'DarkGreen',
+  'Brown',
+  'Maroon',
+  'Navy',
+  'Turqoise',
+  'Violet',
+  'Wheat',
+  'Peach',
+  'Mint',
+  'Lavender',
+  'Coal',
+  'Snow',
+  'Emerald',
+  'Peanut',
+];
+
+const getColor = (teamColor: number) => `var(--${colorList[teamColor]})`;
+
+export const buildPlayerData = (
+  player: Player
+): { player: PlayerBarProps; heroes: HeroesProps['heroes']; color: string } => {
+  return {
+    player: {
+      playerName: player.name,
+      army: {
+        race: player.race as
+          | Race.HUMAN
+          | Race.NIGHTELF
+          | Race.ORC
+          | Race.UNDEAD,
+        soldiers: buildSoldiers(player.units_on_map),
+        workers: buildWorkers(player.units_on_map),
+      },
+      resources: {
+        gold: player.gold,
+        lumber: player.lumber,
+        food: player.food,
+        foodMax: player.food_max,
+      },
+      upgrades: buildPlayerUpgrades(player.upgrades_completed),
+      techLevel: 1 /* TODO */,
+    },
+    heroes: buildHeroesData(player.heroes, player.researches_in_progress),
+    color: getColor(player.team_color),
+  };
 };

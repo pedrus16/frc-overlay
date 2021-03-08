@@ -1,38 +1,34 @@
 import style from './style.module.css';
 
-import CoinImage from './coin.png';
-import FoodImage from './food.png';
-import LumberImage from './lumber.png';
+import coinImage from './images/coin.png';
+import foodImage from './images/food.png';
+import treeImage from './images/tree.png';
 
-interface Properties {
+export interface Props {
   gold: number;
   lumber: number;
   food: number;
   foodMax: number;
-  reverse?: boolean;
+  className?: string;
 }
 
-const Resources = ({ gold, lumber, food, foodMax, reverse }: Properties) => {
-  const reverseClass = reverse ? style.reverse : '';
-
-  return (
-    <div className={`${style.container} ${reverseClass}`}>
-      <div className={style.resourceContainer}>
-        <img className={style.icon} src={CoinImage} alt="gold" />{' '}
-        <span>{gold}</span>
-      </div>
-      <div className={style.resourceContainer}>
-        <img className={style.icon} src={LumberImage} alt="lumber" />
-        <span>{lumber}</span>
-      </div>
-      <div className={style.resourceContainer}>
-        <img className={style.icon} src={FoodImage} alt="food" />
-        <span>
-          {food}/{foodMax}
-        </span>
-      </div>
+const Resources = ({ gold, lumber, food, foodMax, className = '' }: Props) => (
+  <div className={`${style.container} ${className}`}>
+    <div className={style.resourceContainer}>
+      <img className={style.icon} src={coinImage} alt="gold" />
+      <span>{gold}</span>
     </div>
-  );
-};
+    <div className={style.resourceContainer}>
+      <img className={style.icon} src={treeImage} alt="lumber" />
+      <span>{lumber}</span>
+    </div>
+    <div className={style.resourceContainer}>
+      <img className={style.icon} src={foodImage} alt="food" />
+      <span>
+        {food}/{foodMax}
+      </span>
+    </div>
+  </div>
+);
 
 export default Resources;

@@ -1,19 +1,18 @@
 import { useMemo } from 'react';
 
-import Header from '../components/Header';
 import Heroes from '../components/Heroes';
 import Production from '../components/Production';
 import UpgradeInProgress from '../components/UpgradeInProgress';
-import Upgrades from '../components/Upgrades';
 import { ReforgedStyleContext } from '../contexts';
 import { ResearchType } from '../models';
 import Player from '../models/Player';
 import State from '../models/State';
-import { buildHeroesData } from './buildData';
+import { buildPlayerData } from './buildData';
 import useLocalStorage from '../Settings/useLocalStorage';
 import { toBoolean } from '../utils/localStorageUtil';
 
 import style from './style.module.css';
+import PlayerBar from '../components/PlayerBar';
 
 /* TODO This is not a hook! Rename with a conventionnal function name */
 const usePlayerProduction = (
@@ -80,14 +79,8 @@ const Overlay = ({ state }: Props) => {
   );
 
   /* TODO Temporary variables until all of the State is converted to component data */
-  const p1Heroes = useMemo(
-    () => buildHeroesData(player1.heroes, player1.researches_in_progress),
-    [player1]
-  );
-  const p2Heroes = useMemo(
-    () => buildHeroesData(player2.heroes, player2.researches_in_progress),
-    [player2]
-  );
+  const p1 = useMemo(() => buildPlayerData(player1), [player1]);
+  const p2 = useMemo(() => buildPlayerData(player2), [player2]);
 
   const player1Production = usePlayerProduction(player1);
   const player1UpgradesInProgress =
@@ -100,44 +93,61 @@ const Overlay = ({ state }: Props) => {
       (research) => research.type === ResearchType.UPGRADE
     ) || [];
 
+  const p1Style = { '--team-color': p1.color } as React.CSSProperties;
+  const p2Style = { '--team-color': p2.color } as React.CSSProperties;
+
   return (
     <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
       <div className={style.container}>
-        <div className={style.header}>
-          <Header player1={player1} player2={player2} />
+        <div className={style.leftSide} style={p1Style}>
+          <PlayerBar
+            playerName={p1.player.playerName}
+            army={p1.player.army}
+            resources={p1.player.resources}
+            upgrades={p1.player.upgrades}
+            techLevel={1}
+          />
+          <Heroes className={style.heroes} heroes={p1.heroes} />
+
+          {player1 && (
+            <>
+              {/* <div className={style.upgradesLeft}>
+                <Upgrades upgrades={player1.upgrades_completed} />
+              </div> */}
+              <div className={`${style.production}`}>
+                <ProductionAndResearch
+                  productions={player1Production}
+                  researches={player1UpgradesInProgress}
+                />
+              </div>
+            </>
+          )}
         </div>
-        {player1 && (
-          <>
-            <div className={style.heroLeft}>
-              <Heroes heroes={p1Heroes} />
-            </div>
-            <div className={style.upgradesLeft}>
-              <Upgrades upgrades={player1.upgrades_completed} />
-            </div>
-            <div className={`${style.production} ${style.productionLeft}`}>
-              <ProductionAndResearch
-                productions={player1Production}
-                researches={player1UpgradesInProgress}
-              />
-            </div>
-          </>
-        )}
-        {player2 && (
-          <>
-            <div className={style.heroRight}>
-              <Heroes heroes={p2Heroes} reverse />
-            </div>
-            <div className={style.upgradesRight}>
-              <Upgrades upgrades={player2.upgrades_completed} reverse />
-            </div>
-            <div className={`${style.production} ${style.productionRight}`}>
-              <ProductionAndResearch
-                productions={player2Production}
-                researches={player2UpgradesInProgress}
-              />
-            </div>
-          </>
-        )}
+        <div className={style.rightSide} style={p2Style}>
+          <PlayerBar
+            reverse
+            playerName={p2.player.playerName}
+            army={p2.player.army}
+            resources={p2.player.resources}
+            upgrades={p2.player.upgrades}
+            techLevel={2}
+          />
+          <Heroes className={style.heroes} reverse heroes={p2.heroes} />
+
+          {player2 && (
+            <>
+              {/* <div className={style.upgradesRight}>
+                <Upgrades upgrades={player2.upgrades_completed} reverse />
+              </div> */}
+              <div className={`${style.production}`}>
+                <ProductionAndResearch
+                  productions={player2Production}
+                  researches={player2UpgradesInProgress}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </ReforgedStyleContext.Provider>
   );

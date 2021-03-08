@@ -32,25 +32,9 @@
   text-shadow: 0px 0px 4px #000000;
 }
 
-.level {
+.levelBar {
   position: absolute;
   bottom: -5%;
   left: 0;
   right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.levelDot {
-  box-sizing: border-box;
-  background: var(--black);
-  border: 1px solid var(--gray-2);
-  border-radius: 99px;
-  width: 0.375rem;
-  height: 0.375rem;
-}
-
-.levelDot.active {
-  background: var(--yellow);
 }

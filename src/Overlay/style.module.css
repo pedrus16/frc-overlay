@@ -1,31 +1,39 @@
 .container {
   height: 100%;
-  display: grid;
-  grid-template:
-    [header] "header header header header header" 100px
-    [body] "heroLeft upgradesLeft . upgradesRight heroRight" 1fr
-    [footer] "footerLeft . . . footerRight" 250px / 250px 1fr 120px 1fr 250px;
-  gap: 10px 0;
-  position: relative;
+  display: flex;
+  align-items: stretch;
 }
 
-.header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.leftSide,
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
-.heroLeft {
-  position: absolute;
-  top: 45px;
-  left: 0;
+.heroes {
+  margin-top: -0.25rem;
 }
 
-.heroRight {
-  position: absolute;
-  top: 45px;
-  right: 0;
+.rightSide .heroes {
+  align-self: flex-end;
+}
+
+.production {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: flex-end;
+  width: 14.375rem;
+}
+
+.leftSide .production {
+  align-self: flex-start;
+}
+
+.rightSide .production {
+  align-self: flex-end;
 }
 
 .upgradesLeft {
@@ -34,20 +42,4 @@
 
 .upgradesRight {
   grid-area: upgradesRight;
-}
-
-.production {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  align-content: flex-end;
-}
-
-.productionLeft {
-  grid-area: footerLeft;
-}
-
-.productionRight {
-  grid-area: footerRight;
-  justify-content: flex-end;
 }

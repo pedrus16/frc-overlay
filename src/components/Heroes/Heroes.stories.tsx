@@ -37,7 +37,7 @@ Base.args = {
       respawn: { totalDurationSec: 0, timeLeftSec: 0 },
     },
     {
-      id: 'Haah',
+      id: 'Hart',
       level: 1,
       spells: [
         {

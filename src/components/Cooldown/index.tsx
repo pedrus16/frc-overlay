@@ -7,7 +7,12 @@ export interface Props {
   height?: number;
 }
 
-const Cooldown = ({ progressPercent, className, width, height }: Props) => {
+const Cooldown = ({
+  progressPercent,
+  className = '',
+  width,
+  height,
+}: Props) => {
   const size = 2;
   const angle = useMemo(
     () => Math.min(1, Math.max(0, progressPercent / 100)) * Math.PI * 2,

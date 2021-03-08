@@ -1,0 +1,56 @@
+.container {
+  --height: 2.625rem;
+
+  position: relative;
+  background: var(--gray-1);
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.container.reverse {
+  flex-direction: row-reverse;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  border-top: calc(var(--height) / 2) solid transparent;
+  border-bottom: calc(var(--height) / 2) solid transparent;
+  border-right: 0.75rem solid var(--gray-1);
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  right: -0.75rem;
+  border-top: calc(var(--height) / 2) solid transparent;
+  border-bottom: calc(var(--height) / 2) solid transparent;
+  border-left: 0.75rem solid var(--gray-1);
+}
+
+.unitCount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  min-width: 1.5rem;
+
+  color: var(--gray-5);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.unitCount > svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--gray-4);
+}
+
+.raceEmblem {
+  display: block;
+  width: var(--height);
+  height: auto;
+}
