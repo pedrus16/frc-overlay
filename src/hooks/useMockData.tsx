@@ -1,4 +1,4 @@
-import mockedData from '../mock/data-sample4.json';
+import mockedData from '../mock/data-sample3.json';
 import State from '../models/State';
 
 const useMockData = () => {
