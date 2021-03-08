@@ -8,9 +8,11 @@ interface UpgradeProps {
 }
 
 export const Upgrade = ({ upgrade }: UpgradeProps) => {
+  const suffix = upgrade.level > 1 ? upgrade.level : '';
+
   return (
     <div className={style.upgrade}>
-      <Cameo id={upgrade.id} />
+      <Cameo id={`${upgrade.id}${suffix}`} />
     </div>
   );
 };
