@@ -10,6 +10,8 @@ import { ResearchType } from '../models';
 import Player from '../models/Player';
 import State from '../models/State';
 import { buildHeroesData } from './buildData';
+import useLocalStorage from '../Settings/useLocalStorage';
+import { toBoolean } from '../utils/localStorageUtil';
 
 import style from './style.module.css';
 
@@ -63,19 +65,18 @@ interface Props {
 }
 
 const Overlay = ({ state }: Props) => {
-  const [swapped, setSwapped] = useState(false);
-  const [reforgedStyle, setReforgedStyle] = useState(false);
+  const [swapped, setSwapped] = useLocalStorage('swapped');
+  const [reforgedStyle, setReforgedStyle] = useLocalStorage('reforgedStyle');
 
-  const switchPlayer = () => {
-    setSwapped((prev) => !prev);
-  };
-
+  debugger;
   const player1 = useMemo(
-    () => (swapped ? state.content.players[0] : state.content.players[1]),
+    () =>
+      toBoolean(swapped) ? state.content.players[0] : state.content.players[1],
     [state, swapped]
   );
   const player2 = useMemo(
-    () => (swapped ? state.content.players[1] : state.content.players[0]),
+    () =>
+      toBoolean(swapped) ? state.content.players[1] : state.content.players[0],
     [state, swapped]
   );
 
@@ -101,15 +102,10 @@ const Overlay = ({ state }: Props) => {
     ) || [];
 
   return (
-    <ReforgedStyleContext.Provider value={reforgedStyle}>
+    <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
       <div className={style.container}>
         <div className={style.header}>
-          <Header
-            player1={player1}
-            player2={player2}
-            onSwap={switchPlayer}
-            onReforgedStyleChange={setReforgedStyle}
-          />
+          <Header player1={player1} player2={player2} />
         </div>
         {player1 && (
           <>
