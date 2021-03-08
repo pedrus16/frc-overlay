@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import Header from '../components/Header';
 import Heroes from '../components/Heroes';
@@ -65,10 +65,9 @@ interface Props {
 }
 
 const Overlay = ({ state }: Props) => {
-  const [swapped, setSwapped] = useLocalStorage('swapped');
-  const [reforgedStyle, setReforgedStyle] = useLocalStorage('reforgedStyle');
+  const [swapped] = useLocalStorage('swapped');
+  const [reforgedStyle] = useLocalStorage('reforgedStyle');
 
-  debugger;
   const player1 = useMemo(
     () =>
       toBoolean(swapped) ? state.content.players[0] : state.content.players[1],
