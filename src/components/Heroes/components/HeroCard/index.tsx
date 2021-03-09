@@ -20,7 +20,7 @@ export interface Props {
   className?: string;
 }
 
-const HeroCard = ({ hero, className, reverse }: Props) => {
+const HeroCard = ({ hero, className = '', reverse }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
   return (

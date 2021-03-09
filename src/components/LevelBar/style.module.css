@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  box-sizing: border-box;
+  background: var(--black);
+  border: 1px solid var(--gray-2);
+  border-radius: 99px;
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.dot.active {
+  background: var(--yellow);
+}

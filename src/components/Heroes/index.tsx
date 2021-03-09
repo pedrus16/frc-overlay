@@ -5,13 +5,14 @@ import style from './style.module.css';
 export interface Props {
   heroes: HeroCardProps['hero'][];
   reverse?: boolean;
+  className?: string;
 }
 
-const Heroes = ({ heroes, reverse }: Props) => {
+const Heroes = ({ heroes, reverse = false, className = '' }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
   return (
-    <div className={`${style.container} ${reverseClass}`}>
+    <div className={`${style.container} ${reverseClass} ${className}`}>
       {heroes.map((hero) => (
         <HeroCard
           key={hero.id}

@@ -13,7 +13,7 @@ export interface Props {
 
 const DEFAULT_SIZE_PX = 64;
 
-const Cameo = ({ id, className, width, height }: Props) => {
+const Cameo = ({ id, className = '', width, height }: Props) => {
   const reforgedStyle = useContext(ReforgedStyleContext);
   const [error, setError] = useState(false);
 

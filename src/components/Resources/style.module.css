@@ -1,25 +1,24 @@
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: flex-end;
-  gap: 10px;
+  width: fit-content;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
 }
 
 .container.reverse {
-  justify-content: flex-start;
+  flex-direction: row-reverse;
 }
 
 .icon {
-  width: 32px;
-  margin-right: 5px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.125rem;
 }
 
 .resourceContainer {
   display: flex;
   align-items: center;
-
-  background: var(--bg-translucent);
-  color: var(--color);
-  border-radius: var(--border-radius);
-  padding: var(--padding);
+  color: var(--text-color);
+  margin: 0 0.25rem;
 }

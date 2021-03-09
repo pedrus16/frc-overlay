@@ -1,39 +1,53 @@
-import Cameo from '../Cameo';
-import Unit from '../../models/Unit';
+import { useMemo } from 'react';
+
+import Unit from './components/Unit';
+import ArmySummary, {
+  Props as ArmySummaryProps,
+} from './components/ArmySummary';
 
 import style from './style.module.css';
 
-const sortByCount = (a: Unit, b: Unit) => a.alive_count - b.alive_count;
+/* TODO Use this in data builder */
+// const sortByCount = (a: Unit, b: Unit) => a.alive_count - b.alive_count;
+// const workers = units
+//   .filter((unit) => unit.is_worker && unit.alive_count > 0)
+//   .sort(sortByCount);
+// const soldiers = units
+//   .filter((unit) => !unit.is_worker && unit.alive_count > 0)
+//   .sort(sortByCount);
 
-interface Properties {
-  units: Unit[];
+export interface Props {
+  soldiers: Array<{ id: string; count: number }>;
+  workers: { id: string; count: number };
+  race: ArmySummaryProps['race'];
   reverse?: boolean;
-  className?: string;
 }
 
-const Army = ({ units, reverse, className }: Properties) => {
+const Army = ({ soldiers, workers, race, reverse }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
-  const workers = units
-    .filter((unit) => unit.is_worker && unit.alive_count > 0)
-    .sort(sortByCount);
-  const soldiers = units
-    .filter((unit) => !unit.is_worker && unit.alive_count > 0)
-    .sort(sortByCount);
+
+  const soldierTotal = useMemo(
+    () => soldiers.reduce((sum, unit) => sum + unit.count || 0, 0),
+    [soldiers]
+  );
+
+  const reversedSoldiers = useMemo(() => soldiers.concat().reverse(), [
+    soldiers,
+  ]);
 
   return (
-    <div className={`${style.container} ${reverseClass} ${className || ''}`}>
-      {soldiers.map((unit) => (
-        <div key={unit.id} className={style.item}>
-          <Cameo id={unit.id} width={50} height={50} />
-          <div className={style.count}>{unit.alive_count}</div>
-        </div>
+    <div className={`${style.container} ${reverseClass}`}>
+      {reversedSoldiers.map((unit) => (
+        <Unit key={unit.id} id={unit.id} count={unit.count} />
       ))}
-      {workers.map((unit) => (
-        <div key={unit.id} className={style.item}>
-          <Cameo id={unit.id} width={50} height={50} />
-          <div className={style.count}>{unit.alive_count}</div>
-        </div>
-      ))}
+      <ArmySummary
+        className={style.summary}
+        soldiers={soldierTotal}
+        workers={workers.count}
+        race={race}
+        reverse={reverse}
+      />
+      <Unit id={workers.id} count={null} />
     </div>
   );
 };

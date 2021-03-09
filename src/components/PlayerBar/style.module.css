@@ -1,49 +1,249 @@
 .container {
+  --bg-color: var(--gray-0);
+  --clock-width: 2.625rem;
+  --border-size: 0.25rem;
+  --angle: 28.5deg;
+  --border-color: var(--team-color);
+
+  display: flex;
+}
+
+.container.reverse {
+  flex-direction: row-reverse;
+}
+
+.clockHole {
+  color: var(--border-color);
+}
+
+.reverse .clockHole {
+  transform: scaleX(-1);
+}
+
+.verticalContainer {
   flex-grow: 1;
-  display: grid;
-  grid-template-rows: 50px auto;
-  gap: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.topBarContainer {
-  display: grid;
-  justify-content: flex-end;
+.top {
+  display: flex;
   align-items: center;
-  grid-template-columns: [army] auto [race] auto [name] auto;
-  justify-items: flex-end;
   justify-content: flex-end;
-  gap: 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: var(--bg-color);
+  box-shadow: 0 var(--border-size) 0 var(--border-color);
+  padding-right: 0.25rem;
 }
 
-.topBarContainer.reverse {
-  grid-template-columns: [name] auto [race] auto [army] auto;
-  justify-items: flex-start;
+.reverse .top {
+  flex-direction: row-reverse;
+  padding-right: 0;
+  padding-left: 0.25rem;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.reverse .bottom {
+  flex-direction: row-reverse;
+}
+
+.left {
+  --height: calc(100% + var(--border-size));
+  --angle-width: 1.375rem;
+
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-color);
+  border-bottom: var(--border-size) solid var(--border-color);
+  margin-right: var(--angle-width);
+}
+
+.reverse .left {
+  flex-direction: row-reverse;
+  margin-right: 0;
+  margin-left: var(--angle-width);
+}
+
+.center {
+  flex-grow: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
   justify-content: flex-start;
+  padding: 0.125rem 0;
 }
 
-.card {
-  /* background: var(--bg); */
-  color: var(--color);
-  border-radius: var(--border-radius);
-  padding: var(--padding);
+.upgrade {
+  margin-left: 0.125rem;
 }
 
-.army {
-  grid-row: 1;
-  grid-column: army;
+.upgrade:first-child {
+  margin-left: 0;
 }
 
-.race {
-  grid-row: 1;
-  grid-column: race;
+.reverse .center {
+  flex-direction: row;
 }
 
-.name {
-  grid-row: 1;
-  grid-column: name;
+.right {
+  --height: calc(100% + var(--border-size));
+  --angle-width: 1.5rem;
+
+  position: relative;
+  display: flex;
+  min-height: 2.25rem;
+  background: var(--bg-color);
+  border-bottom: var(--border-size) solid var(--border-color);
+  padding-right: 0.25rem;
+  margin-left: var(--angle-width);
+}
+
+.reverse .right {
+  padding-right: 0;
+  padding-left: 0.25rem;
+  margin-left: 0;
+  margin-right: var(--angle-width);
+}
+
+.flagAndScore {
+  width: 3.5rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-evenly;
+  /* padding: 0 0.5rem; */
+}
+
+.reverse .flagAndScore {
+  flex-direction: row-reverse;
+}
+
+.flag {
+  width: 1.5rem;
+}
+
+.score {
+  color: var(--gray-5);
+  font-size: 1.5rem;
+}
+
+.playerName {
+  width: 12.5rem;
+  text-align: center;
+  color: var(--gray-5);
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+}
+
+.techLevel {
+  color: var(--gray-5);
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-top: 1px solid var(--gray-2);
+  border-left: 1px solid var(--gray-2);
+  margin-left: 0.625rem;
+  margin-right: -0.55rem;
+  padding: 0 0.625rem;
+  display: flex;
+  align-items: center;
+
+  z-index: 1;
+  transform: skewX(calc(var(--angle) * -1));
+}
+
+.techLevel > div {
+  transform: skewX(var(--angle));
+}
+
+.reverse .techLevel {
+  margin-left: -0.55rem;
+  margin-right: 0.625rem;
+  transform: skewX(var(--angle));
+  border-left: none;
+  border-right: 1px solid var(--gray-2);
+}
+
+.reverse .techLevel > div {
+  transform: skewX(calc(var(--angle) * -1));
+}
+
+.angleLeft {
+  content: "";
+  display: block;
+  position: absolute;
+  width: var(--angle-width);
+  height: var(--height);
+  top: 0;
+  right: calc(var(--angle-width) * -1);
+  overflow: hidden;
+}
+
+.angleLeft::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: var(--angle-width);
+  height: 150%;
+  right: 0;
+  background: var(--bg-color);
+  border-right: var(--border-size) solid var(--border-color);
+  transform: rotate(var(--angle));
+  transform-origin: top right;
+}
+
+.reverse .angleLeft {
+  right: auto;
+  left: calc(var(--angle-width) * -1);
+}
+
+.reverse .angleLeft::before {
+  right: auto;
+  left: 0;
+  border-left: var(--border-size) solid var(--border-color);
+  transform: rotate(calc(var(--angle) * -1));
+  transform-origin: top left;
+}
+
+.angleRight {
+  content: "";
+  display: block;
+  position: absolute;
+  width: var(--angle-width);
+  height: var(--height);
+  top: 0;
+  left: calc(var(--angle-width) * -1);
+  overflow: hidden;
+}
+
+.angleRight::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: var(--angle-width);
+  height: 150%;
+  left: 0;
+  background: var(--bg-color);
+  border-left: var(--border-size) solid var(--border-color);
+  transform: rotate(calc(var(--angle) * -1));
+  transform-origin: top left;
+}
+
+.reverse .angleRight {
+  left: auto;
+  right: calc(var(--angle-width) * -1);
+}
+
+.reverse .angleRight::before {
+  left: auto;
+  right: 0;
+  border-right: var(--border-size) solid var(--border-color);
+  transform: rotate(var(--angle));
+  transform-origin: top right;
 }

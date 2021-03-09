@@ -1,4 +1,5 @@
 import ItemModel from '../../../../models/Item';
+import range from '../../../../utils/range';
 import Item from '../Item';
 
 import { ReactComponent as BackpackIcon } from './backpack.svg';
@@ -10,17 +11,17 @@ export interface Props {
   className?: string;
 }
 
-const Inventory = ({ items, className }: Props) => {
-  const slots = [0, 1, 2, 3, 4, 5];
+const Inventory = ({ items, className = '' }: Props) => {
+  const slots = range(6);
 
   return (
     <div className={`${className} ${style.grid}`}>
       {slots.map((slot) => {
         const item = items.find((i) => i.slot === slot);
         if (!item) {
-          return <BackpackIcon />;
+          return <BackpackIcon key={slot} />;
         }
-        return <Item key={item.slot} id={item.id} charges={item.charges} />;
+        return <Item key={slot} id={item.id} charges={item.charges} />;
       })}
     </div>
   );

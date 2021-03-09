@@ -1,3 +1,4 @@
+import range from '../../../../utils/range';
 import Spell, { Props as SpellProps } from '../Spell';
 
 import style from './style.module.css';
@@ -7,7 +8,7 @@ export interface Props {
 }
 
 const SpellBar = ({ spells }: Props) => {
-  const slots = [0, 1, 2, 3];
+  const slots = range(4);
 
   return (
     <div className={style.container}>
@@ -15,7 +16,7 @@ const SpellBar = ({ spells }: Props) => {
         const spell = spells[index];
 
         return (
-          <div className={style.slot}>
+          <div key={index} className={style.slot}>
             {!!spell && (
               <Spell
                 id={spell.id}
