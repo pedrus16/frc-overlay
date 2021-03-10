@@ -90,6 +90,7 @@ const Overlay = ({ state }: Props) => {
         <div className={style.leftSide} style={p1Style}>
           <PlayerBar
             playerName={p1.playerName}
+            apm={p1.apm}
             army={p1.army}
             resources={p1.resources}
             upgrades={p1.upgrades}
@@ -114,6 +115,7 @@ const Overlay = ({ state }: Props) => {
           <PlayerBar
             reverse
             playerName={p2.playerName}
+            apm={p2.apm}
             army={p2.army}
             resources={p2.resources}
             upgrades={p2.upgrades}

@@ -133,13 +133,38 @@
   font-size: 1.5rem;
 }
 
-.playerName {
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 12.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.reverse .player {
+  flex-direction: row-reverse;
+}
+
+.apm {
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1em;
+  text-align: center;
+}
+
+.apm small {
+  color: var(--gray-4);
+  font-size: 0.625rem;
+}
+
+.playerName {
+  flex-grow: 1;
   text-align: center;
   color: var(--gray-5);
   font-size: 1.125rem;
+  line-height: 1em;
   font-weight: 700;
-  padding: 0.25rem 0.5rem;
 }
 
 .techLevel {

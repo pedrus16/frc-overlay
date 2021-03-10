@@ -141,6 +141,7 @@ const getRace = (race: Race): PlayerRace => {
 export const buildPlayerData = (player: Player) => {
   return {
     playerName: player.name,
+    apm: player.apm_realtime,
     color: getColorNameByIndex(player.team_color),
     army: {
       race: getRace(player.race),

@@ -3,12 +3,13 @@ import Resources, { Props as ResourcesProps } from '../Resources';
 import Upgrade, { Props as UpgradeProps } from '../Upgrade';
 
 import { ReactComponent as ClockHole } from './images/bg1.svg';
-import { ReactComponent as Flag } from './images/flag.svg';
+// import { ReactComponent as Flag } from './images/flag.svg';
 
 import style from './style.module.css';
 
 export interface Props {
   playerName: string;
+  apm: number;
   army: ArmyProps;
   resources: ResourcesProps;
   techLevel: number;
@@ -20,6 +21,7 @@ export interface Props {
 
 const PlayerBar = ({
   playerName,
+  apm,
   army,
   resources,
   upgrades,
@@ -40,7 +42,14 @@ const PlayerBar = ({
             race={army.race}
             reverse={reverse}
           />
-          <div className={style.playerName}>{playerName}</div>
+          <div className={style.player}>
+            <div className={style.apm}>
+              {apm}
+              <br />
+              <small>APM</small>
+            </div>
+            <div className={style.playerName}>{playerName}</div>
+          </div>
         </div>
         <div className={style.bottom}>
           <div className={style.left}>
@@ -72,7 +81,7 @@ const PlayerBar = ({
           <div className={style.right}>
             {!reverse && <div className={style.angleRight}></div>}
             <div className={style.flagAndScore}>
-              <Flag className={style.flag} />
+              {/* <Flag className={style.flag} /> */}
               <div className={style.score}>{score}</div>
             </div>
             {reverse && <div className={style.angleRight}></div>}
