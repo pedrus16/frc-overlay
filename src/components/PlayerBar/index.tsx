@@ -15,6 +15,7 @@ export interface Props {
   upgrades: UpgradeProps[];
   reverse?: boolean;
   className?: string;
+  score: string | null;
 }
 
 const PlayerBar = ({
@@ -25,6 +26,7 @@ const PlayerBar = ({
   techLevel = 1,
   reverse = false,
   className = '',
+  score,
 }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
@@ -71,7 +73,7 @@ const PlayerBar = ({
             {!reverse && <div className={style.angleRight}></div>}
             <div className={style.flagAndScore}>
               <Flag className={style.flag} />
-              <div className={style.score}>2</div>
+              <div className={style.score}>{score}</div>
             </div>
             {reverse && <div className={style.angleRight}></div>}
           </div>

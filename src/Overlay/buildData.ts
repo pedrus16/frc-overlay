@@ -163,6 +163,7 @@ export const buildPlayerData = (
       },
       upgrades: buildPlayerUpgrades(player.upgrades_completed),
       techLevel: getTech(getRace(player.race), player.buildings_on_map),
+      score: '',
     },
     heroes: buildHeroesData(player.heroes, player.researches_in_progress),
     color: getColorNameByIndex(player.team_color),

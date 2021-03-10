@@ -66,6 +66,8 @@ interface Props {
 const Overlay = ({ state }: Props) => {
   const [swapped] = useLocalStorage('swapped');
   const [reforgedStyle] = useLocalStorage('reforgedStyle');
+  const [scoreP1] = useLocalStorage('scoreP1');
+  const [scoreP2] = useLocalStorage('scoreP2');
 
   const player1 = useMemo(
     () =>
@@ -106,6 +108,7 @@ const Overlay = ({ state }: Props) => {
             resources={p1.player.resources}
             upgrades={p1.player.upgrades}
             techLevel={p1.player.techLevel}
+            score={scoreP1}
           />
           <Heroes className={style.heroes} heroes={p1.heroes} />
 
@@ -131,6 +134,7 @@ const Overlay = ({ state }: Props) => {
             resources={p2.player.resources}
             upgrades={p2.player.upgrades}
             techLevel={p2.player.techLevel}
+            score={scoreP2}
           />
           <Heroes className={style.heroes} reverse heroes={p2.heroes} />
 
