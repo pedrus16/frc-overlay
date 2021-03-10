@@ -18,11 +18,13 @@ Base.args = {
       {
         id: 'AUfn',
         level: 3,
+        levelMax: 3,
         cooldown: { totalDurationSec: 10, timeLeftSec: 3 },
       },
       {
         id: 'AUfn',
         level: 1,
+        levelMax: 1,
         cooldown: { totalDurationSec: 4, timeLeftSec: 2 },
       },
     ],

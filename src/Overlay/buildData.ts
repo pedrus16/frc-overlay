@@ -1,4 +1,3 @@
-import Ability from '../models/Ability';
 import Hero from '../models/Hero';
 import { Props as HeroesProps } from '../components/Heroes';
 import { Props as PlayerBarProps } from '../components/PlayerBar';
@@ -6,11 +5,20 @@ import { Props as UpgradeProps } from '../components/Upgrade';
 import Research from '../models/Research';
 import { Race, ResearchType } from '../models';
 import Player from '../models/Player';
+import Ability from '../models/Ability';
 import Unit from '../models/Unit';
 import Upgrade from '../models/Upgrade';
 import Building from '../models/Building';
-import { toPercent, clamp, sortByIndex, getColorNameByIndex } from '../utils';
+import {
+  toPercent,
+  clamp,
+  sortByIndex,
+  getColorNameByIndex,
+  isUltimate,
+} from '../utils';
 
+const ABILITY_MAX_LEVEL = 3;
+const ULTIMATE_MAX_LEVEL = 1;
 const buildSpellList = (abilities: Ability[]) => {
   return abilities
     .filter((ability) => ability.is_hero_ability)
@@ -18,6 +26,7 @@ const buildSpellList = (abilities: Ability[]) => {
     .map((ability) => ({
       id: ability.id,
       level: ability.level,
+      levelMax: isUltimate(ability.id) ? ULTIMATE_MAX_LEVEL : ABILITY_MAX_LEVEL,
       cooldown: {
         totalDurationSec: ability.cooldown_time,
         timeLeftSec: ability.cooldown,

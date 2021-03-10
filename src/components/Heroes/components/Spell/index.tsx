@@ -8,10 +8,11 @@ import style from './style.module.css';
 export interface Props {
   id: string;
   level: number;
+  levelMax: number;
   cooldown?: { totalDurationSec: number; timeLeftSec: number };
 }
 
-const Spell = ({ id, level, cooldown }: Props) => {
+const Spell = ({ id, level, levelMax, cooldown }: Props) => {
   const progress = useMemo(
     () =>
       cooldown ? 1 - cooldown?.timeLeftSec / cooldown?.totalDurationSec : 0,
@@ -34,7 +35,7 @@ const Spell = ({ id, level, cooldown }: Props) => {
           </div>
         </div>
       )}
-      <LevelBar className={style.levelBar} level={level} levelMax={3} />
+      <LevelBar className={style.levelBar} level={level} levelMax={levelMax} />
     </div>
   );
 };

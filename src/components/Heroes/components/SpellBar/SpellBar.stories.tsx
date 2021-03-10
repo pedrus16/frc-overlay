@@ -25,18 +25,18 @@ const Template: Story<Props> = (args) => (
 export const Base = Template.bind({});
 Base.args = {
   spells: [
-    { id: 'AUfn', level: 1 },
-    { id: 'AUfa', level: 2 },
+    { id: 'AUfn', level: 1, levelMax: 3 },
+    { id: 'AUfa', level: 2, levelMax: 3 },
   ],
 };
 
 export const Full = Template.bind({});
 Full.args = {
   spells: [
-    { id: 'AUfn', level: 3 },
-    { id: 'AUfa', level: 2 },
-    { id: 'AUdr', level: 1 },
-    { id: 'AUfn', level: 1 },
+    { id: 'AUfn', level: 3, levelMax: 3 },
+    { id: 'AUfa', level: 2, levelMax: 3 },
+    { id: 'AUdr', level: 1, levelMax: 3 },
+    { id: 'AUfn', level: 1, levelMax: 1 },
   ],
 };
 
@@ -46,12 +46,14 @@ Cooldown.args = {
     {
       id: 'AUfn',
       level: 1,
+      levelMax: 3,
       cooldown: { totalDurationSec: 10, timeLeftSec: 2 },
     },
-    { id: 'AUfa', level: 2 },
+    { id: 'AUfa', level: 2, levelMax: 3 },
     {
       id: 'AUdr',
       level: 2,
+      levelMax: 3,
       cooldown: { totalDurationSec: 20, timeLeftSec: 19 },
     },
   ],
@@ -60,8 +62,8 @@ Cooldown.args = {
 export const Empty = Template.bind({});
 Empty.args = {
   spells: [
-    { id: 'AUfn', level: 1 },
-    { id: 'AUfa', level: 2 },
-    { id: 'AUdr', level: 2 },
+    { id: 'AUfn', level: 1, levelMax: 3 },
+    { id: 'AUfa', level: 2, levelMax: 3 },
+    { id: 'AUdr', level: 2, levelMax: 3 },
   ],
 };

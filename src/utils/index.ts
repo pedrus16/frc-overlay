@@ -4,3 +4,4 @@ export { default as range } from './range';
 export { default as toPercent } from './toPercent';
 export { default as sortByIndex } from './sortByIndex';
 export { default as getColorNameByIndex } from './getColorNameByIndex';
+export { default as isUltimate } from './isUltimate';

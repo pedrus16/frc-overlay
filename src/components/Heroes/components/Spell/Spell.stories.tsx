@@ -13,6 +13,13 @@ export default {
         max: 3,
       },
     },
+    levelMax: {
+      control: {
+        type: 'range',
+        min: 1,
+        max: 3,
+      },
+    },
   },
 } as Meta;
 
@@ -22,6 +29,7 @@ export const Base = Template.bind({});
 Base.args = {
   id: 'AUfn',
   level: 1,
+  levelMax: 3,
 };
 
 export const Cooldown = Template.bind({});
@@ -29,4 +37,5 @@ Cooldown.args = {
   id: 'AUfn',
   cooldown: { totalDurationSec: 10, timeLeftSec: 3 },
   level: 2,
+  levelMax: 3,
 };

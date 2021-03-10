@@ -21,6 +21,7 @@ const SpellBar = ({ spells }: Props) => {
               <Spell
                 id={spell.id}
                 level={spell.level}
+                levelMax={spell.levelMax}
                 cooldown={spell.cooldown}
               />
             )}
