@@ -16,7 +16,12 @@ const Template: Story<Props> = (args) => <PlayerBar {...args} />;
 export const Base = Template.bind({});
 Base.args = {
   army: {
-    soldiers: [],
+    soldiers: [
+      { id: 'asdfasdf', count: 1 },
+      { id: 'asdfasdf', count: 2 },
+      { id: 'asdfasdf', count: 1 },
+      { id: 'asdfasdf', count: 1 },
+    ],
     workers: { id: 'adfsdaf', count: 42 },
     race: Race.HUMAN,
   },
@@ -27,13 +32,19 @@ Base.args = {
     gold: 100,
     lumber: 400,
   },
+  upgrades: [],
   reverse: false,
 };
 
 export const Reversed = Template.bind({});
 Reversed.args = {
   army: {
-    soldiers: [],
+    soldiers: [
+      { id: 'asdfasdf', count: 1 },
+      { id: 'asdfasdf', count: 2 },
+      { id: 'asdfasdf', count: 1 },
+      { id: 'asdfasdf', count: 1 },
+    ],
     workers: { id: 'adfsdaf', count: 42 },
     race: Race.HUMAN,
   },
@@ -44,5 +55,6 @@ Reversed.args = {
     gold: 100,
     lumber: 400,
   },
+  upgrades: [],
   reverse: true,
 };

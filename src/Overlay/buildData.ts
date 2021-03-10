@@ -8,6 +8,7 @@ import { Race, ResearchType } from '../models';
 import Player from '../models/Player';
 import Unit from '../models/Unit';
 import Upgrade from '../models/Upgrade';
+import Building from '../models/Building';
 
 const toPercent = (value: number, max: number) => {
   return (value / max) * 100;
@@ -117,6 +118,46 @@ const colorList = [
 
 const getColor = (teamColor: number) => `var(--${colorList[teamColor]})`;
 
+type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
+
+/* [T3 building id, T2 building id] */
+const TECH_MAP = {
+  [Race.HUMAN]: ['hcas', 'hkee'],
+  [Race.NIGHTELF]: ['etoe', 'etoa'],
+  [Race.ORC]: ['ofrt', 'ostr'],
+  [Race.UNDEAD]: ['unp2', 'unp1'],
+};
+
+enum TechLevel {
+  T1,
+  T2,
+  T3,
+}
+
+const getTech = (race: PlayerRace, buildings: Building[]): TechLevel => {
+  const completed = buildings.filter(
+    (building) => building.progress_percent === 100
+  );
+
+  if (completed.some((building) => building.id === TECH_MAP[race][0])) {
+    return TechLevel.T3;
+  }
+
+  if (completed.some((building) => building.id === TECH_MAP[race][1])) {
+    return TechLevel.T2;
+  }
+
+  return TechLevel.T1;
+};
+
+const getRace = (race: Race): PlayerRace => {
+  if (![Race.HUMAN, Race.NIGHTELF, Race.ORC, Race.UNDEAD].includes(race)) {
+    throw new Error('Invalid race');
+  }
+
+  return race as PlayerRace;
+};
+
 export const buildPlayerData = (
   player: Player
 ): { player: PlayerBarProps; heroes: HeroesProps['heroes']; color: string } => {
@@ -124,11 +165,7 @@ export const buildPlayerData = (
     player: {
       playerName: player.name,
       army: {
-        race: player.race as
-          | Race.HUMAN
-          | Race.NIGHTELF
-          | Race.ORC
-          | Race.UNDEAD,
+        race: getRace(player.race),
         soldiers: buildSoldiers(player.units_on_map),
         workers: buildWorkers(player.units_on_map),
       },
@@ -139,7 +176,7 @@ export const buildPlayerData = (
         foodMax: player.food_max,
       },
       upgrades: buildPlayerUpgrades(player.upgrades_completed),
-      techLevel: 1 /* TODO */,
+      techLevel: getTech(getRace(player.race), player.buildings_on_map),
     },
     heroes: buildHeroesData(player.heroes, player.researches_in_progress),
     color: getColor(player.team_color),
