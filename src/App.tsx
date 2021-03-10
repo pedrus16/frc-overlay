@@ -12,7 +12,7 @@ function App() {
   if (!data || data.type !== 'state') return null;
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/" exact>
           <Overlay state={data} />
