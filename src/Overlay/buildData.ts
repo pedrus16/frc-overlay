@@ -106,12 +106,12 @@ const TECH_MAP = {
 };
 
 enum TechLevel {
-  T1,
-  T2,
-  T3,
+  T1 = 1,
+  T2 = 2,
+  T3 = 3,
 }
 
-const getTech = (race: PlayerRace, buildings: Building[]): TechLevel => {
+const getTech = (race: PlayerRace, buildings: Building[]) => {
   const completed = buildings.filter(
     (building) => building.progress_percent === 100
   );

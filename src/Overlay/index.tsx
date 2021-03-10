@@ -105,7 +105,7 @@ const Overlay = ({ state }: Props) => {
             army={p1.player.army}
             resources={p1.player.resources}
             upgrades={p1.player.upgrades}
-            techLevel={1}
+            techLevel={p1.player.techLevel}
           />
           <Heroes className={style.heroes} heroes={p1.heroes} />
 
@@ -130,7 +130,7 @@ const Overlay = ({ state }: Props) => {
             army={p2.player.army}
             resources={p2.player.resources}
             upgrades={p2.player.upgrades}
-            techLevel={2}
+            techLevel={p2.player.techLevel}
           />
           <Heroes className={style.heroes} reverse heroes={p2.heroes} />
 
