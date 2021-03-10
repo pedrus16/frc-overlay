@@ -9,10 +9,7 @@ import Player from '../models/Player';
 import Unit from '../models/Unit';
 import Upgrade from '../models/Upgrade';
 import Building from '../models/Building';
-
-const toPercent = (value: number, max: number) => {
-  return (value / max) * 100;
-};
+import { toPercent, clamp, sortByIndex, getColorNameByIndex } from '../utils';
 
 const buildSpellList = (abilities: Ability[]) => {
   return abilities
@@ -27,10 +24,6 @@ const buildSpellList = (abilities: Ability[]) => {
       },
     }));
 };
-
-const sortByIndex = (a: Hero, b: Hero) => a.index - b.index;
-const clamp = (min: number, max: number, value: number) =>
-  Math.max(min, Math.min(value, max));
 
 /* Respawn time in seconds at level = table index + 1 */
 const RESPAWN_TIME_TABLE = [36, 72, 107, 110];
@@ -80,6 +73,7 @@ const buildSoldiers = (units: Unit[]) =>
   units
     .filter((unit) => !unit.is_worker)
     .map((unit) => ({ id: unit.id, count: unit.alive_count }));
+
 const buildWorkers = (units: Unit[]) => {
   const worker = units.find((unit) => unit.is_worker);
 
@@ -100,35 +94,6 @@ const buildPlayerUpgrades = (upgrades: Upgrade[]): UpgradeProps[] => {
     levelMax: upgrade.level_max,
   }));
 };
-
-const TEAM_COLORS = [
-  'Red',
-  'Blue',
-  'Teal',
-  'Purple',
-  'Yellow',
-  'Orange',
-  'Green',
-  'Pink',
-  'Gray',
-  'LightBlue',
-  'DarkGreen',
-  'Brown',
-  'Maroon',
-  'Navy',
-  'Turqoise',
-  'Violet',
-  'Wheat',
-  'Peach',
-  'Mint',
-  'Lavender',
-  'Coal',
-  'Snow',
-  'Emerald',
-  'Peanut',
-];
-
-const getColor = (teamColor: number) => `var(--${TEAM_COLORS[teamColor]})`;
 
 type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
 
@@ -191,6 +156,6 @@ export const buildPlayerData = (
       techLevel: getTech(getRace(player.race), player.buildings_on_map),
     },
     heroes: buildHeroesData(player.heroes, player.researches_in_progress),
-    color: getColor(player.team_color),
+    color: getColorNameByIndex(player.team_color),
   };
 };

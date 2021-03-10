@@ -9,10 +9,10 @@ import Player from '../models/Player';
 import State from '../models/State';
 import { buildPlayerData } from './buildData';
 import useLocalStorage from '../Settings/useLocalStorage';
-import { toBoolean } from '../utils/localStorageUtil';
 
 import style from './style.module.css';
 import PlayerBar from '../components/PlayerBar';
+import { toBoolean } from '../utils';
 
 /* TODO This is not a hook! Rename with a conventionnal function name */
 const usePlayerProduction = (
