@@ -1,8 +1,9 @@
 import { createStyles, LinearProgress, withStyles } from '@material-ui/core';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import Cameo from '../../../Cameo';
 import Cooldown from '../../../Cooldown';
+import useRealTimeMs from '../../../../hooks/useRealTimeMs';
 import style from './style.module.css';
 
 const HealthBarProgress = withStyles(() =>
@@ -55,9 +56,18 @@ const HeroPortrait = ({
   className = '',
 }: Props) => {
   const isDead = useMemo(() => healthPercent <= 0, [healthPercent]);
+
+  const [realTimeMs, setRealtimeMs] = useRealTimeMs(
+    (respawn?.timeLeftSec || 0) * 1000,
+    true
+  );
+  useEffect(() => {
+    setRealtimeMs((respawn?.timeLeftSec || 0) * 1000);
+  }, [respawn, setRealtimeMs]);
+
   const progress = useMemo(
-    () => (respawn ? 1 - respawn?.timeLeftSec / respawn?.totalDurationSec : 0),
-    [respawn]
+    () => (respawn ? 1 - realTimeMs / 1000 / respawn?.totalDurationSec : 0),
+    [respawn, realTimeMs]
   );
 
   return (
@@ -73,14 +83,14 @@ const HeroPortrait = ({
           height={64}
         />
         <div className={style.level}>{level}</div>
-        {!!respawn && respawn.timeLeftSec > 0 && (
+        {realTimeMs > 0 && (
           <div className={`${style.overlay} ${style.cooldown}`}>
             <Cooldown
               className={`${style.overlay} ${style.clock}`}
               progressPercent={progress * 100}
             />
             <div className={style.countdown}>
-              {Math.ceil(respawn.timeLeftSec)}
+              {Math.ceil(realTimeMs / 1000)}
             </div>
           </div>
         )}

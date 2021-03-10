@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import useRealTimeMs from '../../../../hooks/useRealTimeMs';
 import Cameo from '../../../Cameo';
 import Cooldown from '../../../Cooldown';
 import LevelBar from '../../../LevelBar';
@@ -13,11 +14,17 @@ export interface Props {
 }
 
 const Spell = ({ id, level, levelMax, cooldown }: Props) => {
-  const progress = useMemo(
-    () =>
-      cooldown ? 1 - cooldown?.timeLeftSec / cooldown?.totalDurationSec : 0,
-    [cooldown]
+  const [realTimeMs, setRealtimeMs] = useRealTimeMs(
+    (cooldown?.timeLeftSec || 0) * 1000,
+    true
   );
+  useEffect(() => {
+    setRealtimeMs((cooldown?.timeLeftSec || 0) * 1000);
+  }, [cooldown, setRealtimeMs]);
+
+  const progress = useMemo(() => {
+    return cooldown ? 1 - realTimeMs / 1000 / cooldown?.totalDurationSec : 0;
+  }, [cooldown, realTimeMs]);
 
   return (
     <div className={style.container}>
@@ -30,9 +37,11 @@ const Spell = ({ id, level, levelMax, cooldown }: Props) => {
             width={32}
             height={32}
           />
-          <div className={style.countdown}>
-            {Math.ceil(cooldown.timeLeftSec)}
-          </div>
+          {realTimeMs > 0 && (
+            <div className={style.countdown}>
+              {Math.ceil(realTimeMs / 1000)}
+            </div>
+          )}
         </div>
       )}
       <LevelBar className={style.levelBar} level={level} levelMax={levelMax} />
