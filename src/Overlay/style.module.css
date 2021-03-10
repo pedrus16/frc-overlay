@@ -19,27 +19,32 @@
   align-self: flex-end;
 }
 
-.production {
+.researchAndProduction {
   flex-grow: 1;
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  align-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 14.375rem;
 }
 
-.leftSide .production {
+.leftSide .researchAndProduction {
   align-self: flex-start;
 }
 
-.rightSide .production {
+.rightSide .researchAndProduction {
   align-self: flex-end;
 }
 
-.upgradesLeft {
-  grid-area: upgradesLeft;
+.production {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0.0625rem;
 }
 
-.upgradesRight {
-  grid-area: upgradesRight;
+.production > div {
+  margin-right: 0.0625rem;
+}
+
+.reverse .production {
+  flex-direction: row-reverse;
 }

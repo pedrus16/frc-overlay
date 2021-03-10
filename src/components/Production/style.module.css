@@ -1,3 +1,27 @@
 .container {
-  width: 50px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.progress {
+  padding: 0.0625rem;
+  background: var(--gray-1);
+}
+
+.progressBackground {
+  height: 0.25rem;
+  position: relative;
+  width: 100%;
+  background: var(--black-60);
+}
+
+.progressForeground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--team-color);
+  box-shadow: 0px 0px 4px 1px var(--team-color);
+  height: 100%;
 }

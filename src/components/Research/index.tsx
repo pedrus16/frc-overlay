@@ -1,5 +1,7 @@
 import Cameo from '../Cameo';
 
+import labelFR from './fr.json';
+
 import style from './style.module.css';
 
 export interface Props {
@@ -7,11 +9,14 @@ export interface Props {
   progressPercent: number;
 }
 
-const Production = ({ id, progressPercent }: Props) => {
+const Research = ({ id, progressPercent }: Props) => {
   return (
     <div className={style.container}>
       <Cameo id={id} width={32} height={32} />
-      <div className={style.progress}>
+      <div className={style.rightColumn}>
+        <div className={style.label}>
+          {(labelFR as Record<string, string>)[id] || 'N/A'}
+        </div>
         <div className={style.progressBackground}>
           <div
             className={style.progressForeground}
@@ -23,4 +28,4 @@ const Production = ({ id, progressPercent }: Props) => {
   );
 };
 
-export default Production;
+export default Research;

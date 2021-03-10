@@ -1,7 +1,4 @@
 import Hero from '../models/Hero';
-import { Props as HeroesProps } from '../components/Heroes';
-import { Props as PlayerBarProps } from '../components/PlayerBar';
-import { Props as UpgradeProps } from '../components/Upgrade';
 import Research from '../models/Research';
 import { Race, ResearchType } from '../models';
 import Player from '../models/Player';
@@ -59,10 +56,7 @@ const getHeroRespawnTime = (
   };
 };
 
-const buildHeroesData = (
-  heroes: Hero[],
-  researches: Research[]
-): HeroesProps['heroes'] => {
+const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
   return heroes
     .concat()
     .sort(sortByIndex)
@@ -96,7 +90,7 @@ const buildWorkers = (units: Unit[]) => {
   };
 };
 
-const buildPlayerUpgrades = (upgrades: Upgrade[]): UpgradeProps[] => {
+const buildPlayerUpgrades = (upgrades: Upgrade[]) => {
   return upgrades.map((upgrade) => ({
     id: upgrade.id,
     level: upgrade.level,
@@ -144,28 +138,35 @@ const getRace = (race: Race): PlayerRace => {
   return race as PlayerRace;
 };
 
-export const buildPlayerData = (
-  player: Player
-): { player: PlayerBarProps; heroes: HeroesProps['heroes']; color: string } => {
+export const buildPlayerData = (player: Player) => {
   return {
-    player: {
-      playerName: player.name,
-      army: {
-        race: getRace(player.race),
-        soldiers: buildSoldiers(player.units_on_map),
-        workers: buildWorkers(player.units_on_map),
-      },
-      resources: {
-        gold: player.gold,
-        lumber: player.lumber,
-        food: player.food,
-        foodMax: player.food_max,
-      },
-      upgrades: buildPlayerUpgrades(player.upgrades_completed),
-      techLevel: getTech(getRace(player.race), player.buildings_on_map),
-      score: '',
-    },
-    heroes: buildHeroesData(player.heroes, player.researches_in_progress),
+    playerName: player.name,
     color: getColorNameByIndex(player.team_color),
+    army: {
+      race: getRace(player.race),
+      soldiers: buildSoldiers(player.units_on_map),
+      workers: buildWorkers(player.units_on_map),
+    },
+    resources: {
+      gold: player.gold,
+      lumber: player.lumber,
+      food: player.food,
+      foodMax: player.food_max,
+    },
+    upgrades: buildPlayerUpgrades(player.upgrades_completed),
+    techLevel: getTech(getRace(player.race), player.buildings_on_map),
+    score: '',
+    heroes: buildHeroesData(player.heroes, player.researches_in_progress),
+    production: {
+      buildings: player.buildings_on_map.filter(
+        (building) => building.progress_percent < 100
+      ),
+      units: player.researches_in_progress.filter(
+        (research) => research.type === ResearchType.UNIT
+      ),
+    },
+    research: player.researches_in_progress.filter(
+      (research) => research.type === ResearchType.UPGRADE
+    ),
   };
 };
