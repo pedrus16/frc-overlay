@@ -58,6 +58,7 @@ const PlayerBar = ({
           <div className={style.center}>
             {upgrades.map((upgrade) => (
               <Upgrade
+                key={upgrade.id}
                 className={style.upgrade}
                 id={upgrade.id}
                 level={upgrade.level}
