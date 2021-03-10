@@ -68,75 +68,63 @@ const Overlay = ({ state }: Props) => {
 
   const player1 = useMemo(
     () =>
-      toBoolean(swapped) ? state.content.players[0] : state.content.players[1],
+      buildPlayerData(
+        toBoolean(swapped) ? state.content.players[0] : state.content.players[1]
+      ),
     [state, swapped]
   );
   const player2 = useMemo(
     () =>
-      toBoolean(swapped) ? state.content.players[1] : state.content.players[0],
+      buildPlayerData(
+        toBoolean(swapped) ? state.content.players[1] : state.content.players[0]
+      ),
     [state, swapped]
   );
 
-  /* TODO Temporary variables until all of the State is converted to component data */
-  const p1 = useMemo(() => buildPlayerData(player1), [player1]);
-  const p2 = useMemo(() => buildPlayerData(player2), [player2]);
-
-  const p1Style = { '--team-color': p1.color } as React.CSSProperties;
-  const p2Style = { '--team-color': p2.color } as React.CSSProperties;
+  const p1Style = { '--team-color': player1.color } as React.CSSProperties;
+  const p2Style = { '--team-color': player2.color } as React.CSSProperties;
 
   return (
     <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
       <div className={style.container}>
         <div className={style.leftSide} style={p1Style}>
           <PlayerBar
-            playerName={p1.playerName}
-            apm={p1.apm}
-            army={p1.army}
-            resources={p1.resources}
-            upgrades={p1.upgrades}
-            techLevel={p1.techLevel}
+            playerName={player1.playerName}
+            apm={player1.apm}
+            army={player1.army}
+            resources={player1.resources}
+            upgrades={player1.upgrades}
+            techLevel={player1.techLevel}
             score={scoreP1}
           />
-          <Heroes className={style.heroes} heroes={p1.heroes} />
-
-          {player1 && (
-            <>
-              <div className={style.researchAndProduction}>
-                <ProductionAndResearch
-                  buildings={p1.production.buildings}
-                  units={p1.production.units}
-                  researches={p1.research}
-                />
-              </div>
-            </>
-          )}
+          <Heroes className={style.heroes} heroes={player1.heroes} />
+          <div className={style.researchAndProduction}>
+            <ProductionAndResearch
+              buildings={player1.production.buildings}
+              units={player1.production.units}
+              researches={player1.research}
+            />
+          </div>
         </div>
         <div className={style.rightSide} style={p2Style}>
           <PlayerBar
             reverse
-            playerName={p2.playerName}
-            apm={p2.apm}
-            army={p2.army}
-            resources={p2.resources}
-            upgrades={p2.upgrades}
-            techLevel={p2.techLevel}
+            playerName={player2.playerName}
+            apm={player2.apm}
+            army={player2.army}
+            resources={player2.resources}
+            upgrades={player2.upgrades}
+            techLevel={player2.techLevel}
             score={scoreP2}
           />
-          <Heroes className={style.heroes} reverse heroes={p2.heroes} />
-
-          {player2 && (
-            <>
-              <div
-                className={`${style.researchAndProduction} ${style.reverse}`}
-              >
-                <ProductionAndResearch
-                  buildings={p2.production.buildings}
-                  units={p2.production.units}
-                  researches={p2.research}
-                />
-              </div>
-            </>
-          )}
+          <Heroes className={style.heroes} reverse heroes={player2.heroes} />
+          <div className={`${style.researchAndProduction} ${style.reverse}`}>
+            <ProductionAndResearch
+              buildings={player2.production.buildings}
+              units={player2.production.units}
+              researches={player2.research}
+            />
+          </div>
         </div>
       </div>
     </ReforgedStyleContext.Provider>
