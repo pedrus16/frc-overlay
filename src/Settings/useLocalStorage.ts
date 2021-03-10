@@ -16,7 +16,6 @@ const useLocalStorage = (key: string) => {
 
   useEffect(() => {
     const storageEventListener = (storageEvent: StorageEvent) => {
-      debugger;
       if (storageEvent.key === key) {
         setCurrentValue(localStorage.getItem(key));
       }
