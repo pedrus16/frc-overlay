@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Heroes from '../components/Heroes';
 import Production from '../components/Production';
@@ -10,7 +10,7 @@ import useLocalStorage from '../Settings/useLocalStorage';
 
 import style from './style.module.css';
 import PlayerBar from '../components/PlayerBar';
-import { toBoolean } from '../utils';
+import { toBoolean, msToTime } from '../utils';
 
 interface ProductionAndResearchProps {
   buildings: any[];
@@ -56,6 +56,26 @@ const ProductionAndResearch = ({
   );
 };
 
+interface GameTimeProps {
+  time: number;
+}
+
+const GameClock = ({ time }: GameTimeProps) => {
+  const refreshRateMs = 1000;
+  const [currentTime, setCurrentTime] = useState(time);
+
+  useEffect(() => {
+    setCurrentTime(time);
+    const id = setInterval(() => {
+      setCurrentTime((prev) => prev + refreshRateMs);
+    }, refreshRateMs);
+
+    return () => clearInterval(id);
+  }, [time]);
+
+  return <div className={style.gameClock}>{msToTime(currentTime)}</div>;
+};
+
 interface Props {
   state: State;
 }
@@ -83,6 +103,7 @@ const Overlay = ({ state }: Props) => {
 
   const p1Style = { '--team-color': player1.color } as React.CSSProperties;
   const p2Style = { '--team-color': player2.color } as React.CSSProperties;
+  const gameTime = state.content.game.game_time;
 
   return (
     <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
@@ -126,6 +147,9 @@ const Overlay = ({ state }: Props) => {
             />
           </div>
         </div>
+      </div>
+      <div className={style.gameClockContainer}>
+        <GameClock time={gameTime} />
       </div>
     </ReforgedStyleContext.Provider>
   );

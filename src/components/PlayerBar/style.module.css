@@ -70,13 +70,13 @@
   margin-left: var(--angle-width);
 }
 
-.center {
+.upgrades {
   flex-grow: 1;
   align-self: center;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: 0.125rem 0;
 }
 
@@ -88,8 +88,8 @@
   margin-left: 0;
 }
 
-.reverse .center {
-  flex-direction: row;
+.reverse .upgrades {
+  flex-direction: row-reverse;
 }
 
 .right {

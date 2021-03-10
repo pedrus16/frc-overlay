@@ -44,7 +44,7 @@ const PlayerBar = ({
           />
           <div className={style.player}>
             <div className={style.apm}>
-              {apm}
+              {Math.min(999, apm)}
               <br />
               <small>APM</small>
             </div>
@@ -66,7 +66,7 @@ const PlayerBar = ({
             {!reverse && <div className={style.angleLeft}></div>}
           </div>
 
-          <div className={style.center}>
+          <div className={style.upgrades}>
             {upgrades.map((upgrade) => (
               <Upgrade
                 key={upgrade.id}
