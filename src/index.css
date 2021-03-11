@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+.overlay {
+  height: 100%;
+}
+
 :root {
   --bg: rgba(0, 0, 0, 1);
   --bg-translucent: rgba(0, 0, 0, 0.8);
