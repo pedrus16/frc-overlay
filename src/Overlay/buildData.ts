@@ -8,10 +8,11 @@ import Upgrade from '../models/Upgrade';
 import Building from '../models/Building';
 import {
   toPercent,
-  clamp,
   sortByIndex,
   getColorNameByIndex,
   isUltimate,
+  getLevelExperiencePercent,
+  getHeroRespawnTime,
 } from '../utils';
 
 const ABILITY_MAX_LEVEL = 3;
@@ -31,31 +32,6 @@ const buildSpellList = (abilities: Ability[]) => {
     }));
 };
 
-/* Respawn time in seconds at level = table index + 1 */
-const RESPAWN_TIME_TABLE = [36, 72, 107, 110];
-
-const getHeroRespawnTime = (
-  id: string,
-  level: number,
-  researches: Research[]
-) => {
-  const revival = researches.find(
-    (research) => research.id === id && research.type === ResearchType.REVIVAL
-  );
-
-  if (!revival) {
-    return null;
-  }
-
-  const respawnTimeSec =
-    RESPAWN_TIME_TABLE[clamp(0, RESPAWN_TIME_TABLE.length - 1, level - 1)];
-
-  return {
-    totalDurationSec: respawnTimeSec,
-    timeLeftSec: (respawnTimeSec * (100 - revival.progress_percent)) / 100,
-  };
-};
-
 const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
   return heroes
     .concat()
@@ -64,7 +40,11 @@ const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
       id: hero.id,
       healthPercent: toPercent(hero.hitpoints, hero.hitpoints_max),
       manaPercent: toPercent(hero.mana, hero.mana_max),
-      experiencePercent: toPercent(hero.experience, hero.experience_max),
+      experiencePercent: getLevelExperiencePercent(
+        hero.level,
+        hero.experience,
+        hero.experience_max
+      ),
       level: hero.level,
       inventory: hero.inventory,
       spells: buildSpellList(hero.abilities),

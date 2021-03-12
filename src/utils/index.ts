@@ -6,3 +6,5 @@ export { default as sortByIndex } from './sortByIndex';
 export { default as getColorNameByIndex } from './getColorNameByIndex';
 export { default as isUltimate } from './isUltimate';
 export { default as msToTime } from './msToTime';
+export { default as getLevelExperiencePercent } from './getLevelExperiencePercent';
+export { default as getHeroRespawnTime } from './getHeroRespawnTime';
