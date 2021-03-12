@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './App.css';
-import useDataObserver from './hooks/useWar3Observer';
 import {
   BrowserRouter as Router,
   useLocation,
@@ -10,6 +9,7 @@ import {
 } from 'react-router-dom';
 import Settings from './Settings';
 import Overlay from './Overlay';
+import useCachedGameData from './hooks/useCachedData';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function useQuery() {
 }
 
 const Redirect = () => {
-  const { data } = useDataObserver();
+  const { data } = useCachedGameData();
   let query = useQuery();
   const isSettings = query.get('settings') ? true : false;
   if (!isSettings) {

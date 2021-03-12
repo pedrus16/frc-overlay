@@ -16,7 +16,7 @@ export interface Props {
   upgrades: UpgradeProps[];
   reverse?: boolean;
   className?: string;
-  score: string | null;
+  score: number | null;
 }
 
 const PlayerBar = ({
@@ -82,7 +82,7 @@ const PlayerBar = ({
             {!reverse && <div className={style.angleRight}></div>}
             <div className={style.flagAndScore}>
               {/* <Flag className={style.flag} /> */}
-              <div className={style.score}>{score}</div>
+              <div className={style.score}>{score ?? score}</div>
             </div>
             {reverse && <div className={style.angleRight}></div>}
           </div>

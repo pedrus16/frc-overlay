@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 
 import Heroes from '../components/Heroes';
 import Production from '../components/Production';
@@ -76,6 +76,80 @@ const GameClock = ({ time }: GameTimeProps) => {
   return <div className={style.gameClock}>{msToTime(currentTime)}</div>;
 };
 
+interface SideProps {
+  player: ReturnType<typeof buildPlayerData> | null;
+  score: number | null;
+}
+
+const LeftSide = ({ player, score }: SideProps) => {
+  const teamColorStyle = player
+    ? ({
+        '--team-color': player.color,
+      } as CSSProperties)
+    : undefined;
+
+  return (
+    <div className={style.leftSide} style={teamColorStyle}>
+      {player !== null && (
+        <PlayerBar
+          playerName={player.playerName}
+          apm={player.apm}
+          army={player.army}
+          resources={player.resources}
+          upgrades={player.upgrades}
+          techLevel={player.techLevel}
+          score={score}
+        />
+      )}
+      {player !== null && (
+        <>
+          <Heroes className={style.heroes} heroes={player.heroes} />
+          <div className={style.researchAndProduction}>
+            <ProductionAndResearch
+              buildings={player.production.buildings}
+              units={player.production.units}
+              researches={player.research}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+const RightSide = ({ player, score }: SideProps) => {
+  if (!player) {
+    return null;
+  }
+
+  const teamColorStyle = {
+    '--team-color': player.color,
+  } as CSSProperties;
+
+  return (
+    <div className={style.rightSide} style={teamColorStyle}>
+      <PlayerBar
+        reverse
+        playerName={player.playerName}
+        apm={player.apm}
+        army={player.army}
+        resources={player.resources}
+        upgrades={player.upgrades}
+        techLevel={player.techLevel}
+        score={score}
+      />
+      <Heroes className={style.heroes} reverse heroes={player.heroes} />
+      <div className={`${style.researchAndProduction} ${style.reverse}`}>
+        <ProductionAndResearch
+          buildings={player.production.buildings}
+          units={player.production.units}
+          researches={player.research}
+        />
+      </div>
+    </div>
+  );
+};
+
 interface Props {
   state: State;
 }
@@ -86,67 +160,43 @@ const Overlay = ({ state }: Props) => {
   const [scoreP1] = useLocalStorage('scoreP1');
   const [scoreP2] = useLocalStorage('scoreP2');
 
-  const player1 = useMemo(
-    () =>
-      buildPlayerData(
-        toBoolean(swapped) ? state.content.players[0] : state.content.players[1]
-      ),
-    [state, swapped]
-  );
-  const player2 = useMemo(
-    () =>
-      buildPlayerData(
-        toBoolean(swapped) ? state.content.players[1] : state.content.players[0]
-      ),
-    [state, swapped]
+  const player1Data = useMemo(
+    () => ({
+      player: state.content.players[0]
+        ? buildPlayerData(state.content.players[0])
+        : null,
+      score: scoreP1 ? parseInt(scoreP1) : null,
+    }),
+    [state, scoreP1]
   );
 
-  const p1Style = { '--team-color': player1.color } as React.CSSProperties;
-  const p2Style = { '--team-color': player2.color } as React.CSSProperties;
+  const player2Data = useMemo(
+    () => ({
+      player: state.content.players[1]
+        ? buildPlayerData(state.content.players[1])
+        : null,
+      score: scoreP2 ? parseInt(scoreP2) : null,
+    }),
+    [state, scoreP2]
+  );
+
   const gameTime = state.content.game.game_time;
+
+  const leftSideProps = useMemo(
+    () => (toBoolean(swapped) ? player2Data : player1Data),
+    [swapped, player1Data, player2Data]
+  );
+
+  const rightSideProps = useMemo(
+    () => (toBoolean(swapped) ? player1Data : player2Data),
+    [swapped, player1Data, player2Data]
+  );
 
   return (
     <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
       <div className={style.container}>
-        <div className={style.leftSide} style={p1Style}>
-          <PlayerBar
-            playerName={player1.playerName}
-            apm={player1.apm}
-            army={player1.army}
-            resources={player1.resources}
-            upgrades={player1.upgrades}
-            techLevel={player1.techLevel}
-            score={scoreP1}
-          />
-          <Heroes className={style.heroes} heroes={player1.heroes} />
-          <div className={style.researchAndProduction}>
-            <ProductionAndResearch
-              buildings={player1.production.buildings}
-              units={player1.production.units}
-              researches={player1.research}
-            />
-          </div>
-        </div>
-        <div className={style.rightSide} style={p2Style}>
-          <PlayerBar
-            reverse
-            playerName={player2.playerName}
-            apm={player2.apm}
-            army={player2.army}
-            resources={player2.resources}
-            upgrades={player2.upgrades}
-            techLevel={player2.techLevel}
-            score={scoreP2}
-          />
-          <Heroes className={style.heroes} reverse heroes={player2.heroes} />
-          <div className={`${style.researchAndProduction} ${style.reverse}`}>
-            <ProductionAndResearch
-              buildings={player2.production.buildings}
-              units={player2.production.units}
-              researches={player2.research}
-            />
-          </div>
-        </div>
+        <LeftSide {...leftSideProps} />
+        <RightSide {...rightSideProps} />
       </div>
       <div className={style.gameClockContainer}>
         <GameClock time={gameTime} />
