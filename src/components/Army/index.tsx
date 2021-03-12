@@ -7,15 +7,6 @@ import ArmySummary, {
 
 import style from './style.module.css';
 
-/* TODO Use this in data builder */
-// const sortByCount = (a: Unit, b: Unit) => a.alive_count - b.alive_count;
-// const workers = units
-//   .filter((unit) => unit.is_worker && unit.alive_count > 0)
-//   .sort(sortByCount);
-// const soldiers = units
-//   .filter((unit) => !unit.is_worker && unit.alive_count > 0)
-//   .sort(sortByCount);
-
 export interface Props {
   soldiers: Array<{ id: string; count: number }>;
   workers: { id: string; count: number };

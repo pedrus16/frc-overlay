@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { ReforgedStyleContext } from '../../contexts';
 
@@ -18,6 +18,8 @@ const Cameo = ({ id, className = '', width, height }: Props) => {
   const [error, setError] = useState(false);
 
   const handleError = () => setError(true);
+
+  useEffect(() => setError(false), [id]);
 
   if (error) {
     return (
