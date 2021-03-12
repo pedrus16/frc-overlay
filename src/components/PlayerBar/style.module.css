@@ -80,6 +80,7 @@
   justify-content: flex-end;
   margin-top: 0.25rem;
   padding: 0.125rem 0;
+  max-height: 2rem;
 }
 
 .upgrade {
