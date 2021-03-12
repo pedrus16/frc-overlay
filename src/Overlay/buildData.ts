@@ -8,7 +8,6 @@ import Upgrade from '../models/Upgrade';
 import Building from '../models/Building';
 import {
   toPercent,
-  sortByIndex,
   getColorNameByIndex,
   isUltimate,
   getLevelExperiencePercent,
