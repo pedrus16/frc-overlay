@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import Settings from './Settings';
 import Overlay from './Overlay';
-import useCachedGameData from './hooks/useCachedData';
+import useDataObserver from './hooks/useDataObserver';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function useQuery() {
 }
 
 const Redirect = () => {
-  const { data } = useCachedGameData();
+  const { data } = useDataObserver();
   let query = useQuery();
   const isSettings = query.get('settings') ? true : false;
   if (!isSettings) {
