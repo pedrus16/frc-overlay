@@ -143,7 +143,7 @@ export const buildPlayerData = (player: Player) => {
 
   return {
     playerName: player.name,
-    apm: player.apm_realtime,
+    apm: player.apm,
     color: getColorNameByIndex(player.team_color),
     army: {
       race: getRace(player.race),
