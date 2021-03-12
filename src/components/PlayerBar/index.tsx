@@ -89,7 +89,9 @@ const PlayerBar = ({
           </div>
         </div>
       </div>
-      <ClockHole className={style.clockHole} />
+      <div>
+        <ClockHole className={style.clockHole} />
+      </div>
     </div>
   );
 };
