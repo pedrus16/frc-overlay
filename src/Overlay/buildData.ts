@@ -36,7 +36,6 @@ const buildSpellList = (abilities: Ability[]) => {
 const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
   return heroes
     .concat()
-    .sort(sortByIndex)
     .map((hero) => ({
       id: hero.id,
       healthPercent: toPercent(hero.hitpoints, hero.hitpoints_max),
@@ -50,7 +49,8 @@ const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
       inventory: hero.inventory,
       spells: buildSpellList(hero.abilities),
       respawn: getHeroRespawnTime(hero.id, hero.level, researches),
-    }));
+    }))
+    .reverse();
 };
 
 const buildSoldiers = (units: Unit[]) =>
