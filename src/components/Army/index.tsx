@@ -9,18 +9,14 @@ import style from './style.module.css';
 
 export interface Props {
   soldiers: Array<{ id: string; count: number }>;
+  population: number;
   workers: { id: string; count: number };
   race: ArmySummaryProps['race'];
   reverse?: boolean;
 }
 
-const Army = ({ soldiers, workers, race, reverse }: Props) => {
+const Army = ({ soldiers, population, workers, race, reverse }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
-
-  const soldierTotal = useMemo(
-    () => soldiers.reduce((sum, unit) => sum + unit.count || 0, 0),
-    [soldiers]
-  );
 
   const reversedSoldiers = useMemo(() => soldiers.concat().reverse(), [
     soldiers,
@@ -33,7 +29,7 @@ const Army = ({ soldiers, workers, race, reverse }: Props) => {
       ))}
       <ArmySummary
         className={style.summary}
-        soldiers={soldierTotal}
+        population={population}
         workers={workers.count}
         race={race}
         reverse={reverse}

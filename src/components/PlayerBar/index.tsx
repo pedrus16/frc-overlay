@@ -38,6 +38,7 @@ const PlayerBar = ({
         <div className={style.top}>
           <Army
             soldiers={army.soldiers}
+            population={army.population}
             workers={army.workers}
             race={army.race}
             reverse={reverse}

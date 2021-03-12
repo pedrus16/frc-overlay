@@ -20,7 +20,7 @@ const RaceEmblemMap = new Map<Race, string>([
 
 export interface Props {
   race: RaceEnum.HUMAN | RaceEnum.NIGHTELF | RaceEnum.ORC | RaceEnum.UNDEAD;
-  soldiers: number;
+  population: number;
   workers: number;
   reverse?: boolean;
   className?: string;
@@ -28,7 +28,7 @@ export interface Props {
 
 const ArmySummary = ({
   race,
-  soldiers,
+  population,
   workers,
   reverse,
   className = '',
@@ -40,7 +40,7 @@ const ArmySummary = ({
     <div className={`${style.container} ${reverseClass} ${className}`}>
       <div className={style.unitCount}>
         <HelmetIcon />
-        <div>{soldiers}</div>
+        <div>{population}</div>
       </div>
       {/* <div className={style.raceEmblem}> */}
       <img className={style.raceEmblem} src={emblem} alt={race} />

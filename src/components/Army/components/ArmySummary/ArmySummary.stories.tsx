@@ -22,7 +22,7 @@ const Template: Story<Props> = (args) => <ArmySummary {...args} />;
 export const Base = Template.bind({});
 Base.args = {
   race: Race.HUMAN,
-  soldiers: 25,
+  population: 25,
   workers: 10,
   reverse: false,
 };
@@ -30,7 +30,7 @@ Base.args = {
 export const Reversed = Template.bind({});
 Reversed.args = {
   race: Race.HUMAN,
-  soldiers: 25,
+  population: 25,
   workers: 10,
   reverse: true,
 };
@@ -38,7 +38,7 @@ Reversed.args = {
 export const Emblem = Template.bind({});
 Emblem.args = {
   race: Race.ORC,
-  soldiers: 25,
+  population: 25,
   workers: 10,
   reverse: false,
 };

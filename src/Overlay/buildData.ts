@@ -139,6 +139,8 @@ const getRace = (race: Race): PlayerRace => {
 };
 
 export const buildPlayerData = (player: Player) => {
+  const workers = buildWorkers(player.units_on_map);
+
   return {
     playerName: player.name,
     apm: player.apm_realtime,
@@ -146,7 +148,8 @@ export const buildPlayerData = (player: Player) => {
     army: {
       race: getRace(player.race),
       soldiers: buildSoldiers(player.units_on_map),
-      workers: buildWorkers(player.units_on_map),
+      workers: workers,
+      population: player.food - workers.count,
     },
     resources: {
       gold: player.gold,
