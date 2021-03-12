@@ -12,7 +12,7 @@ export interface Props {
 const Research = ({ id, progressPercent }: Props) => {
   return (
     <div className={style.container}>
-      <Cameo id={id} width={32} height={32} />
+      <Cameo id={id} width={48} height={48} />
       <div className={style.rightColumn}>
         <div className={style.label}>
           {(labelFR as Record<string, string>)[id] || 'N/A'}

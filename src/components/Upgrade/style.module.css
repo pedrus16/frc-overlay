@@ -1,12 +1,12 @@
 .container {
   position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .levelBar {
   position: absolute;
-  bottom: -10%;
+  bottom: -5%;
   left: 0;
   right: 0;
 }

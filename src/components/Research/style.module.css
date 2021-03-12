@@ -13,21 +13,23 @@
   padding: 0.125rem;
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
 }
 
 .label {
-  height: 50%;
+  flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  font-size: 0.75rem;
-  line-height: 100%;
+  font-size: 1rem;
+  line-height: 1em;
   color: var(--text-color);
+  padding: 0.25em 0;
 }
 
 .progressBackground {
-  height: 50%;
+  height: 1rem;
   position: relative;
   width: 100%;
   background: var(--white-20);
