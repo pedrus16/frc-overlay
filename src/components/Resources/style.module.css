@@ -22,3 +22,7 @@
   color: var(--text-color);
   margin: 0 0.25rem;
 }
+
+.resourceContainer span {
+  min-width: 4ch;
+}
