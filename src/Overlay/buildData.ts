@@ -29,7 +29,8 @@ const buildSpellList = (abilities: Ability[]) => {
         totalDurationSec: ability.cooldown_time,
         timeLeftSec: ability.cooldown,
       },
-    }));
+    }))
+    .reverse();
 };
 
 const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
