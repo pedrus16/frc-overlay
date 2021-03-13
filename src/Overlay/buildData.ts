@@ -80,34 +80,59 @@ const buildPlayerUpgrades = (upgrades: Upgrade[]) => {
 
 type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
 
-/* [T3 building id, T2 building id] */
+/* [T1 building, T2 building, T3 building] */
 const TECH_MAP = {
-  [Race.HUMAN]: ['hcas', 'hkee'],
-  [Race.NIGHTELF]: ['etoe', 'etoa'],
-  [Race.ORC]: ['ofrt', 'ostr'],
-  [Race.UNDEAD]: ['unp2', 'unp1'],
+  [Race.HUMAN]: ['htow', 'hkee', 'hcas'],
+  [Race.NIGHTELF]: ['etol', 'etoa', 'etoe'],
+  [Race.ORC]: ['ogre', 'ostr', 'ofrt'],
+  [Race.UNDEAD]: ['unpl', 'unp1', 'unp2'],
 };
 
 enum TechLevel {
-  T1 = 1,
-  T2 = 2,
-  T3 = 3,
+  T1,
+  T2,
+  T3,
 }
 
-const getTech = (race: PlayerRace, buildings: Building[]) => {
+const getTechLevel = (race: PlayerRace, buildings: Building[]) => {
   const completed = buildings.filter(
     (building) => building.progress_percent === 100
   );
 
-  if (completed.some((building) => building.id === TECH_MAP[race][0])) {
-    return TechLevel.T3;
+  if (
+    completed.some((building) => building.id === TECH_MAP[race][TechLevel.T3])
+  ) {
+    return TechLevel.T3 + 1;
   }
 
-  if (completed.some((building) => building.id === TECH_MAP[race][1])) {
-    return TechLevel.T2;
+  if (
+    completed.some((building) => building.id === TECH_MAP[race][TechLevel.T2])
+  ) {
+    return TechLevel.T2 + 1;
   }
 
-  return TechLevel.T1;
+  return TechLevel.T1 + 1;
+};
+
+const getNextTechId = (race: PlayerRace, id: string): string | null => {
+  return TECH_MAP[race][TECH_MAP[race].indexOf(id) + 1] ?? null;
+};
+
+const buildResearchData = (
+  race: PlayerRace,
+  researches: Research[],
+  buildings: Building[]
+) => {
+  return buildings
+    .filter((building) => building.upgrade_progress_percent > 0)
+    .filter(({ id }) => getNextTechId(race, id))
+    .map(({ id, upgrade_progress_percent }) => ({
+      id: getNextTechId(race, id),
+      progress_percent: upgrade_progress_percent,
+    }))
+    .concat(
+      researches.filter((research) => research.type === ResearchType.UPGRADE)
+    );
 };
 
 const getRace = (race: Race): PlayerRace => {
@@ -138,7 +163,7 @@ export const buildPlayerData = (player: Player) => {
       foodMax: player.food_max,
     },
     upgrades: buildPlayerUpgrades(player.upgrades_completed),
-    techLevel: getTech(getRace(player.race), player.buildings_on_map),
+    techLevel: getTechLevel(getRace(player.race), player.buildings_on_map),
     score: '',
     heroes: buildHeroesData(player.heroes, player.researches_in_progress),
     production: {
@@ -149,8 +174,10 @@ export const buildPlayerData = (player: Player) => {
         (research) => research.type === ResearchType.UNIT
       ),
     },
-    research: player.researches_in_progress.filter(
-      (research) => research.type === ResearchType.UPGRADE
+    research: buildResearchData(
+      getRace(player.race),
+      player.researches_in_progress,
+      player.buildings_on_map
     ),
   };
 };

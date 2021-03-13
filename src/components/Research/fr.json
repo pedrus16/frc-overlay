@@ -69,7 +69,8 @@
   "Ruba2": "Formation de Banshee Maître",
   "Rufb": "Souffle Glacial",
   "Rupm": "N/A",
-  "ofrt": "Bastion",
+  "ostr": "Bastion",
+  "ofrt": "Forteresse",
   "Ropg": "Pillage",
   "Rome": "Armes de Mêlées d'Acier",
   "Rome2": "Armes de Mêlées de Thorium",
@@ -83,7 +84,6 @@
   "Rosp": "Barricades d'Epieux",
   "Rosp2": "Barricades d'Epieux Perfectionnées",
   "Rorb": "Défenses Renforcées",
-  "ogre": "Forteresse",
   "Robs": "Folie Furieuse",
   "Rotr": "Régénération",
   "Robk": "Amélioration Berzerker",
@@ -132,5 +132,7 @@
   "Redt2": "Formation Druide Corbeau Maître",
   "Reec": "Marque du Corbeau",
   "Recb": "Souffle Corrosif",
-  "Repm": "Backpack"
+  "Repm": "Backpack",
+  "etoa": "Arbre des Ages",
+  "etoe": "Arbre d'Eternité"
 }
