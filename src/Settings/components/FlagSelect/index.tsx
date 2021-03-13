@@ -22,7 +22,10 @@ const FlagSelect = ({ value, onChange, className = '' }: Props) => {
         <MenuItem value={key}>
           <div className={style.item}>
             <div className={style.flag}>
-              <img src={`${process.env.PUBLIC_URL}/flags/${key}.svg`} />
+              <img
+                src={`${process.env.PUBLIC_URL}/flags/${key}.svg`}
+                alt={key}
+              />
             </div>
             <div>{key} </div>
           </div>

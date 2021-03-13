@@ -54,7 +54,10 @@ const PlayerBar = ({
             <div className={style.playerName}>
               <span>{playerName}</span>
               {!!country && (
-                <img src={`${process.env.PUBLIC_URL}/flags/${country}.svg`} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/flags/${country}.svg`}
+                  alt={country}
+                />
               )}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { Grid, Paper, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import FlagSelect from '../FlagSelect';
 
 import style from './style.module.css';
