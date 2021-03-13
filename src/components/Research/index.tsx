@@ -1,4 +1,5 @@
 import Cameo from '../Cameo';
+import ProgressBar from '../ProgressBar';
 
 import labelFR from './fr.json';
 
@@ -17,12 +18,11 @@ const Research = ({ id, progressPercent }: Props) => {
         <div className={style.label}>
           {(labelFR as Record<string, string>)[id] || 'N/A'}
         </div>
-        <div className={style.progressBackground}>
-          <div
-            className={style.progressForeground}
-            style={{ width: `${progressPercent}%` }}
-          ></div>
-        </div>
+        <ProgressBar
+          progressPercent={progressPercent}
+          className={style.progressBackground}
+          barClassName={style.progressBar}
+        />
       </div>
     </div>
   );

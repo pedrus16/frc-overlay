@@ -1,5 +1,9 @@
 .container {
-  width: 64px;
+  width: 4rem;
+  height: 100%;
+  display: grid;
+  grid-template: auto 1fr 1fr / auto;
+  gap: 0.25rem;
 }
 
 .cameoContainer {
@@ -52,4 +56,18 @@
   color: var(--text-color);
   font-size: 1.5rem;
   text-shadow: 0px 0px 4px #000000;
+}
+
+.healthBar {
+  --progress-color: var(--health-color);
+  box-shadow: 0px 0px 8px -1px var(--health-color);
+}
+
+.manaBar {
+  --progress-color: var(--mana-color);
+  box-shadow: 0px 0px 8px -1px var(--mana-color);
+}
+
+.progressBackground {
+  background: var(--white-20);
 }

@@ -9,19 +9,12 @@
   background: var(--gray-1);
 }
 
-.progressBackground {
-  height: 0.25rem;
-  position: relative;
-  width: 100%;
-  background: var(--black-60);
+.progressBar {
+  --progress-color: var(--team-color);
+  box-shadow: 0px 0px 8px -1px var(--team-color);
 }
 
-.progressForeground {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--team-color);
-  box-shadow: 0px 0px 4px 1px var(--team-color);
-  height: 100%;
+.progressBackground {
+  height: 0.25rem;
+  background: var(--black-60);
 }

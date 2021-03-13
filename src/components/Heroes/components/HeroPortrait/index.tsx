@@ -1,42 +1,10 @@
-import { createStyles, LinearProgress, withStyles } from '@material-ui/core';
 import { useEffect, useMemo } from 'react';
 
 import Cameo from '../../../Cameo';
 import Cooldown from '../../../Cooldown';
 import useRealTimeMs from '../../../../hooks/useRealTimeMs';
 import style from './style.module.css';
-
-const HealthBarProgress = withStyles(() =>
-  createStyles({
-    root: {
-      height: 4,
-      borderRadius: 0,
-    },
-    colorPrimary: {
-      backgroundColor: 'rgba(0 0 0 / 80%)',
-    },
-    bar: {
-      borderRadius: 0,
-      backgroundColor: 'var(--health-color)',
-    },
-  })
-)(LinearProgress);
-
-const ManaBarProgress = withStyles(() =>
-  createStyles({
-    root: {
-      height: 4,
-      borderRadius: 0,
-    },
-    colorPrimary: {
-      backgroundColor: 'rgba(0 0 0 / 80%)',
-    },
-    bar: {
-      borderRadius: 0,
-      backgroundColor: 'var(--mana-color)',
-    },
-  })
-)(LinearProgress);
+import ProgressBar from '../../../ProgressBar';
 
 export interface Props {
   id: string;
@@ -95,8 +63,16 @@ const HeroPortrait = ({
           </div>
         )}
       </div>
-      <HealthBarProgress variant="determinate" value={healthPercent} />
-      <ManaBarProgress variant="determinate" value={manaPercent} />
+      <ProgressBar
+        progressPercent={healthPercent}
+        className={style.progressBackground}
+        barClassName={style.healthBar}
+      />
+      <ProgressBar
+        progressPercent={manaPercent}
+        className={style.progressBackground}
+        barClassName={style.manaBar}
+      />
     </div>
   );
 };

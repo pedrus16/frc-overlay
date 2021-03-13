@@ -1,9 +1,9 @@
 import HeroPortrait from '../HeroPortrait';
-import ExperienceBar from '../ExperienceBar';
 import Inventory, { Props as InventoryProps } from '../Inventory';
 import SpellBar, { Props as SpellBarProps } from '../SpellBar';
 
 import style from './style.module.css';
+import ProgressBar, { Direction } from '../../../ProgressBar';
 
 export interface Props {
   hero: {
@@ -34,7 +34,12 @@ const HeroCard = ({ hero, className = '', reverse }: Props) => {
           level={hero.level}
           respawn={hero.respawn}
         />
-        <ExperienceBar progressPercent={hero.experiencePercent} />
+        <ProgressBar
+          progressPercent={hero.experiencePercent}
+          direction={Direction.VERTICAL}
+          className={style.progressBackground}
+          barClassName={style.experienceBar}
+        />
         <Inventory className={style.inventory} items={hero.inventory} />
       </div>
 

@@ -1,4 +1,5 @@
 import Cameo from '../Cameo';
+import ProgressBar from '../ProgressBar';
 
 import style from './style.module.css';
 
@@ -12,12 +13,11 @@ const Production = ({ id, progressPercent }: Props) => {
     <div className={style.container}>
       <Cameo id={id} width={48} height={48} />
       <div className={style.progress}>
-        <div className={style.progressBackground}>
-          <div
-            className={style.progressForeground}
-            style={{ width: `${progressPercent}%` }}
-          ></div>
-        </div>
+        <ProgressBar
+          progressPercent={progressPercent}
+          className={style.progressBackground}
+          barClassName={style.progressBar}
+        />
       </div>
     </div>
   );

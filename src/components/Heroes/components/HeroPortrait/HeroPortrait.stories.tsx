@@ -30,7 +30,11 @@ export default {
   },
 } as Meta;
 
-const Template: Story<Props> = (args) => <HeroPortrait {...args} />;
+const Template: Story<Props> = (args) => (
+  <div style={{ height: 100 }}>
+    <HeroPortrait {...args} />
+  </div>
+);
 
 export const Base = Template.bind({});
 Base.args = {

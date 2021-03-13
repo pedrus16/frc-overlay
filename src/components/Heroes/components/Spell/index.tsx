@@ -34,8 +34,8 @@ const Spell = ({ id, level, levelMax, cooldown }: Props) => {
           <Cooldown
             progressPercent={progress * 100}
             className={style.cooldown}
-            width={32}
-            height={32}
+            width={40}
+            height={40}
           />
           {realTimeMs > 0 && (
             <div className={style.countdown}>

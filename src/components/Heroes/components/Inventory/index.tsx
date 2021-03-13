@@ -19,7 +19,7 @@ const Inventory = ({ items, className = '' }: Props) => {
       {slots.map((slot) => {
         const item = items.find((i) => i.slot === slot);
         if (!item) {
-          return <BackpackIcon key={slot} />;
+          return <BackpackIcon className={style.backpackIcon} key={slot} />;
         }
         return <Item key={slot} id={item.id} charges={item.charges} />;
       })}

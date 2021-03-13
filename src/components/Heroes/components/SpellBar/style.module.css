@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template: 2rem / repeat(4, 2rem);
+  grid-template: 2.5rem / repeat(4, 2.5rem);
   gap: 0.125rem;
 }
 
