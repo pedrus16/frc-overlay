@@ -128,11 +128,9 @@
 }
 
 .flagAndScore {
-  width: 3.5rem;
+  width: 1.5rem;
   display: flex;
-  /* align-items: center; */
   justify-content: space-evenly;
-  /* padding: 0 0.5rem; */
 }
 
 .reverse .flagAndScore {
