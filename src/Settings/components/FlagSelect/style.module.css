@@ -1,0 +1,14 @@
+.flag {
+  display: flex;
+  justify-content: center;
+  width: 4rem;
+}
+
+.flag > img {
+  height: 1.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}

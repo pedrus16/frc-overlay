@@ -16,3 +16,7 @@
   height: 40px;
   cursor: pointer;
 }
+
+.playerSettings > div {
+  margin-bottom: 20px;
+}

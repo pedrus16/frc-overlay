@@ -178,6 +178,28 @@
   font-size: 1.125rem;
   line-height: 1em;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.playerName > span {
+  max-width: 13ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reverse .playerName {
+  flex-direction: row-reverse;
+}
+
+.playerName > img {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+.reverse .playerName > img {
+  margin-right: 0.5rem;
+  margin-left: 0;
 }
 
 .techLevel {
