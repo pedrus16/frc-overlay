@@ -143,8 +143,23 @@ const getRace = (race: Race): PlayerRace => {
   return race as PlayerRace;
 };
 
+const getArmyPop = (
+  food: number,
+  workers: number,
+  unitsInProduction: Research[]
+) => {
+  const workersIds = ['hpea', 'uaco', 'opeo', 'ewsp'];
+  const workersInProduction = unitsInProduction.filter(({ id }) =>
+    workersIds.includes(id)
+  ).length;
+  return food - workers - workersInProduction;
+};
+
 export const buildPlayerData = (player: Player) => {
   const workers = buildWorkers(player.units_on_map);
+  const unitsInProduction = player.researches_in_progress.filter(
+    (research) => research.type === ResearchType.UNIT
+  );
 
   return {
     playerName: player.name,
@@ -154,7 +169,7 @@ export const buildPlayerData = (player: Player) => {
       race: getRace(player.race),
       soldiers: buildSoldiers(player.units_on_map),
       workers: workers,
-      population: player.food - workers.count,
+      population: getArmyPop(player.food, workers.count, unitsInProduction),
     },
     resources: {
       gold: player.gold,
@@ -170,9 +185,7 @@ export const buildPlayerData = (player: Player) => {
       buildings: player.buildings_on_map.filter(
         (building) => building.progress_percent < 100
       ),
-      units: player.researches_in_progress.filter(
-        (research) => research.type === ResearchType.UNIT
-      ),
+      units: unitsInProduction,
     },
     research: buildResearchData(
       getRace(player.race),
