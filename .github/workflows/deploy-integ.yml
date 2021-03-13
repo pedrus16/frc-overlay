@@ -8,8 +8,6 @@ jobs:
   ftp-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    env:
-      PUBLIC_URL: /w3overlay
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
@@ -27,4 +25,4 @@ jobs:
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
           local-dir: ./build/
-          server-dir: /www/resume/w3overlay/
+          server-dir: /www/w3overlay/
