@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { CSSProperties } from 'react';
 import { Race } from '../../models';
 
 import PlayerBar, { Props } from './index';
@@ -11,7 +12,11 @@ export default {
   },
 } as Meta;
 
-const Template: Story<Props> = (args) => <PlayerBar {...args} />;
+const Template: Story<Props> = (args) => (
+  <div style={{ '--team-color': '#FF00FF' } as CSSProperties}>
+    <PlayerBar {...args} />
+  </div>
+);
 
 export const Base = Template.bind({});
 Base.args = {

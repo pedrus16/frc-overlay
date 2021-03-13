@@ -35,6 +35,7 @@
   background: var(--bg-color);
   box-shadow: 0 var(--border-size) 0 var(--border-color);
   padding-right: 0.25rem;
+  min-height: 2.625rem;
 }
 
 .reverse .top {

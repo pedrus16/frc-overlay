@@ -23,6 +23,7 @@ Base.args = {
   workers: { id: 'hpea', count: 42 },
   race: Race.HUMAN,
   reverse: false,
+  population: 25,
 };
 
 export const Reversed = Template.bind({});
@@ -38,4 +39,5 @@ Reversed.args = {
   workers: { id: 'hpea', count: 42 },
   race: Race.HUMAN,
   reverse: true,
+  population: 25,
 };

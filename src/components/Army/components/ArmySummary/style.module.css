@@ -1,5 +1,5 @@
 .container {
-  --height: 2.625rem;
+  --height: 2.5rem;
 
   position: relative;
   background: var(--gray-1);
@@ -15,19 +15,19 @@
 .container::before {
   content: "";
   position: absolute;
-  left: -0.75rem;
+  left: -0.5rem;
   border-top: calc(var(--height) / 2) solid transparent;
   border-bottom: calc(var(--height) / 2) solid transparent;
-  border-right: 0.75rem solid var(--gray-1);
+  border-right: 0.5rem solid var(--gray-1);
 }
 
 .container::after {
   content: "";
   position: absolute;
-  right: -0.75rem;
+  right: -0.5rem;
   border-top: calc(var(--height) / 2) solid transparent;
   border-bottom: calc(var(--height) / 2) solid transparent;
-  border-left: 0.75rem solid var(--gray-1);
+  border-left: 0.5rem solid var(--gray-1);
 }
 
 .unitCount {
@@ -35,7 +35,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 0.25rem 0;
+  padding: 0.25rem;
   min-width: 1.5rem;
 
   color: var(--gray-5);
