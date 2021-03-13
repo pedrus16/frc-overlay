@@ -1,12 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import {
-  BrowserRouter as Router,
-  useLocation,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import Settings from './Settings';
 import Overlay from './Overlay';
 import useDataObserver from './hooks/useDataObserver';
@@ -14,10 +9,7 @@ import useDataObserver from './hooks/useDataObserver';
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <Switch>
-        <Route path="/?settings=true" exact></Route>
-        <Redirect />
-      </Switch>
+      <Redirect />
     </Router>
   );
 }
@@ -34,13 +26,14 @@ const Redirect = () => {
   const { data } = useDataObserver();
   let query = useQuery();
   const isSettings = query.get('settings') ? true : false;
-  if (!isSettings) {
-    if (!data || data.type !== 'state') return null;
+
+  if (isSettings) {
+    return <Settings></Settings>;
   }
 
-  return (
-    <div className="overlay">
-      {query.get('settings') ? <Settings></Settings> : <Overlay state={data} />}
-    </div>
-  );
+  if (!data || data.type !== 'state' || !data.content.game.is_in_game) {
+    return null;
+  }
+
+  return <Overlay state={data} />;
 };

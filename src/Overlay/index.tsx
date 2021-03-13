@@ -44,9 +44,9 @@ const ProductionAndResearch = ({
         ))}
       </div>
       <div className={style.research}>
-        {researches.map((upgrade, index) => (
+        {researches.map((upgrade) => (
           <Research
-            key={index}
+            key={upgrade.id}
             id={upgrade.id}
             progressPercent={upgrade.progress_percent}
           />
