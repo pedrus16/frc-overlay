@@ -11,7 +11,7 @@ const useDataObserver = process.env.REACT_APP_MOCK_DATA
         shouldReconnect: (closeEvent) => true,
       });
 
-      return { data: lastJsonMessage as State };
+      return lastJsonMessage as State;
     };
 
 export default useDataObserver;

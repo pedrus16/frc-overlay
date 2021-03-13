@@ -49,7 +49,7 @@
   flex-direction: row-reverse;
 }
 
-.gameClockContainer {
+.gameTimeContainer {
   position: absolute;
   top: 5.125rem;
   left: 0;
@@ -59,13 +59,20 @@
   justify-content: center;
 }
 
-.gameClock {
-  min-width: 4rem;
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graphContainer {
+  position: relative;
+  width: 50%;
+  height: 50%;
   background: var(--black-60);
-  color: var(--text-color);
-  font-size: 1.125rem;
-  line-height: 1em;
-  font-weight: 700;
-  text-align: center;
-  padding: 0.125rem;
 }
