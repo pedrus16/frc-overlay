@@ -8,6 +8,8 @@ jobs:
   ftp-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_URL:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
