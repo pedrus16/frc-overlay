@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import Settings from './Settings';
 import Overlay from './Overlay';
-import useDataObserver from './hooks/useDataObserver';
+import useCachedGameData from './hooks/useCachedData';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function useQuery() {
 }
 
 const Redirect = () => {
-  const { data } = useDataObserver();
+  const { data } = useCachedGameData();
   let query = useQuery();
   const isSettings = query.get('settings') ? true : false;
 

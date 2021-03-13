@@ -7,14 +7,22 @@ const useCachedGameData = () => {
   const [lastValidData, setLastValidData] = useState(data);
 
   useEffect(() => {
-    const unitCount = data?.content.players.reduce(
-      (sum, player) => player.heroes.length + player.units_on_map.length + sum,
-      0
-    );
+    // Empty heroes and units lists means corrupted data, we ignore the tick and keep the last valid data
+    const corruptedPlayer =
+      data?.content?.players?.some(
+        (player) => player.heroes.length + player.units_on_map.length === 0
+      ) ?? 0;
 
-    if (!data || data.type === 'state' || unitCount > 0) {
-      setLastValidData(data);
+    if (
+      data &&
+      data.type === 'state' &&
+      data.content.game.is_in_game &&
+      corruptedPlayer
+    ) {
+      return;
     }
+
+    setLastValidData(data);
   }, [data]);
 
   return { data: lastValidData };
