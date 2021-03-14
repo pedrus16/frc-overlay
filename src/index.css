@@ -25,9 +25,9 @@ code {
   --color: #ffffff;
   --border-radius: 2px;
   --padding: 8px;
-  --experience-color: #eec12d;
-  --health-color: #88d86f;
-  --mana-color: #1a75ec;
+  --experience-color: #8c4fa8;
+  --health-color: #50d344;
+  --mana-color: #1f80db;
 
   --white-10: rgba(255, 255, 255, 0.1);
   --white-20: rgba(255, 255, 255, 0.2);
