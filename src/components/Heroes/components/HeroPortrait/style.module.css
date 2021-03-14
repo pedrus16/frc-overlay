@@ -8,6 +8,8 @@
 
 .cameoContainer {
   position: relative;
+  min-width: 4rem;
+  min-height: 4rem;
 }
 
 .level {
