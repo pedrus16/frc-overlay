@@ -16,7 +16,7 @@ interface Props {}
 
 const Settings = (props: Props) => {
   const [swapped, setSwapped] = useLocalStorage('swapped');
-  const [, setReforgedStyle] = useLocalStorage('reforgedStyle');
+  const [reforgedStyle, setReforgedStyle] = useLocalStorage('reforgedStyle');
   const [scoreP1, setScoreP1] = useLocalStorage('scoreP1');
   const [scoreP2, setScoreP2] = useLocalStorage('scoreP2');
   const [country1, setCountry1] = useLocalStorage('country1');
@@ -70,7 +70,12 @@ const Settings = (props: Props) => {
             <div className={style.controls}>
               <FormControlLabel
                 control={
-                  <Switch onChange={swapHd} name="reforgedStyle" size="small" />
+                  <Switch
+                    checked={toBoolean(reforgedStyle)}
+                    onChange={swapHd}
+                    name="reforgedStyle"
+                    size="small"
+                  />
                 }
                 label="HD"
               />
