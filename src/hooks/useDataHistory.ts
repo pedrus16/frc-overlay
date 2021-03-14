@@ -1,13 +1,14 @@
 import { useCallback, useState } from 'react';
 
-const useDataHistory = () => {
-  const [data, setData] = useState<unknown[]>([]);
+const useDataHistory = <T>() => {
+  const [data, setData] = useState<T[]>([]);
   const addData = useCallback(
-    (dataSlice: unknown) => setData((prev) => prev.concat(dataSlice)),
+    (dataSlice: T) => setData((prev) => prev.concat(dataSlice)),
     []
   );
+  const resetData = useCallback(() => setData([]), []);
 
-  return [data, addData] as [number[], (value: number) => void];
+  return [data, addData, resetData] as [T[], (value: T) => void, () => void];
 };
 
 export default useDataHistory;

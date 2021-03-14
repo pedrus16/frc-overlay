@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import Settings from './Settings';
 import Overlay from './Overlay';
 import useCleanedDataObserver from './hooks/useCachedData';
+import useLocalStorage from './Settings/useLocalStorage';
 
 function App() {
   return (
@@ -26,6 +27,11 @@ const Redirect = () => {
   const state = useCleanedDataObserver();
   let query = useQuery();
   const isSettings = query.get('settings') ? true : false;
+  const [, setShowGraph] = useLocalStorage('graph');
+
+  useEffect(() => {
+    setShowGraph('');
+  });
 
   if (isSettings) {
     return <Settings></Settings>;

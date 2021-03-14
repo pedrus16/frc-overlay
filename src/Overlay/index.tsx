@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Heroes from '../components/Heroes';
 import Production from '../components/Production';
@@ -10,10 +10,11 @@ import useLocalStorage from '../Settings/useLocalStorage';
 import PlayerBar from '../components/PlayerBar';
 import { toBoolean } from '../utils';
 import GameTime from './components/GameTime';
+import teamColorStyle from '../utils/teamColorStyle';
+import GoldGraphModal from './components/GoldGraphModal';
+import ExperienceGraphModal from './components/ExperienceGraphModal';
 
 import style from './style.module.css';
-import Graph from './components/Graph';
-import useDataHistory from '../hooks/useDataHistory';
 
 interface ProductionAndResearchProps {
   buildings: any[];
@@ -66,41 +67,33 @@ interface SideProps {
 }
 
 const LeftSide = ({ player, score, country }: SideProps) => {
-  const teamColorStyle = player
-    ? ({
-        '--team-color': player.color,
-      } as CSSProperties)
-    : undefined;
+  if (!player) {
+    return null;
+  }
 
   return (
-    <div className={style.leftSide} style={teamColorStyle}>
-      {player !== null && (
-        <PlayerBar
-          playerName={player.playerName}
-          apm={player.apm}
-          army={player.army}
-          resources={player.resources}
-          upgrades={player.upgrades}
-          techLevel={player.techLevel}
-          score={score}
-          country={country}
+    <div className={style.leftSide} style={teamColorStyle(player.color)}>
+      <PlayerBar
+        playerName={player.playerName}
+        apm={player.apm}
+        army={player.army}
+        resources={player.resources}
+        upgrades={player.upgrades}
+        techLevel={player.techLevel}
+        score={score}
+        country={country}
+      />
+      <div className={style.heroes}>
+        <div className={style.ingameHeroCover} />
+        <Heroes heroes={player.heroes} />
+      </div>
+      <div className={style.researchAndProduction}>
+        <ProductionAndResearch
+          buildings={player.production.buildings}
+          units={player.production.units}
+          researches={player.research}
         />
-      )}
-      {player !== null && (
-        <>
-          <div className={style.heroes}>
-            <div className={style.ingameHeroCover} />
-            <Heroes heroes={player.heroes} />
-          </div>
-          <div className={style.researchAndProduction}>
-            <ProductionAndResearch
-              buildings={player.production.buildings}
-              units={player.production.units}
-              researches={player.research}
-            />
-          </div>
-        </>
-      )}
+      </div>
     </div>
   );
 };
@@ -110,12 +103,8 @@ const RightSide = ({ player, score, country }: SideProps) => {
     return null;
   }
 
-  const teamColorStyle = {
-    '--team-color': player.color,
-  } as CSSProperties;
-
   return (
-    <div className={style.rightSide} style={teamColorStyle}>
+    <div className={style.rightSide} style={teamColorStyle(player.color)}>
       <PlayerBar
         reverse
         playerName={player.playerName}
@@ -150,28 +139,16 @@ const Overlay = ({ state }: Props) => {
   const [scoreP2] = useLocalStorage('scoreP2');
   const [country1] = useLocalStorage('country1');
   const [country2] = useLocalStorage('country2');
-  const [data, addData] = useDataHistory();
   const [gameSpeed, setGameSpeed] = useState(0);
   const prevGameTime = useRef(state.content.game.game_time);
+  const [showGraph] = useLocalStorage('graph');
 
   useEffect(() => {
-    setGameSpeed((state.content.game.game_time - prevGameTime.current) / 2000);
+    setGameSpeed(
+      Math.max(0, state.content.game.game_time - prevGameTime.current) / 2000
+    );
     prevGameTime.current = state.content.game.game_time;
   }, [state]);
-
-  useEffect(() => {
-    if (gameSpeed === 0) return;
-
-    const p1TotalExperience = state.content.players[0].heroes.reduce(
-      (sum, { experience }) => sum + experience,
-      0
-    );
-    const p2TotalExperience = state.content.players[1].heroes.reduce(
-      (sum, { experience }) => sum + experience,
-      0
-    );
-    addData(p1TotalExperience - p2TotalExperience);
-  }, [state, addData, gameSpeed]);
 
   const player1Data = useMemo(
     () => ({
@@ -210,18 +187,25 @@ const Overlay = ({ state }: Props) => {
   return (
     <GameStateContext.Provider value={{ gameSpeed }}>
       <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
+        <div className={style.gameTimeContainer}>
+          <GameTime time={gameTime} />
+        </div>
         <div className={style.container}>
           <LeftSide {...leftSideProps} />
           <RightSide {...rightSideProps} />
         </div>
-        <div className={style.gameTimeContainer}>
-          <GameTime time={gameTime} />
-        </div>
-        <div className={style.modal}>
-          <div className={style.graphContainer}>
-            <Graph values={data} />
-          </div>
-        </div>
+        <ExperienceGraphModal
+          show={showGraph === 'xp'}
+          state={state}
+          p1Label={player1Data.player}
+          p2Label={player2Data.player}
+        />
+        <GoldGraphModal
+          show={showGraph === 'gold'}
+          state={state}
+          p1Label={player1Data.player}
+          p2Label={player2Data.player}
+        />
       </ReforgedStyleContext.Provider>
     </GameStateContext.Provider>
   );
