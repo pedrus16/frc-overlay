@@ -147,7 +147,7 @@ const Overlay = ({ state }: Props) => {
   const [scoreP2] = useLocalStorage('scoreP2');
   const [country1] = useLocalStorage('country1');
   const [country2] = useLocalStorage('country2');
-  const [data, addData] = useDataHistory();
+  const [data, addData] = useDataHistory<{ value: number; gameTime: number }>();
   const [gameSpeed, setGameSpeed] = useState(0);
   const prevGameTime = useRef(state.content.game.game_time);
 
@@ -167,7 +167,10 @@ const Overlay = ({ state }: Props) => {
       (sum, { experience }) => sum + experience,
       0
     );
-    addData(p1TotalExperience - p2TotalExperience);
+    addData({
+      value: p1TotalExperience - p2TotalExperience,
+      gameTime: state.content.game.game_time,
+    });
   }, [state, addData, gameSpeed]);
 
   const player1Data = useMemo(
@@ -216,7 +219,7 @@ const Overlay = ({ state }: Props) => {
         </div>
         <div className={style.modal}>
           <div className={style.graphContainer}>
-            <Graph values={data} />
+            <Graph data={data} />
           </div>
         </div>
       </ReforgedStyleContext.Provider>
