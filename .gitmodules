@@ -1,0 +1,3 @@
+[submodule "war3observer"]
+	path = war3observer
+	url = git@github.com:sides/war3observer.git

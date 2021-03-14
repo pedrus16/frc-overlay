@@ -31,7 +31,12 @@ const Redirect = () => {
     return <Settings></Settings>;
   }
 
-  if (!data || data.type !== 'state' || !data.content.game.is_in_game) {
+  if (
+    !data ||
+    data.type !== 'state' ||
+    !data.content ||
+    !data.content.game.is_in_game
+  ) {
     return null;
   }
 

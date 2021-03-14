@@ -16,6 +16,7 @@ const useCachedGameData = () => {
     if (
       data &&
       data.type === 'state' &&
+      data.content &&
       data.content.game.is_in_game &&
       corruptedPlayer
     ) {
