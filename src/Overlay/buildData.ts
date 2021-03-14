@@ -115,6 +115,8 @@ const getTechLevel = (race: PlayerRace, buildings: Building[]) => {
 };
 
 const getNextTechId = (race: PlayerRace, id: string): string | null => {
+  if (!TECH_MAP[race].includes(id)) return null;
+
   return TECH_MAP[race][TECH_MAP[race].indexOf(id) + 1] ?? null;
 };
 
