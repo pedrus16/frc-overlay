@@ -37,6 +37,7 @@
   position: relative;
   display: grid;
   grid-template: auto 1fr / auto;
+  justify-items: center;
   gap: 0.25rem;
 }
 
@@ -59,6 +60,7 @@
 
 .progressBackground {
   background: var(--white-20);
+  max-width: 1rem;
 }
 
 .experienceBar {
