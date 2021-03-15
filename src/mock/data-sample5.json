@@ -451,7 +451,7 @@
             "id": "Resm",
             "class": "MELEE",
             "level": 1,
-            "level_max": 3,
+            "level_max": 2,
             "unknown_int_1": 0,
             "art": "ReplaceableTextures\\CommandButtons\\BTNStrengthOfTheMoon.blp"
           },
