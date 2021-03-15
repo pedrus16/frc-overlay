@@ -26,6 +26,50 @@
 
 .grayscale {
   filter: grayscale(100%);
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.redShift {
+  filter: sepia(100%) hue-rotate(-45deg) saturate(400%);
+  animation: pulsate 1200ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.woundEnter {
+  opacity: 0;
+}
+
+.woundEnter.woundEnterActive {
+  opacity: 1;
+  transition: opacity 100ms ease-in;
+}
+
+.woundLeave {
+  opacity: 1;
+}
+
+.woundLeave.woundLeaveActive {
+  opacity: 0;
+  transition: opacity 100ms ease-in;
 }
 
 .overlay {
@@ -34,12 +78,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  transition: opacity 200ms ease-out;
-  opacity: 1;
 }
 
-.overlay.hide {
-  opacity: 0;
+.overlay.show {
+  opacity: 1;
 }
 
 .cooldown {
