@@ -17,3 +17,33 @@
 .item {
   margin-top: 0.25rem;
 }
+
+.slideEnter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.reverse .slideEnter {
+  transform: translateX(100%);
+}
+
+.slideEnter.slideEnterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 100ms ease-out 100ms, transform 250ms ease-out;
+}
+
+.slideLeave {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 100ms ease-out 50ms, transform 250ms ease-out;
+}
+
+.slideLeave.slideLeaveActive {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.reverse .slideLeave.slideLeaveActive {
+  transform: translateX(100%);
+}

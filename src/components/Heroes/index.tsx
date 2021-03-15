@@ -1,3 +1,4 @@
+import { CSSTransitionGroup } from 'react-transition-group';
 import HeroCard, { Props as HeroCardProps } from './components/HeroCard';
 
 import style from './style.module.css';
@@ -13,14 +14,25 @@ const Heroes = ({ heroes, reverse = false, className = '' }: Props) => {
 
   return (
     <div className={`${style.container} ${reverseClass} ${className}`}>
-      {heroes.map((hero) => (
-        <HeroCard
-          key={hero.id}
-          className={style.item}
-          hero={hero}
-          reverse={reverse}
-        />
-      ))}
+      <CSSTransitionGroup
+        transitionName={{
+          enter: style.slideEnter,
+          enterActive: style.slideEnterActive,
+          leave: style.slideLeave,
+          leaveActive: style.slideLeaveActive,
+        }}
+        transitionEnterTimeout={250}
+        transitionLeaveTimeout={250}
+      >
+        {heroes.map((hero) => (
+          <HeroCard
+            key={hero.id}
+            className={style.item}
+            hero={hero}
+            reverse={reverse}
+          />
+        ))}
+      </CSSTransitionGroup>
     </div>
   );
 };
