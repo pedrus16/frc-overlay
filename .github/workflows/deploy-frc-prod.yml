@@ -26,3 +26,10 @@ jobs:
           password: ${{ secrets.frc_ftp_password }}
           local-dir: ./build/
           server-dir: /public_html/w3overlay/
+
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
