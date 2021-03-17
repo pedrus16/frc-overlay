@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 
 import useDataObserver from '../hooks/useDataObserver';
+import State from '../models/State';
 
-const useCachedGameData = () => {
-  const { data } = useDataObserver();
-  const [lastValidData, setLastValidData] = useState(data);
+const isStateCorrupt = (state: State) => {
+  const corruptedPlayer =
+    state?.content?.players?.some(
+      (player) => player.heroes.length + player.units_on_map.length === 0
+    ) ?? 0;
 
-  useEffect(() => {
-    // Empty heroes and units lists means corrupted data, we ignore the tick and keep the last valid data
-    const corruptedPlayer =
-      data?.content?.players?.some(
-        (player) => player.heroes.length + player.units_on_map.length === 0
-      ) ?? 0;
-
-    if (
-      data &&
-      data.type === 'state' &&
-      data.content.game.is_in_game &&
-      corruptedPlayer
-    ) {
-      return;
-    }
-
-    setLastValidData(data);
-  }, [data]);
-
-  return { data: lastValidData };
+  return (
+    state &&
+    state.type === 'state' &&
+    state.content.game.is_in_game &&
+    corruptedPlayer
+  );
 };
 
-export default useCachedGameData;
+const useCleanedDataObserver = () => {
+  const state = useDataObserver();
+  const lastValidData = useRef(state);
+
+  if (!isStateCorrupt(state)) {
+    lastValidData.current = state;
+  }
+
+  return lastValidData.current;
+};
+
+export default useCleanedDataObserver;
