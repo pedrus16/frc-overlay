@@ -35,7 +35,7 @@ const HeroCard = ({ hero, className = '', reverse }: Props) => {
         />
         <div className={style.level}>
           <div className={style.label}>
-            <small>LVL</small>
+            <small>NIV</small>
             <div>{hero.level}</div>
           </div>
           <ProgressBar
