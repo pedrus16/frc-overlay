@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FlagSelect = ({ value, onChange, className = '' }: Props) => {
-  const countries = Object.keys(country);
+  const countries = Object.keys(country).map((key) => key.toLowerCase());
 
   return (
     <Select
@@ -18,6 +18,12 @@ const FlagSelect = ({ value, onChange, className = '' }: Props) => {
       value={value}
       onChange={(event) => onChange(event.target.value as string)}
     >
+      <MenuItem value="">
+        <div className={style.item}>
+          <div className={style.flag}></div>
+          <div>- No flag -</div>
+        </div>
+      </MenuItem>
       {countries.map((key) => (
         <MenuItem value={key}>
           <div className={style.item}>
