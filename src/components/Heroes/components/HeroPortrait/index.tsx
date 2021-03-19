@@ -10,7 +10,6 @@ export interface Props {
   id: string;
   healthPercent: number;
   manaPercent: number;
-  level: number;
   respawn: { totalDurationSec: number; timeLeftSec: number } | null;
   className?: string;
 }
@@ -19,7 +18,6 @@ const HeroPortrait = ({
   id,
   healthPercent,
   manaPercent,
-  level,
   respawn,
   className = '',
 }: Props) => {
@@ -50,7 +48,6 @@ const HeroPortrait = ({
           width={64}
           height={64}
         />
-        <div className={style.level}>{level}</div>
         {realTimeMs > 0 && (
           <div className={`${style.overlay} ${style.cooldown}`}>
             <Cooldown

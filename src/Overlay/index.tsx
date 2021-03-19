@@ -79,9 +79,10 @@ const GameClock = ({ time }: GameTimeProps) => {
 interface SideProps {
   player: ReturnType<typeof buildPlayerData> | null;
   score: number | null;
+  country: string | null;
 }
 
-const LeftSide = ({ player, score }: SideProps) => {
+const LeftSide = ({ player, score, country }: SideProps) => {
   const teamColorStyle = player
     ? ({
         '--team-color': player.color,
@@ -99,6 +100,7 @@ const LeftSide = ({ player, score }: SideProps) => {
           upgrades={player.upgrades}
           techLevel={player.techLevel}
           score={score}
+          country={country}
         />
       )}
       {player !== null && (
@@ -117,7 +119,7 @@ const LeftSide = ({ player, score }: SideProps) => {
   );
 };
 
-const RightSide = ({ player, score }: SideProps) => {
+const RightSide = ({ player, score, country }: SideProps) => {
   if (!player) {
     return null;
   }
@@ -137,6 +139,7 @@ const RightSide = ({ player, score }: SideProps) => {
         upgrades={player.upgrades}
         techLevel={player.techLevel}
         score={score}
+        country={country}
       />
       <Heroes className={style.heroes} reverse heroes={player.heroes} />
       <div className={`${style.researchAndProduction} ${style.reverse}`}>
@@ -159,6 +162,8 @@ const Overlay = ({ state }: Props) => {
   const [reforgedStyle] = useLocalStorage('reforgedStyle');
   const [scoreP1] = useLocalStorage('scoreP1');
   const [scoreP2] = useLocalStorage('scoreP2');
+  const [country1] = useLocalStorage('country1');
+  const [country2] = useLocalStorage('country2');
 
   const player1Data = useMemo(
     () => ({
@@ -166,8 +171,9 @@ const Overlay = ({ state }: Props) => {
         ? buildPlayerData(state.content.players[0])
         : null,
       score: scoreP1 ? parseInt(scoreP1) : null,
+      country: country1,
     }),
-    [state, scoreP1]
+    [state, scoreP1, country1]
   );
 
   const player2Data = useMemo(
@@ -176,8 +182,9 @@ const Overlay = ({ state }: Props) => {
         ? buildPlayerData(state.content.players[1])
         : null,
       score: scoreP2 ? parseInt(scoreP2) : null,
+      country: country2,
     }),
-    [state, scoreP2]
+    [state, scoreP2, country2]
   );
 
   const gameTime = state.content.game.game_time;

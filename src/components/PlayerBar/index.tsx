@@ -17,6 +17,7 @@ export interface Props {
   reverse?: boolean;
   className?: string;
   score: number | null;
+  country: string | null;
 }
 
 const PlayerBar = ({
@@ -29,6 +30,7 @@ const PlayerBar = ({
   reverse = false,
   className = '',
   score,
+  country,
 }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
 
@@ -49,7 +51,15 @@ const PlayerBar = ({
               <br />
               <small>APM</small>
             </div>
-            <div className={style.playerName}>{playerName}</div>
+            <div className={style.playerName}>
+              <span>{playerName}</span>
+              {!!country && (
+                <img
+                  src={`${process.env.PUBLIC_URL}/flags/${country}.svg`}
+                  alt={country}
+                />
+              )}
+            </div>
           </div>
         </div>
         <div className={style.bottom}>
@@ -82,7 +92,6 @@ const PlayerBar = ({
           <div className={style.right}>
             {!reverse && <div className={style.angleRight}></div>}
             <div className={style.flagAndScore}>
-              {/* <Flag className={style.flag} /> */}
               <div className={style.score}>{score ?? score}</div>
             </div>
             {reverse && <div className={style.angleRight}></div>}

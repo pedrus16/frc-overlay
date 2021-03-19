@@ -7,12 +7,19 @@
 .dot {
   box-sizing: border-box;
   background: var(--black);
-  border: 1px solid var(--gray-2);
+  border: 1px solid var(--gray-3);
   border-radius: 99px;
   width: 0.375rem;
   height: 0.375rem;
+  margin-right: 0.0625rem;
+  box-shadow: 0 0 2px 1px rgba(0 0 0 / 60%);
+}
+
+.dot:last-child {
+  margin-right: 0;
 }
 
 .dot.active {
   background: var(--yellow);
+  border-color: var(--yellow);
 }

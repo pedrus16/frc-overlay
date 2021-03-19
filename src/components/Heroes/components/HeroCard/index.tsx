@@ -31,15 +31,20 @@ const HeroCard = ({ hero, className = '', reverse }: Props) => {
           id={hero.id}
           healthPercent={hero.healthPercent}
           manaPercent={hero.manaPercent}
-          level={hero.level}
           respawn={hero.respawn}
         />
-        <ProgressBar
-          progressPercent={hero.experiencePercent}
-          direction={Direction.VERTICAL}
-          className={style.progressBackground}
-          barClassName={style.experienceBar}
-        />
+        <div className={style.level}>
+          <div className={style.label}>
+            <small>NIV</small>
+            <div>{hero.level}</div>
+          </div>
+          <ProgressBar
+            progressPercent={hero.experiencePercent}
+            direction={Direction.VERTICAL}
+            className={style.progressBackground}
+            barClassName={style.experienceBar}
+          />
+        </div>
         <Inventory className={style.inventory} items={hero.inventory} />
       </div>
 
