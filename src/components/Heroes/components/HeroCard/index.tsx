@@ -1,9 +1,9 @@
 import HeroPortrait from '../HeroPortrait';
 import Inventory, { Props as InventoryProps } from '../Inventory';
 import SpellBar, { Props as SpellBarProps } from '../SpellBar';
+import ProgressBar, { Direction } from '../../../ProgressBar';
 
 import style from './style.module.css';
-import ProgressBar, { Direction } from '../../../ProgressBar';
 
 export interface Props {
   hero: {
