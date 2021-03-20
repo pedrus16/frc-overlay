@@ -1,19 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  border-left: 0.25rem solid var(--team-color);
-  background: linear-gradient(90deg, #000000 40%, rgba(0, 0, 0, 0) 70%);
   width: fit-content;
 }
 
 .container.reverse {
   align-items: flex-end;
-  background: linear-gradient(-90deg, #000000 40%, rgba(0, 0, 0, 0) 70%);
-
-  border-left: none;
-  border-right: 0.25rem solid var(--team-color);
 }
 
 .item {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 16px rgba(0 0 0 / 80%);
 }

@@ -54,7 +54,7 @@ const buildHeroesData = (heroes: Hero[], researches: Research[]) => {
 
 const buildSoldiers = (units: Unit[]) =>
   units
-    .filter((unit) => !unit.is_worker)
+    .filter((unit) => !unit.is_worker && unit.alive_count > 0)
     .map((unit) => ({ id: unit.id, count: unit.alive_count }));
 
 const buildWorkers = (units: Unit[]) => {

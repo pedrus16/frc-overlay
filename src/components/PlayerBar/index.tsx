@@ -2,8 +2,7 @@ import Army, { Props as ArmyProps } from '../Army';
 import Resources, { Props as ResourcesProps } from '../Resources';
 import Upgrade, { Props as UpgradeProps } from '../Upgrade';
 
-import { ReactComponent as ClockHole } from './images/bg1.svg';
-// import { ReactComponent as Flag } from './images/flag.svg';
+import { ReactComponent as BackgroundImage } from './images/bg.svg';
 
 import style from './style.module.css';
 
@@ -36,7 +35,8 @@ const PlayerBar = ({
 
   return (
     <div className={`${style.container} ${reverseClass} ${className}`}>
-      <div className={style.verticalContainer}>
+      <BackgroundImage className={style.backgroundImage} />
+      <div className={style.content}>
         <div className={style.top}>
           <Army
             soldiers={army.soldiers}
@@ -64,17 +64,16 @@ const PlayerBar = ({
         </div>
         <div className={style.bottom}>
           <div className={style.left}>
-            {reverse && <div className={style.angleLeft}></div>}
             <Resources
               gold={resources.gold}
               lumber={resources.lumber}
               food={resources.food}
               foodMax={resources.foodMax}
+              className={style.resources}
             />
             <div className={style.techLevel}>
               <div>{`T${techLevel}`}</div>
             </div>
-            {!reverse && <div className={style.angleLeft}></div>}
           </div>
 
           <div className={style.upgrades}>
@@ -90,16 +89,9 @@ const PlayerBar = ({
           </div>
 
           <div className={style.right}>
-            {!reverse && <div className={style.angleRight}></div>}
-            <div className={style.flagAndScore}>
-              <div className={style.score}>{score ?? score}</div>
-            </div>
-            {reverse && <div className={style.angleRight}></div>}
+            <div className={style.score}>{score ?? score}</div>
           </div>
         </div>
-      </div>
-      <div>
-        <ClockHole className={style.clockHole} />
       </div>
     </div>
   );

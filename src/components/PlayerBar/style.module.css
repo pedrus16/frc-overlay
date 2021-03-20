@@ -5,6 +5,7 @@
   --angle: 28.5deg;
   --border-color: var(--team-color);
 
+  position: relative;
   display: flex;
 }
 
@@ -12,30 +13,40 @@
   flex-direction: row-reverse;
 }
 
-.clockHole {
-  display: block;
+.backgroundImage {
+  width: 100%;
+  height: auto;
   color: var(--border-color);
+  filter: drop-shadow(0 0 4px var(--border-color));
 }
 
-.reverse .clockHole {
+.reverse .backgroundImage {
   transform: scaleX(-1);
 }
 
-.verticalContainer {
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   flex-grow: 1;
-  position: relative;
   display: flex;
   flex-direction: column;
+  padding-right: 4.375%;
+}
+
+.reverse .content {
+  padding-right: 0;
+  padding-left: 4.375%;
 }
 
 .top {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: var(--bg-color);
-  box-shadow: 0 var(--border-size) 0 var(--border-color);
   padding-right: 0.25rem;
-  min-height: 2.625rem;
+  height: 51.22%;
 }
 
 .reverse .top {
@@ -48,6 +59,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  height: 48.78%;
 }
 
 .reverse .bottom {
@@ -55,21 +67,23 @@
 }
 
 .left {
-  --height: calc(100% + var(--border-size));
-  --angle-width: 1.375rem;
-
   position: relative;
   display: flex;
   align-items: stretch;
-  background: var(--bg-color);
-  border-bottom: var(--border-size) solid var(--border-color);
-  margin-right: var(--angle-width);
+  justify-content: stretch;
+  width: 31.24%;
+  height: 79%;
+  margin-right: 3%;
 }
 
 .reverse .left {
   flex-direction: row-reverse;
   margin-right: 0;
-  margin-left: var(--angle-width);
+  margin-left: 2%;
+}
+
+.resources {
+  flex-grow: 1;
 }
 
 .upgrades {
@@ -108,33 +122,18 @@
 }
 
 .right {
-  --height: calc(100% + var(--border-size));
-  --angle-width: 1.5rem;
-
   position: relative;
   display: flex;
-  min-height: 2.25rem;
-  background: var(--bg-color);
-  border-bottom: var(--border-size) solid var(--border-color);
-  padding-right: 0.25rem;
-  margin-left: var(--angle-width);
+  align-items: center;
+  justify-content: center;
+  width: 3%;
+  height: 90%;
+  margin-left: 2.5%;
 }
 
 .reverse .right {
-  padding-right: 0;
-  padding-left: 0.25rem;
   margin-left: 0;
-  margin-right: var(--angle-width);
-}
-
-.flagAndScore {
-  width: 1.5rem;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.reverse .flagAndScore {
-  flex-direction: row-reverse;
+  margin-right: 2%;
 }
 
 .flag {
@@ -144,6 +143,7 @@
 .score {
   color: var(--gray-5);
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .player {
@@ -206,104 +206,7 @@
   color: var(--gray-5);
   font-size: 1.125rem;
   font-weight: 700;
-  border-top: 1px solid var(--gray-2);
-  border-left: 1px solid var(--gray-2);
-  margin-left: 0.625rem;
-  margin-right: -0.55rem;
-  padding: 0 0.625rem;
+  padding: 0;
   display: flex;
   align-items: center;
-
-  z-index: 1;
-  transform: skewX(calc(var(--angle) * -1));
-}
-
-.techLevel > div {
-  transform: skewX(var(--angle));
-}
-
-.reverse .techLevel {
-  margin-left: -0.55rem;
-  margin-right: 0.625rem;
-  transform: skewX(var(--angle));
-  border-left: none;
-  border-right: 1px solid var(--gray-2);
-}
-
-.reverse .techLevel > div {
-  transform: skewX(calc(var(--angle) * -1));
-}
-
-.angleLeft {
-  content: "";
-  display: block;
-  position: absolute;
-  width: var(--angle-width);
-  height: var(--height);
-  top: 0;
-  right: calc(var(--angle-width) * -1);
-  overflow: hidden;
-}
-
-.angleLeft::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: var(--angle-width);
-  height: 150%;
-  right: 0;
-  background: var(--bg-color);
-  border-right: var(--border-size) solid var(--border-color);
-  transform: rotate(var(--angle));
-  transform-origin: top right;
-}
-
-.reverse .angleLeft {
-  right: auto;
-  left: calc(var(--angle-width) * -1);
-}
-
-.reverse .angleLeft::before {
-  right: auto;
-  left: 0;
-  border-left: var(--border-size) solid var(--border-color);
-  transform: rotate(calc(var(--angle) * -1));
-  transform-origin: top left;
-}
-
-.angleRight {
-  content: "";
-  display: block;
-  position: absolute;
-  width: var(--angle-width);
-  height: var(--height);
-  top: 0;
-  left: calc(var(--angle-width) * -1);
-  overflow: hidden;
-}
-
-.angleRight::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: var(--angle-width);
-  height: 150%;
-  left: 0;
-  background: var(--bg-color);
-  border-left: var(--border-size) solid var(--border-color);
-  transform: rotate(calc(var(--angle) * -1));
-  transform-origin: top left;
-}
-
-.reverse .angleRight {
-  left: auto;
-  right: calc(var(--angle-width) * -1);
-}
-
-.reverse .angleRight::before {
-  left: auto;
-  right: 0;
-  border-right: var(--border-size) solid var(--border-color);
-  transform: rotate(var(--angle));
-  transform-origin: top right;
 }

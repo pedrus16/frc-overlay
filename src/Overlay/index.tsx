@@ -105,7 +105,10 @@ const LeftSide = ({ player, score, country }: SideProps) => {
       )}
       {player !== null && (
         <>
-          <Heroes className={style.heroes} heroes={player.heroes} />
+          <div className={style.heroes}>
+            <div className={style.ingameHeroCover} />
+            <Heroes heroes={player.heroes} />
+          </div>
           <div className={style.researchAndProduction}>
             <ProductionAndResearch
               buildings={player.production.buildings}
