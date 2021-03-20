@@ -1,3 +1,5 @@
+import { animated, config, useTransition } from 'react-spring';
+
 import ItemModel from '../../../../models/Item';
 import range from '../../../../utils/range';
 import Item from '../Item';
@@ -13,15 +15,29 @@ export interface Props {
 
 const Inventory = ({ items, className = '' }: Props) => {
   const slots = range(6);
+  const transitions = useTransition(items, (item) => item.slot, {
+    from: { opacity: 0, transform: 'scale(1.5)', zIndex: 1 },
+    enter: { opacity: 1, transform: 'scale(1)', zIndex: 0 },
+    leave: { opacity: 0, transform: 'scale(1.5)', zIndex: 1 },
+    config: config.stiff,
+  });
 
   return (
     <div className={`${className} ${style.grid}`}>
       {slots.map((slot) => {
-        const item = items.find((i) => i.slot === slot);
-        if (!item) {
+        const transition = transitions.find(({ item }) => item.slot === slot);
+
+        if (!transition) {
           return <BackpackIcon className={style.backpackIcon} key={slot} />;
         }
-        return <Item key={slot} id={item.id} charges={item.charges} />;
+
+        const item = transition.item;
+
+        return (
+          <animated.div key={slot} style={transition.props}>
+            <Item id={item.id} charges={item.charges} />
+          </animated.div>
+        );
       })}
     </div>
   );
