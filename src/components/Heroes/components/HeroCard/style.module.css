@@ -7,11 +7,15 @@
   gap: var(--grid-gap);
   width: fit-content;
   padding: 0.25rem;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border-radius: 0 calc(var(--border-radius) * 2) calc(var(--border-radius) * 2)
+    0;
+  border-left: 0.25rem solid var(--team-color);
 }
 
 .container.reverse {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
+  border-left: none;
+  border-right: 0.25rem solid var(--team-color);
 }
 
 .topRow {
