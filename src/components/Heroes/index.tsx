@@ -15,7 +15,7 @@ const Heroes = ({ heroes, reverse = false, className = '' }: Props) => {
     from: { transform: `translateX(${reverse ? 100 : -100}%)` },
     enter: { transform: 'translateX(0)' },
     leave: { transform: `translateX(${reverse ? 100 : -100}%)` },
-    config: config.stiff,
+    config: config.slow,
   });
 
   return (
