@@ -1,12 +1,24 @@
 .grid {
   --cell-size: 2rem;
-
   display: grid;
   grid-template: repeat(3, var(--cell-size)) / repeat(2, var(--cell-size));
-  align-items: center;
-  justify-items: center;
-  justify-self: center;
   width: fit-content;
+  justify-self: center;
+}
+
+.slot {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .backpackIcon {

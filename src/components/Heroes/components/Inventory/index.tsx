@@ -27,16 +27,20 @@ const Inventory = ({ items, className = '' }: Props) => {
       {slots.map((slot) => {
         const transition = transitions.find(({ item }) => item.slot === slot);
 
-        if (!transition) {
-          return <BackpackIcon className={style.backpackIcon} key={slot} />;
-        }
-
-        const item = transition.item;
-
         return (
-          <animated.div key={slot} style={transition.props}>
-            <Item id={item.id} charges={item.charges} />
-          </animated.div>
+          <div className={style.slot}>
+            <div className={style.background}>
+              <BackpackIcon className={style.backpackIcon} key={slot} />
+            </div>
+            {transition && (
+              <animated.div key={slot} style={transition.props}>
+                <Item
+                  id={transition.item.id}
+                  charges={transition.item.charges}
+                />
+              </animated.div>
+            )}
+          </div>
         );
       })}
     </div>
