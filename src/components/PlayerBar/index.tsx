@@ -1,3 +1,4 @@
+import { animated, config, useTransition } from 'react-spring';
 import Army, { Props as ArmyProps } from '../Army';
 import Resources, { Props as ResourcesProps } from '../Resources';
 import Upgrade, { Props as UpgradeProps } from '../Upgrade';
@@ -32,6 +33,12 @@ const PlayerBar = ({
   country,
 }: Props) => {
   const reverseClass = reverse ? style.reverse : '';
+  const upgradesTransition = useTransition(upgrades, (upgrade) => upgrade.id, {
+    from: { opacity: 0, transform: 'scale(0.5)', width: '0rem' },
+    enter: { width: '2rem', opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0.5)', width: '0rem' },
+    config: config.gentle,
+  });
 
   return (
     <div className={`${style.container} ${reverseClass} ${className}`}>
@@ -77,14 +84,15 @@ const PlayerBar = ({
           </div>
 
           <div className={style.upgrades}>
-            {upgrades.map((upgrade) => (
-              <Upgrade
-                key={upgrade.id}
-                className={style.upgrade}
-                id={upgrade.id}
-                level={upgrade.level}
-                levelMax={upgrade.levelMax}
-              />
+            {upgradesTransition.map(({ item: upgrade, key, props }) => (
+              <animated.div key={upgrade.id} style={props}>
+                <Upgrade
+                  className={style.upgrade}
+                  id={upgrade.id}
+                  level={upgrade.level}
+                  levelMax={upgrade.levelMax}
+                />
+              </animated.div>
             ))}
           </div>
 
