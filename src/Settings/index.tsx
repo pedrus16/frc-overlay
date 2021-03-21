@@ -5,6 +5,7 @@ import {
   Switch,
   FormControlLabel,
   Button,
+  ButtonGroup,
 } from '@material-ui/core';
 
 import style from './style.module.css';
@@ -21,6 +22,7 @@ const Settings = (props: Props) => {
   const [scoreP2, setScoreP2] = useLocalStorage('scoreP2');
   const [country1, setCountry1] = useLocalStorage('country1');
   const [country2, setCountry2] = useLocalStorage('country2');
+  const [, setGraph] = useLocalStorage('graph');
 
   const swapPlayer = () => {
     setSwapped((currentValue) => {
@@ -32,6 +34,10 @@ const Settings = (props: Props) => {
     setReforgedStyle((currentValue) => {
       return currentValue === 'true' ? 'false' : 'true';
     });
+  };
+
+  const handleGraphClick = (graph: string) => () => {
+    setGraph(graph);
   };
 
   const player1Settings = (
@@ -54,7 +60,7 @@ const Settings = (props: Props) => {
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Paper className={style.paper}>
             <Button
               variant="contained"
@@ -65,7 +71,20 @@ const Settings = (props: Props) => {
             </Button>
           </Paper>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
+          <Paper className={style.paper}>
+            <ButtonGroup
+              variant="contained"
+              color="primary"
+              aria-label="contained primary button group"
+            >
+              <Button onClick={handleGraphClick('xp')}>XP</Button>
+              <Button onClick={handleGraphClick('gold')}>Gold</Button>
+              <Button onClick={handleGraphClick('none')}>Close</Button>
+            </ButtonGroup>
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
           <Paper className={style.paper}>
             <div className={style.controls}>
               <FormControlLabel
