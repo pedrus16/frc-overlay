@@ -36,8 +36,6 @@ const useGoldDifferenceData = (state: State) => {
     prevGameTime.current = state.content.game.game_time;
   }, [state, resetData]);
 
-  console.log(data);
-
   return data;
 };
 
