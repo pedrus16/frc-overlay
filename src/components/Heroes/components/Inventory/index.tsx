@@ -28,9 +28,9 @@ const Inventory = ({ items, className = '' }: Props) => {
         const transition = transitions.find(({ item }) => item.slot === slot);
 
         return (
-          <div className={style.slot}>
+          <div key={slot} className={style.slot}>
             <div className={style.background}>
-              <BackpackIcon className={style.backpackIcon} key={slot} />
+              <BackpackIcon className={style.backpackIcon} />
             </div>
             {transition && (
               <animated.div key={slot} style={transition.props}>
