@@ -17,7 +17,6 @@
   width: 100%;
   height: auto;
   color: var(--border-color);
-  filter: drop-shadow(0 0 4px var(--border-color));
 }
 
 .reverse .backgroundImage {
@@ -182,6 +181,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .playerName > span {
   max-width: 13ch;
   overflow: hidden;

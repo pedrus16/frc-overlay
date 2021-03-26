@@ -69,5 +69,4 @@
 
 .experienceBar {
   --progress-color: var(--experience-color);
-  box-shadow: 0px 0px 8px -1px var(--experience-color);
 }
