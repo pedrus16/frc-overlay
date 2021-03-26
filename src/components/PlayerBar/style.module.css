@@ -123,7 +123,7 @@
 .right {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 3%;
   height: 90%;
@@ -141,20 +141,24 @@
 
 .score {
   color: var(--gray-5);
-  font-size: 1.5rem;
+  font-size: 2rem;
+  line-height: 1em;
   text-align: center;
+  font-weight: 400;
 }
 
 .player {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 12.5rem;
-  padding: 0.25rem 0.5rem;
+  width: 18.75rem;
+  padding: 0.125rem 0.5rem 0.125rem 1rem;
 }
 
 .reverse .player {
   flex-direction: row-reverse;
+  padding: 0.125rem 1rem 0.125rem 0.5rem;
 }
 
 .apm {
@@ -168,6 +172,7 @@
 .apm small {
   color: var(--gray-4);
   font-size: 0.625rem;
+  font-weight: 700;
 }
 
 .playerName {
@@ -183,7 +188,7 @@
 }
 
 .playerName > span {
-  max-width: 13ch;
+  max-width: 20ch;
   overflow: hidden;
   text-overflow: ellipsis;
 }

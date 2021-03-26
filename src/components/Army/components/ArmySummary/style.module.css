@@ -1,9 +1,9 @@
 .container {
-  --height: 2.5rem;
+  --height: 2.75rem;
 
   position: relative;
-  background: var(--gray-1);
   display: flex;
+  align-items: center;
   justify-content: center;
   width: fit-content;
 }
@@ -13,26 +13,27 @@
 }
 
 .unitCount {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 0.25rem;
+  padding: 0rem 0.5rem;
   min-width: 1.5rem;
 
   color: var(--text-color);
-  font-weight: 700;
-  font-size: 0.75rem;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .unitCount > svg {
   width: 1rem;
   height: 1rem;
-  color: var(--gray-4);
+  color: var(--gray-3);
 }
 
 .raceEmblem {
   display: block;
   width: var(--height);
-  height: auto;
+  height: var(--height);
 }
