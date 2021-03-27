@@ -36,6 +36,7 @@ const Army = ({ soldiers, population, workers, race, reverse }: Props) => {
           <Unit key={unit.id} id={unit.id} count={unit.count} />
         </animated.div>
       ))}
+      <Unit id={workers.id} count={null} />
       <ArmySummary
         className={style.summary}
         population={population}
@@ -43,7 +44,6 @@ const Army = ({ soldiers, population, workers, race, reverse }: Props) => {
         race={race}
         reverse={reverse}
       />
-      <Unit id={workers.id} count={null} />
     </div>
   );
 };

@@ -38,17 +38,17 @@ const ArmySummary = ({
 
   return (
     <div className={`${style.container} ${reverseClass} ${className}`}>
-      <div className={style.unitCount}>
-        <HelmetIcon />
-        <div>{population}</div>
+      <div className={style.population}>
+        <div className={style.unitCount}>
+          <HammerIcon />
+          <div>{workers}</div>
+        </div>
+        <div className={style.unitCount}>
+          <HelmetIcon />
+          <div>{population}</div>
+        </div>
       </div>
-      {/* <div className={style.raceEmblem}> */}
       <img className={style.raceEmblem} src={emblem} alt={race} />
-      {/* </div> */}
-      <div className={style.unitCount}>
-        <HammerIcon />
-        <div>{workers}</div>
-      </div>
     </div>
   );
 };
