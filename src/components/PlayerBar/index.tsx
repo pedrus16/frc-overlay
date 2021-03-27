@@ -46,6 +46,7 @@ const PlayerBar = ({
       <div className={style.content}>
         <div className={style.top}>
           <Army
+            className={style.army}
             soldiers={army.soldiers}
             population={army.population}
             workers={army.workers}
@@ -68,6 +69,7 @@ const PlayerBar = ({
               )}
             </div>
           </div>
+          <div className={style.score}>{score ?? score}</div>
         </div>
         <div className={style.bottom}>
           <div className={style.left}>
@@ -96,9 +98,7 @@ const PlayerBar = ({
             ))}
           </div>
 
-          <div className={style.right}>
-            <div className={style.score}>{score ?? score}</div>
-          </div>
+          <div className={style.right}></div>
         </div>
       </div>
     </div>

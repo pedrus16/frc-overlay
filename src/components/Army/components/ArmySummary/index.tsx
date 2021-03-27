@@ -48,7 +48,9 @@ const ArmySummary = ({
           <div>{population}</div>
         </div>
       </div>
-      <img className={style.raceEmblem} src={emblem} alt={race} />
+      <div className={style.raceEmblemContainer}>
+        <img className={style.raceEmblem} src={emblem} alt={race} />
+      </div>
     </div>
   );
 };

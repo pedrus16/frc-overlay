@@ -14,9 +14,17 @@ export interface Props {
   workers: { id: string; count: number };
   race: ArmySummaryProps['race'];
   reverse?: boolean;
+  className?: string;
 }
 
-const Army = ({ soldiers, population, workers, race, reverse }: Props) => {
+const Army = ({
+  soldiers,
+  population,
+  workers,
+  race,
+  reverse,
+  className = '',
+}: Props) => {
   const reverseClass = reverse ? style.reverse : '';
   const reversedSoldiers = useMemo(() => soldiers.concat().reverse(), [
     soldiers,
@@ -30,7 +38,7 @@ const Army = ({ soldiers, population, workers, race, reverse }: Props) => {
   });
 
   return (
-    <div className={`${style.container} ${reverseClass}`}>
+    <div className={`${style.container} ${reverseClass} ${className}`}>
       {transition.map(({ item: unit, key, props }) => (
         <animated.div key={key} style={props}>
           <Unit key={unit.id} id={unit.id} count={unit.count} />

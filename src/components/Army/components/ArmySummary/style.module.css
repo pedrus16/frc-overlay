@@ -1,5 +1,5 @@
 .container {
-  --height: 2.5rem;
+  --height: 3rem;
 
   position: relative;
   display: flex;
@@ -42,8 +42,16 @@
   margin-right: 0.5rem;
 }
 
+.raceEmblemContainer {
+  max-height: 2.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
 .raceEmblem {
   display: block;
   width: var(--height);
   height: var(--height);
+  margin-top: 0.125rem;
 }

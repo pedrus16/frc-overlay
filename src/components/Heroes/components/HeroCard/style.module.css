@@ -1,5 +1,6 @@
 .container {
   --grid-gap: 0.5rem;
+  --border-width: 0.125rem;
 
   background: var(--black-60);
   display: grid;
@@ -9,13 +10,13 @@
   padding: 0.25rem;
   border-radius: 0 calc(var(--border-radius) * 2) calc(var(--border-radius) * 2)
     0;
-  border-left: 0.25rem solid var(--team-color);
+  border-left: var(--border-width) solid var(--team-color);
 }
 
 .container.reverse {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
   border-left: none;
-  border-right: 0.25rem solid var(--team-color);
+  border-right: var(--border-width) solid var(--team-color);
 }
 
 .topRow {
