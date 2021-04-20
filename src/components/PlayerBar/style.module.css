@@ -17,7 +17,6 @@
   width: 100%;
   height: auto;
   color: var(--border-color);
-  filter: drop-shadow(0 0 4px var(--border-color));
 }
 
 .reverse .backgroundImage {
@@ -71,9 +70,10 @@
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  width: 31.24%;
+  width: 32.5%;
   height: 79%;
-  margin-right: 3%;
+  margin-right: 2%;
+  gap: 0.5rem;
 }
 
 .reverse .left {
@@ -84,6 +84,12 @@
 
 .resources {
   flex-grow: 1;
+  margin-left: 0.25rem;
+}
+
+.reverse .resources {
+  margin-left: 0;
+  margin-right: 0.25rem;
 }
 
 .upgrades {
@@ -182,6 +188,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .playerName > span {
   max-width: 13ch;
   overflow: hidden;
@@ -206,7 +213,14 @@
   color: var(--gray-5);
   font-size: 1.125rem;
   font-weight: 700;
-  padding: 0;
   display: flex;
   align-items: center;
+  padding: 0 0.75rem;
+  margin: 0.25rem 0;
+  border-left: 1px solid var(--gray-2);
+}
+
+.reverse .techLevel {
+  border-left: none;
+  border-right: 1px solid var(--gray-2);
 }

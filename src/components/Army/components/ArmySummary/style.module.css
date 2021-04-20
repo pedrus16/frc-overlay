@@ -12,24 +12,6 @@
   flex-direction: row-reverse;
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  left: -0.5rem;
-  border-top: calc(var(--height) / 2) solid transparent;
-  border-bottom: calc(var(--height) / 2) solid transparent;
-  border-right: 0.5rem solid var(--gray-1);
-}
-
-.container::after {
-  content: "";
-  position: absolute;
-  right: -0.5rem;
-  border-top: calc(var(--height) / 2) solid transparent;
-  border-bottom: calc(var(--height) / 2) solid transparent;
-  border-left: 0.5rem solid var(--gray-1);
-}
-
 .unitCount {
   display: flex;
   flex-direction: column;

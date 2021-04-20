@@ -62,12 +62,10 @@
 
 .healthBar {
   --progress-color: var(--health-color);
-  box-shadow: 0px 0px 8px -1px var(--health-color);
 }
 
 .manaBar {
   --progress-color: var(--mana-color);
-  box-shadow: 0px 0px 8px -1px var(--mana-color);
 }
 
 .progressBackground {
