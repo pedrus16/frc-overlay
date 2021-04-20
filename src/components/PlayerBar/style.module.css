@@ -73,7 +73,6 @@
   width: 32.5%;
   height: 79%;
   margin-right: 2%;
-  gap: 0.5rem;
 }
 
 .reverse .left {
@@ -85,10 +84,11 @@
 .resources {
   flex-grow: 1;
   margin-left: 0.25rem;
+  margin-right: 0.5rem;
 }
 
 .reverse .resources {
-  margin-left: 0;
+  margin-left: 0.5rem;
   margin-right: 0.25rem;
 }
 
