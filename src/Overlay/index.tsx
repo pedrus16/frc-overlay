@@ -13,6 +13,7 @@ import GameTime from './components/GameTime';
 import teamColorStyle from '../utils/teamColorStyle';
 import GoldGraphModal from './components/GoldGraphModal';
 import ExperienceGraphModal from './components/ExperienceGraphModal';
+import TwoPlayersBar from '../components/TwoPlayersBar';
 
 import style from './style.module.css';
 
@@ -80,27 +81,40 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
     return null;
   }
 
-  const player = players[0];
-
   return (
     <div
       className={side === 'left' ? style.leftSide : style.rightSide}
-      style={teamColorStyle(player.color)}
+      style={teamColorStyle(players[0].color)}
     >
-      <PlayerBar
-        reverse={side === 'right'}
-        playerName={player.playerName}
-        apm={player.apm}
-        army={player.army}
-        resources={player.resources}
-        upgrades={player.upgrades}
-        techLevel={player.techLevel}
-        score={score}
-        country={country}
-      />
+      {players.length > 1 ? (
+        <TwoPlayersBar reverse={side === 'right'} />
+      ) : (
+        <PlayerBar
+          reverse={side === 'right'}
+          playerName={players[0].playerName}
+          apm={players[0].apm}
+          army={players[0].army}
+          resources={players[0].resources}
+          upgrades={players[0].upgrades}
+          techLevel={players[0].techLevel}
+          score={score}
+          country={country}
+        />
+      )}
       <div className={style.heroes}>
         {side === 'left' && <div className={style.ingameHeroCover} />}
-        <Heroes heroes={player.heroes} reverse={side === 'right'} />
+        <Heroes
+          heroes={players[0].heroes}
+          reverse={side === 'right'}
+          compact={players.length > 1}
+        />
+        {players.length > 1 && (
+          <Heroes
+            heroes={players[1].heroes}
+            reverse={side === 'right'}
+            compact
+          />
+        )}
       </div>
       <div
         className={`${style.researchAndProduction} ${
@@ -108,9 +122,9 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
         }`}
       >
         <ProductionAndResearch
-          buildings={player.production.buildings}
-          units={player.production.units}
-          researches={player.research}
+          buildings={players[0].production.buildings}
+          units={players[0].production.units}
+          researches={players[0].research}
         />
       </div>
     </div>

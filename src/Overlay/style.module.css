@@ -14,10 +14,15 @@
 .heroes {
   position: relative;
   margin-top: -0.375rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .rightSide .heroes {
   align-self: flex-end;
+  align-items: flex-end;
 }
 
 .researchAndProduction {

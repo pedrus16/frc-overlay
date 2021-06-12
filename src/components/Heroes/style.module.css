@@ -4,11 +4,32 @@
   width: fit-content;
 }
 
+.container.compact {
+  flex-direction: row;
+}
+
 .container.reverse {
   align-items: flex-end;
+}
+
+.container.compact.reverse {
+  flex-direction: row-reverse;
 }
 
 .item {
   margin-top: 0.5rem;
   box-shadow: 0 4px 16px rgba(0 0 0 / 80%);
+}
+
+.compact .item {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.compact:not(.reverse) .item {
+  margin-right: 0.5rem;
+}
+
+.compact.reverse .item {
+  margin-left: 0.5rem;
 }

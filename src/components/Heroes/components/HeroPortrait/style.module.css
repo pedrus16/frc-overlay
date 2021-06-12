@@ -62,12 +62,15 @@
 
 .healthBar {
   --progress-color: var(--health-color);
+  min-height: 0.75rem;
 }
 
 .manaBar {
   --progress-color: var(--mana-color);
+  min-height: 0.75rem;
 }
 
 .progressBackground {
   background: var(--white-20);
+  min-height: 0.75rem;
 }

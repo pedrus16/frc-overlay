@@ -1,0 +1,19 @@
+.container {
+  --bg-color: var(--gray-0);
+  --border-size: 0.25rem;
+  --angle: 28.5deg;
+  --border-color: var(--team-color);
+
+  position: relative;
+  display: flex;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: auto;
+  color: var(--border-color);
+}
+
+.reverse .backgroundImage {
+  transform: scaleX(-1);
+}

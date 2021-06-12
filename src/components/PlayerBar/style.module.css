@@ -1,6 +1,5 @@
 .container {
   --bg-color: var(--gray-0);
-  --clock-width: 2.625rem;
   --border-size: 0.25rem;
   --angle: 28.5deg;
   --border-color: var(--team-color);

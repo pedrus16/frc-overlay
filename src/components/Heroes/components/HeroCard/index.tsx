@@ -17,14 +17,26 @@ export interface Props {
     respawn: { totalDurationSec: number; timeLeftSec: number } | null;
   };
   reverse?: boolean;
+  compact?: boolean;
+  showBorder?: boolean;
   className?: string;
 }
 
-const HeroCard = ({ hero, className = '', reverse }: Props) => {
+const HeroCard = ({
+  hero,
+  compact = false,
+  showBorder = false,
+  className = '',
+  reverse,
+}: Props) => {
   const reverseClass = reverse ? style.reverse : '';
+  const compactClass = compact ? style.compact : '';
+  const borderClass = showBorder ? style.border : '';
 
   return (
-    <div className={`${className} ${style.container} ${reverseClass}`}>
+    <div
+      className={`${className} ${style.container} ${reverseClass} ${compactClass} ${borderClass}`}
+    >
       <div className={style.topRow}>
         <HeroPortrait
           className={style.portrait}
@@ -45,12 +57,16 @@ const HeroCard = ({ hero, className = '', reverse }: Props) => {
             barClassName={style.experienceBar}
           />
         </div>
-        <Inventory className={style.inventory} items={hero.inventory} />
+        {!compact && (
+          <Inventory className={style.inventory} items={hero.inventory} />
+        )}
       </div>
 
-      <div className={style.bottomRow}>
-        <SpellBar spells={hero.spells} />
-      </div>
+      {!compact && (
+        <div className={style.bottomRow}>
+          <SpellBar spells={hero.spells} />
+        </div>
+      )}
     </div>
   );
 };
