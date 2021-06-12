@@ -51,6 +51,10 @@
   grid-template-areas: "inventory . portrait";
 }
 
+.reverse.compact .topRow {
+  grid-template-areas: ". portrait";
+}
+
 .level {
   position: relative;
   display: grid;
