@@ -18,8 +18,8 @@ interface Props {}
 const Settings = (props: Props) => {
   const [swapped, setSwapped] = useLocalStorage('swapped');
   const [reforgedStyle, setReforgedStyle] = useLocalStorage('reforgedStyle');
-  const [scoreP1, setScoreP1] = useLocalStorage('scoreP1');
-  const [scoreP2, setScoreP2] = useLocalStorage('scoreP2');
+  const [scoreTeam1, setScoreTeam1] = useLocalStorage('scoreTeam1');
+  const [scoreTeam2, setScoreTeam2] = useLocalStorage('scoreTeam2');
   const [country1, setCountry1] = useLocalStorage('country1');
   const [country2, setCountry2] = useLocalStorage('country2');
   const [, setGraph] = useLocalStorage('graph');
@@ -42,8 +42,8 @@ const Settings = (props: Props) => {
 
   const player1Settings = (
     <PlayerSettings
-      score={scoreP1}
-      onChangeScore={setScoreP1}
+      score={scoreTeam1}
+      onChangeScore={setScoreTeam1}
       country={country1}
       onChangeCountry={setCountry1}
     />
@@ -51,8 +51,8 @@ const Settings = (props: Props) => {
 
   const player2Settings = (
     <PlayerSettings
-      score={scoreP2}
-      onChangeScore={setScoreP2}
+      score={scoreTeam2}
+      onChangeScore={setScoreTeam2}
       country={country2}
       onChangeCountry={setCountry2}
     />

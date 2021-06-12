@@ -16,6 +16,14 @@ import ExperienceGraphModal from './components/ExperienceGraphModal';
 
 import style from './style.module.css';
 
+const REFRESH_RATE_MS = 2000;
+
+function buildGraphLabel(players: Array<{ playerName: string }>) {
+  return players.length > 1
+    ? `${players[0].playerName} - ${players[1].playerName}`
+    : players[0].playerName;
+}
+
 interface ProductionAndResearchProps {
   buildings: any[];
   units: any[];
@@ -61,19 +69,26 @@ const ProductionAndResearch = ({
 };
 
 interface SideProps {
-  player: ReturnType<typeof buildPlayerData> | null;
+  players: Array<ReturnType<typeof buildPlayerData>>;
   score: number | null;
   country: string | null;
+  side?: 'left' | 'right';
 }
 
-const LeftSide = ({ player, score, country }: SideProps) => {
-  if (!player) {
+const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
+  if (players.length === 0) {
     return null;
   }
 
+  const player = players[0];
+
   return (
-    <div className={style.leftSide} style={teamColorStyle(player.color)}>
+    <div
+      className={side === 'left' ? style.leftSide : style.rightSide}
+      style={teamColorStyle(player.color)}
+    >
       <PlayerBar
+        reverse={side === 'right'}
         playerName={player.playerName}
         apm={player.apm}
         army={player.army}
@@ -84,40 +99,14 @@ const LeftSide = ({ player, score, country }: SideProps) => {
         country={country}
       />
       <div className={style.heroes}>
-        <div className={style.ingameHeroCover} />
-        <Heroes heroes={player.heroes} />
+        {side === 'left' && <div className={style.ingameHeroCover} />}
+        <Heroes heroes={player.heroes} reverse={side === 'right'} />
       </div>
-      <div className={style.researchAndProduction}>
-        <ProductionAndResearch
-          buildings={player.production.buildings}
-          units={player.production.units}
-          researches={player.research}
-        />
-      </div>
-    </div>
-  );
-};
-
-const RightSide = ({ player, score, country }: SideProps) => {
-  if (!player) {
-    return null;
-  }
-
-  return (
-    <div className={style.rightSide} style={teamColorStyle(player.color)}>
-      <PlayerBar
-        reverse
-        playerName={player.playerName}
-        apm={player.apm}
-        army={player.army}
-        resources={player.resources}
-        upgrades={player.upgrades}
-        techLevel={player.techLevel}
-        score={score}
-        country={country}
-      />
-      <Heroes className={style.heroes} reverse heroes={player.heroes} />
-      <div className={`${style.researchAndProduction} ${style.reverse}`}>
+      <div
+        className={`${style.researchAndProduction} ${
+          side === 'right' ? style.reverse : ''
+        }`}
+      >
         <ProductionAndResearch
           buildings={player.production.buildings}
           units={player.production.units}
@@ -135,8 +124,8 @@ interface Props {
 const Overlay = ({ state }: Props) => {
   const [swapped] = useLocalStorage('swapped');
   const [reforgedStyle] = useLocalStorage('reforgedStyle');
-  const [scoreP1] = useLocalStorage('scoreP1');
-  const [scoreP2] = useLocalStorage('scoreP2');
+  const [scoreTeam1] = useLocalStorage('scoreTeam1');
+  const [scoreTeam2] = useLocalStorage('scoreTeam2');
   const [country1] = useLocalStorage('country1');
   const [country2] = useLocalStorage('country2');
   const [gameSpeed, setGameSpeed] = useState(0);
@@ -145,43 +134,41 @@ const Overlay = ({ state }: Props) => {
 
   useEffect(() => {
     setGameSpeed(
-      Math.max(0, state.content.game.game_time - prevGameTime.current) / 2000
+      Math.max(0, state.content.game.game_time - prevGameTime.current) /
+        REFRESH_RATE_MS
     );
     prevGameTime.current = state.content.game.game_time;
   }, [state]);
 
-  const player1Data = useMemo(
-    () => ({
-      player: state.content.players[0]
-        ? buildPlayerData(state.content.players[0])
-        : null,
-      score: scoreP1 ? parseInt(scoreP1) : null,
-      country: country1,
-    }),
-    [state, scoreP1, country1]
-  );
-
-  const player2Data = useMemo(
-    () => ({
-      player: state.content.players[1]
-        ? buildPlayerData(state.content.players[1])
-        : null,
-      score: scoreP2 ? parseInt(scoreP2) : null,
-      country: country2,
-    }),
-    [state, scoreP2, country2]
-  );
+  const teamsData = useMemo(() => {
+    return {
+      team1: {
+        players: state.content.players
+          .filter((player) => player.team_index === 0)
+          .map((player) => buildPlayerData(player)),
+        score: scoreTeam1 ? parseInt(scoreTeam1) : null,
+        country: country1,
+      },
+      team2: {
+        players: state.content.players
+          .filter((player) => player.team_index === 1)
+          .map((player) => buildPlayerData(player)),
+        score: scoreTeam2 ? parseInt(scoreTeam2) : null,
+        country: country2,
+      },
+    };
+  }, [state, scoreTeam1, scoreTeam2, country1, country2]);
 
   const gameTime = state.content.game.game_time;
 
   const leftSideProps = useMemo(
-    () => (toBoolean(swapped) ? player2Data : player1Data),
-    [swapped, player1Data, player2Data]
+    () => (toBoolean(swapped) ? teamsData.team2 : teamsData.team1),
+    [swapped, teamsData]
   );
 
   const rightSideProps = useMemo(
-    () => (toBoolean(swapped) ? player1Data : player2Data),
-    [swapped, player1Data, player2Data]
+    () => (toBoolean(swapped) ? teamsData.team1 : teamsData.team2),
+    [swapped, teamsData]
   );
 
   return (
@@ -191,20 +178,24 @@ const Overlay = ({ state }: Props) => {
           <GameTime time={gameTime} />
         </div>
         <div className={style.container}>
-          <LeftSide {...leftSideProps} />
-          <RightSide {...rightSideProps} />
+          <TeamPanel {...leftSideProps} side="left" />
+          <TeamPanel {...rightSideProps} side="right" />
         </div>
         <ExperienceGraphModal
           show={showGraph === 'xp'}
           state={state}
-          p1Label={player1Data.player}
-          p2Label={player2Data.player}
+          team1Label={buildGraphLabel(teamsData.team1.players)}
+          team1Color={teamsData.team1.players[0].color}
+          team2Label={buildGraphLabel(teamsData.team2.players)}
+          team2Color={teamsData.team2.players[0].color}
         />
         <GoldGraphModal
           show={showGraph === 'gold'}
           state={state}
-          p1Label={player1Data.player}
-          p2Label={player2Data.player}
+          team1Label={buildGraphLabel(teamsData.team1.players)}
+          team1Color={teamsData.team1.players[0].color}
+          team2Label={buildGraphLabel(teamsData.team2.players)}
+          team2Color={teamsData.team2.players[0].color}
         />
       </ReforgedStyleContext.Provider>
     </GameStateContext.Provider>

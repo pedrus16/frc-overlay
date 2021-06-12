@@ -1,0 +1,868 @@
+{
+  "type": "state",
+  "content": {
+    "game": {
+      "refresh_rate": 2000,
+      "is_in_game": true,
+      "game_time": 180650,
+      "players_count": 4,
+      "game_name": "Single Player",
+      "map_name": "Maps/(4)adrenaline.w3m"
+    },
+    "players": [
+      {
+        "name": "Computer (Normal)",
+        "race_preference": "RANDOM",
+        "race": "UNDEAD",
+        "id": 0,
+        "team_index": 0,
+        "team_color": 0,
+        "type": "COMPUTER",
+        "handicap": 100,
+        "game_result": "IN_PROGRESS",
+        "slot_state": "PLAYING",
+        "ai_difficulty": "NORMAL",
+        "apm": 0,
+        "apm_realtime": 0,
+        "gold": 350,
+        "gold_mined": 1570,
+        "gold_taxed": 0,
+        "gold_tax": 0,
+        "lumber": 382,
+        "lumber_harvested": 432,
+        "lumber_taxed": 0,
+        "lumber_tax": 0,
+        "food_max": 30,
+        "food": 22,
+        "heroes": [
+          {
+            "id": "Udea",
+            "class": "deathknight",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHeroDeathKnight.blp",
+            "level": 1,
+            "experience": 0,
+            "experience_max": 200,
+            "hitpoints": 675,
+            "hitpoints_max": 675,
+            "mana": 255,
+            "mana_max": 255,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_self": 0,
+            "index": 1,
+            "damage_healed": 0,
+            "deaths_count": 0,
+            "kills_count": 0,
+            "kills_self": 0,
+            "kills_heroes": 0,
+            "kills_buildings": 0,
+            "time_alive": 27882,
+            "abilities": [
+              {
+                "id": "AItp",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AUdc",
+                "cooldown_time": 6.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNDeathCoil.blp",
+                "is_hero_ability": true,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AInv",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHer",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Aatk",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Amov",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Ablr",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": true,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              }
+            ],
+            "inventory": [
+              {
+                "id": "stwp",
+                "slot": 0,
+                "charges": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp"
+              }
+            ]
+          }
+        ],
+        "buildings_on_map": [
+          {
+            "id": "ugrv",
+            "progress_percent": 43,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNGraveyard.blp"
+          },
+          {
+            "id": "uzig",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNZiggurat.blp"
+          },
+          {
+            "id": "uaod",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAltarOfDarkness.blp"
+          },
+          {
+            "id": "uzig",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNZiggurat.blp"
+          },
+          {
+            "id": "usep",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNCrypt.blp"
+          },
+          {
+            "id": "ugol",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNGoldMine.blp"
+          },
+          {
+            "id": "unpl",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNNecropolis.blp"
+          }
+        ],
+        "upgrades_completed": [],
+        "units_on_map": [
+          {
+            "id": "ugho",
+            "owning_player_id": 1,
+            "alive_count": 6,
+            "total_count": 6,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNGhoul.blp",
+            "is_worker": false,
+            "is_busy_worker": false,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          },
+          {
+            "id": "uaco",
+            "owning_player_id": 1,
+            "alive_count": 5,
+            "total_count": 5,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAcolyte.blp",
+            "is_worker": true,
+            "is_busy_worker": true,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          }
+        ],
+        "researches_in_progress": [
+          {
+            "id": "Ruac",
+            "progress_percent": 76,
+            "type": "UPGRADE",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNCannibalize.blp"
+          }
+        ]
+      },
+      {
+        "name": "Computer (Normal)",
+        "race_preference": "RANDOM",
+        "race": "HUMAN",
+        "id": 0,
+        "team_index": 1,
+        "team_color": 2,
+        "type": "COMPUTER",
+        "handicap": 100,
+        "game_result": "IN_PROGRESS",
+        "slot_state": "PLAYING",
+        "ai_difficulty": "NORMAL",
+        "apm": 0,
+        "apm_realtime": 0,
+        "gold": 85,
+        "gold_mined": 1610,
+        "gold_taxed": 0,
+        "gold_tax": 0,
+        "lumber": 341,
+        "lumber_harvested": 381,
+        "lumber_taxed": 0,
+        "lumber_tax": 0,
+        "food_max": 30,
+        "food": 29,
+        "heroes": [
+          {
+            "id": "Hblm",
+            "class": "bloodmage",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHeroBloodElfPrince.blp",
+            "level": 1,
+            "experience": 0,
+            "experience_max": 200,
+            "hitpoints": 550,
+            "hitpoints_max": 550,
+            "mana": 285,
+            "mana_max": 285,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_self": 0,
+            "index": 1,
+            "damage_healed": 0,
+            "deaths_count": 0,
+            "kills_count": 0,
+            "kills_self": 0,
+            "kills_heroes": 0,
+            "kills_buildings": 0,
+            "time_alive": 61500,
+            "abilities": [
+              {
+                "id": "AItp",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHfs",
+                "cooldown_time": 10.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNWallOfFire.blp",
+                "is_hero_ability": true,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Asph",
+                "cooldown_time": 1.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AInv",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHer",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Aatk",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Amov",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              }
+            ],
+            "inventory": [
+              {
+                "id": "stwp",
+                "slot": 0,
+                "charges": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp"
+              }
+            ]
+          }
+        ],
+        "buildings_on_map": [
+          {
+            "id": "hhou",
+            "progress_percent": 86,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hbar",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHumanBarracks.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "halt",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAltarOfKings.blp"
+          },
+          {
+            "id": "htow",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNTownHall.blp"
+          }
+        ],
+        "upgrades_completed": [],
+        "units_on_map": [
+          {
+            "id": "hfoo",
+            "owning_player_id": 2,
+            "alive_count": 3,
+            "total_count": 3,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFootman.blp",
+            "is_worker": false,
+            "is_busy_worker": false,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          },
+          {
+            "id": "hpea",
+            "owning_player_id": 2,
+            "alive_count": 15,
+            "total_count": 15,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",
+            "is_worker": true,
+            "is_busy_worker": true,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          }
+        ],
+        "researches_in_progress": [
+          {
+            "id": "hfoo",
+            "progress_percent": 71,
+            "type": "UNIT",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFootman.blp"
+          },
+          {
+            "id": "hpea",
+            "progress_percent": 55,
+            "type": "UNIT",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp"
+          }
+        ]
+      },
+      {
+        "name": "Computer (Normal)",
+        "race_preference": "RANDOM",
+        "race": "NIGHTELF",
+        "id": 0,
+        "team_index": 1,
+        "team_color": 3,
+        "type": "COMPUTER",
+        "handicap": 100,
+        "game_result": "IN_PROGRESS",
+        "slot_state": "PLAYING",
+        "ai_difficulty": "NORMAL",
+        "apm": 0,
+        "apm_realtime": 0,
+        "gold": 70,
+        "gold_mined": 1670,
+        "gold_taxed": 0,
+        "gold_tax": 0,
+        "lumber": 55,
+        "lumber_harvested": 295,
+        "lumber_taxed": 0,
+        "lumber_tax": 0,
+        "food_max": 30,
+        "food": 23,
+        "heroes": [
+          {
+            "id": "Emoo",
+            "class": "priestessofthemoon",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNPriestessOfTheMoon.blp",
+            "level": 1,
+            "experience": 0,
+            "experience_max": 200,
+            "hitpoints": 550,
+            "hitpoints_max": 550,
+            "mana": 225,
+            "mana_max": 225,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_self": 0,
+            "index": 1,
+            "damage_healed": 0,
+            "deaths_count": 0,
+            "kills_count": 0,
+            "kills_self": 0,
+            "kills_heroes": 0,
+            "kills_buildings": 0,
+            "time_alive": 58999,
+            "abilities": [
+              {
+                "id": "AItp",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHfa",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNSearingArrowsOn.blp",
+                "is_hero_ability": true,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Ault",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AInv",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Ashm",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNAmbush.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHer",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Aatk",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Amov",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              }
+            ],
+            "inventory": [
+              {
+                "id": "stwp",
+                "slot": 0,
+                "charges": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp"
+              }
+            ]
+          }
+        ],
+        "buildings_on_map": [
+          {
+            "id": "emow",
+            "progress_percent": 2,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNMoonWell.blp"
+          },
+          {
+            "id": "edob",
+            "progress_percent": 35,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHuntersHall.blp"
+          },
+          {
+            "id": "eden",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAncientOfWonders.blp"
+          },
+          {
+            "id": "emow",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNMoonWell.blp"
+          },
+          {
+            "id": "eaom",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAncientOfTheEarth.blp"
+          },
+          {
+            "id": "emow",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNMoonWell.blp"
+          },
+          {
+            "id": "eate",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAltarOfElders.blp"
+          },
+          {
+            "id": "egol",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNGoldMine.blp"
+          },
+          {
+            "id": "etol",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNTreeOfLife.blp"
+          }
+        ],
+        "upgrades_completed": [],
+        "units_on_map": [
+          {
+            "id": "earc",
+            "owning_player_id": 3,
+            "alive_count": 3,
+            "total_count": 3,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNArcher.blp",
+            "is_worker": false,
+            "is_busy_worker": false,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          },
+          {
+            "id": "ewsp",
+            "owning_player_id": 3,
+            "alive_count": 12,
+            "total_count": 12,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNWisp.blp",
+            "is_worker": true,
+            "is_busy_worker": true,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          }
+        ],
+        "researches_in_progress": []
+      },
+      {
+        "name": "Computer (Normal)",
+        "race_preference": "RANDOM",
+        "race": "HUMAN",
+        "id": 0,
+        "team_index": 0,
+        "team_color": 1,
+        "type": "COMPUTER",
+        "handicap": 100,
+        "game_result": "IN_PROGRESS",
+        "slot_state": "PLAYING",
+        "ai_difficulty": "NORMAL",
+        "apm": 0,
+        "apm_realtime": 0,
+        "gold": 115,
+        "gold_mined": 1640,
+        "gold_taxed": 0,
+        "gold_tax": 0,
+        "lumber": 354,
+        "lumber_harvested": 394,
+        "lumber_taxed": 0,
+        "lumber_tax": 0,
+        "food_max": 36,
+        "food": 29,
+        "heroes": [
+          {
+            "id": "Hpal",
+            "class": "paladin",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHeroPaladin.blp",
+            "level": 1,
+            "experience": 0,
+            "experience_max": 200,
+            "hitpoints": 650,
+            "hitpoints_max": 650,
+            "mana": 255,
+            "mana_max": 255,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_self": 0,
+            "index": 1,
+            "damage_healed": 0,
+            "deaths_count": 0,
+            "kills_count": 0,
+            "kills_self": 0,
+            "kills_heroes": 0,
+            "kills_buildings": 0,
+            "time_alive": 62496,
+            "abilities": [
+              {
+                "id": "AItp",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHhb",
+                "cooldown_time": 5.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNHolyBolt.blp",
+                "is_hero_ability": true,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AInv",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "AHer",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Aatk",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              },
+              {
+                "id": "Amov",
+                "cooldown_time": 0.0,
+                "cooldown": 0.0,
+                "level": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNTemp.blp",
+                "is_hero_ability": false,
+                "damage_dealt": 0,
+                "damage_healed": 0
+              }
+            ],
+            "inventory": [
+              {
+                "id": "stwp",
+                "slot": 0,
+                "charges": 1,
+                "art": "ReplaceableTextures\\CommandButtons\\BTNScrollUber.blp"
+              }
+            ]
+          }
+        ],
+        "buildings_on_map": [
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "hbar",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNHumanBarracks.blp"
+          },
+          {
+            "id": "hhou",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFarm.blp"
+          },
+          {
+            "id": "halt",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNAltarOfKings.blp"
+          },
+          {
+            "id": "htow",
+            "progress_percent": 100,
+            "upgrade_progress_percent": 0,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNTownHall.blp"
+          }
+        ],
+        "upgrades_completed": [],
+        "units_on_map": [
+          {
+            "id": "hfoo",
+            "owning_player_id": 4,
+            "alive_count": 3,
+            "total_count": 3,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFootman.blp",
+            "is_worker": false,
+            "is_busy_worker": false,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          },
+          {
+            "id": "hpea",
+            "owning_player_id": 4,
+            "alive_count": 15,
+            "total_count": 15,
+            "art": "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",
+            "is_worker": true,
+            "is_busy_worker": true,
+            "damage_dealt": 0,
+            "damage_received": 0,
+            "damage_healed": 0
+          }
+        ],
+        "researches_in_progress": [
+          {
+            "id": "hfoo",
+            "progress_percent": 96,
+            "type": "UNIT",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNFootman.blp"
+          },
+          {
+            "id": "hpea",
+            "progress_percent": 75,
+            "type": "UNIT",
+            "art": "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp"
+          }
+        ]
+      }
+    ]
+  }
+}
