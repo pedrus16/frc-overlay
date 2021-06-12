@@ -87,7 +87,7 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
       style={teamColorStyle(players[0].color)}
     >
       {players.length > 1 ? (
-        <TwoPlayersBar reverse={side === 'right'} />
+        <TwoPlayersBar reverse={side === 'right'} players={players} />
       ) : (
         <PlayerBar
           reverse={side === 'right'}

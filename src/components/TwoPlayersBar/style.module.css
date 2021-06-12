@@ -6,9 +6,16 @@
 
   position: relative;
   display: flex;
+  align-items: flex-start;
+  min-height: 5rem;
+}
+
+.container.reverse {
+  flex-direction: row-reverse;
 }
 
 .backgroundImage {
+  position: absolute;
   width: 100%;
   height: auto;
   color: var(--border-color);
@@ -16,4 +23,26 @@
 
 .reverse .backgroundImage {
   transform: scaleX(-1);
+}
+
+.players {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 75%;
+}
+
+.separator {
+  border-left: 1px solid var(--gray-2);
+  height: 4rem;
+}
+
+.marginLeft {
+  margin-left: 0.25rem;
+}
+
+.marginRight {
+  margin-right: 0.5rem;
 }

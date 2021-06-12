@@ -78,7 +78,7 @@ const buildPlayerUpgrades = (upgrades: Upgrade[]) => {
   }));
 };
 
-type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
+export type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
 
 /* [T1 building, T2 building, T3 building] */
 const TECH_MAP = {

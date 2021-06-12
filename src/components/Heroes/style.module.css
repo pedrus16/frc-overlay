@@ -21,6 +21,10 @@
   box-shadow: 0 4px 16px rgba(0 0 0 / 80%);
 }
 
+.item.first {
+  margin-top: 0rem;
+}
+
 .compact .item {
   margin-top: 0;
   margin-bottom: 0.5rem;

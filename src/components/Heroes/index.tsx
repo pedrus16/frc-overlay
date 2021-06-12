@@ -32,7 +32,7 @@ const Heroes = ({
       {transitions.map(({ item: hero, key, props }, index) => (
         <animated.div key={key} style={props}>
           <HeroCard
-            className={style.item}
+            className={`${style.item} ${index === 0 ? style.first : ''}`}
             hero={hero}
             reverse={reverse}
             compact={compact}
