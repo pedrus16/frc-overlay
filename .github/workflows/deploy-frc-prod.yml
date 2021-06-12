@@ -7,7 +7,7 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     env:
-      PUBLIC_URL: /w3overlay
+      PUBLIC_URL: /w3_overlay_eferce
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
@@ -25,11 +25,11 @@ jobs:
           username: ${{ secrets.frc_ftp_user }}
           password: ${{ secrets.frc_ftp_password }}
           local-dir: ./build/
-          server-dir: /public_html/w3overlay/
+          server-dir: /public_html/w3_overlay_eferce/
 
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+          args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
