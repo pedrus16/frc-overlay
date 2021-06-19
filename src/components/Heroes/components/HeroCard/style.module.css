@@ -52,7 +52,7 @@
 }
 
 .reverse.compact .topRow {
-  grid-template-areas: ". portrait";
+  grid-template-areas: "portrait .";
 }
 
 .level {
