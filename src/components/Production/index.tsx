@@ -1,16 +1,17 @@
+import { HTMLAttributes } from 'react';
 import Cameo from '../Cameo';
 import ProgressBar from '../ProgressBar';
 
 import style from './style.module.css';
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
   id: string;
   progressPercent: number;
 }
 
-const Production = ({ id, progressPercent }: Props) => {
+const Production = ({ id, progressPercent, ...props }: Props) => {
   return (
-    <div className={style.container}>
+    <div className={style.container} {...props}>
       <Cameo id={id} width={48} height={48} />
       <div className={style.progress}>
         <ProgressBar

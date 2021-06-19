@@ -14,8 +14,10 @@ import teamColorStyle from '../utils/teamColorStyle';
 import GoldGraphModal from './components/GoldGraphModal';
 import ExperienceGraphModal from './components/ExperienceGraphModal';
 import TwoPlayersBar from '../components/TwoPlayersBar';
+import { default as ResearchModel } from '../models/Research';
 
 import style from './style.module.css';
+import Building from '../models/Building';
 
 const REFRESH_RATE_MS = 2000;
 
@@ -26,42 +28,80 @@ function buildGraphLabel(players: Array<{ playerName: string }>) {
 }
 
 interface ProductionAndResearchProps {
-  buildings: any[];
-  units: any[];
-  researches: any[];
+  player1: {
+    color: string;
+    buildings: Building[];
+    units: ResearchModel[];
+    researches: Array<{ id: string; progress_percent: number }>;
+  };
+  player2: {
+    color: string;
+    buildings: Building[];
+    units: ResearchModel[];
+    researches: Array<{ id: string; progress_percent: number }>;
+  } | null;
 }
 
 const ProductionAndResearch = ({
-  buildings,
-  units,
-  researches,
+  player1,
+  player2,
 }: ProductionAndResearchProps) => {
+  const player1ColorStyle = teamColorStyle(player1.color);
+  const player2ColorStyle = player2 ? teamColorStyle(player2.color) : undefined;
+
   return (
     <>
       <div className={style.production}>
-        {buildings.map((building, index) => (
+        {player1.buildings.map((building, index) => (
           <Production
             key={index}
             id={building.id}
             progressPercent={building.progress_percent}
+            style={player1ColorStyle}
+          />
+        ))}
+        {player2?.buildings.map((building, index) => (
+          <Production
+            key={index}
+            id={building.id}
+            progressPercent={building.progress_percent}
+            style={player2ColorStyle}
           />
         ))}
       </div>
       <div className={style.production}>
-        {units.map((unit, index) => (
+        {player1.units.map((unit, index) => (
           <Production
             key={index}
             id={unit.id}
             progressPercent={unit.progress_percent}
+            style={player1ColorStyle}
+          />
+        ))}
+        {player2?.units.map((unit, index) => (
+          <Production
+            key={index}
+            id={unit.id}
+            progressPercent={unit.progress_percent}
+            style={player2ColorStyle}
           />
         ))}
       </div>
       <div className={style.research}>
-        {researches.map((upgrade, index) => (
+        {player1.researches.map((upgrade, index) => (
           <Research
             key={index}
             id={upgrade.id}
             progressPercent={upgrade.progress_percent}
+            style={player1ColorStyle}
+          />
+        ))}
+        {player2?.researches.map((upgrade, index) => (
+          <Research
+            key={index}
+            id={upgrade.id}
+            progressPercent={upgrade.progress_percent}
+            style={player2ColorStyle}
           />
         ))}
       </div>
@@ -77,6 +117,29 @@ interface SideProps {
 }
 
 const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
+  const player1Production = useMemo(
+    () => ({
+      color: players[0].color,
+      buildings: players[0].production.buildings,
+      units: players[0].production.units,
+      researches: players[0].research,
+    }),
+    [players]
+  );
+
+  const player2Production = useMemo(() => {
+    if (players.length < 2) {
+      return null;
+    }
+
+    return {
+      color: players[1].color,
+      buildings: players[1].production.buildings,
+      units: players[1].production.units,
+      researches: players[1].research,
+    };
+  }, [players]);
+
   if (players.length === 0) {
     return null;
   }
@@ -124,9 +187,8 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
         }`}
       >
         <ProductionAndResearch
-          buildings={players[0].production.buildings}
-          units={players[0].production.units}
-          researches={players[0].research}
+          player1={player1Production}
+          player2={player2Production}
         />
       </div>
     </div>
