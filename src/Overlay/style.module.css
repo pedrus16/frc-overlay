@@ -13,10 +13,16 @@
 
 .heroes {
   position: relative;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.heroes.compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 75%;
+}
+
+.rightSide .heroes.compact {
+  justify-items: flex-end;
 }
 
 .rightSide .heroes {

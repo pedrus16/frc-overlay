@@ -81,12 +81,14 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
     return null;
   }
 
+  const twoPlayers = players.length > 1;
+
   return (
     <div
       className={side === 'left' ? style.leftSide : style.rightSide}
       style={teamColorStyle(players[0].color)}
     >
-      {players.length > 1 ? (
+      {twoPlayers ? (
         <TwoPlayersBar reverse={side === 'right'} players={players} />
       ) : (
         <PlayerBar
@@ -101,7 +103,7 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
           country={country}
         />
       )}
-      <div className={style.heroes}>
+      <div className={`${style.heroes} ${twoPlayers ? style.compact : ''}`}>
         {side === 'left' && <div className={style.ingameHeroCover} />}
         <Heroes
           heroes={players[0].heroes}

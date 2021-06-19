@@ -6,6 +6,7 @@
 
 .container.compact {
   flex-direction: row;
+  margin-left: 0.5rem;
 }
 
 .container.reverse {
@@ -14,6 +15,8 @@
 
 .container.compact.reverse {
   flex-direction: row-reverse;
+  margin-left: 0rem;
+  margin-right: 0.5rem;
 }
 
 .item {

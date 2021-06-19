@@ -44,6 +44,7 @@ const HeroCard = ({
           healthPercent={hero.healthPercent}
           manaPercent={hero.manaPercent}
           respawn={hero.respawn}
+          compact={compact}
         />
         <div className={style.level}>
           <div className={style.label}>

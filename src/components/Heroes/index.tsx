@@ -36,7 +36,7 @@ const Heroes = ({
             hero={hero}
             reverse={reverse}
             compact={compact}
-            showBorder={!compact || index === 0}
+            showBorder={!compact}
           />
         </animated.div>
       ))}
