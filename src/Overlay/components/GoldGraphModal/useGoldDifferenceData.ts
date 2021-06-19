@@ -2,7 +2,14 @@ import { useContext, useEffect, useRef } from 'react';
 import { GameStateContext } from '../../../contexts';
 
 import useDataHistory from '../../../hooks/useDataHistory';
+import Player from '../../../models/Player';
 import State from '../../../models/State';
+
+const getTeamTotalGold = (players: Player[], teamIndex: number) => {
+  return players
+    .filter((player) => player.team_index === teamIndex)
+    .reduce((sum, player) => sum + (player.gold_mined - player.gold_taxed), 0);
+};
 
 const useGoldDifferenceData = (state: State) => {
   const { gameSpeed } = useContext(GameStateContext);
@@ -15,13 +22,11 @@ const useGoldDifferenceData = (state: State) => {
   useEffect(() => {
     if (gameSpeed === 0) return;
 
-    const p1Gold =
-      state.content.players[0].gold_mined - state.content.players[0].gold_taxed;
-    const p2Gold =
-      state.content.players[1].gold_mined - state.content.players[1].gold_taxed;
+    const team1Gold = getTeamTotalGold(state.content.players, 0);
+    const team2Gold = getTeamTotalGold(state.content.players, 1);
 
     addData({
-      value: p1Gold - p2Gold,
+      value: team1Gold - team2Gold,
       gameTime: state.content.game.game_time,
     });
   }, [addData, gameSpeed, state]);
