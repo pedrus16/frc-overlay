@@ -78,7 +78,7 @@ const buildPlayerUpgrades = (upgrades: Upgrade[]) => {
   }));
 };
 
-type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
+export type PlayerRace = Race.HUMAN | Race.NIGHTELF | Race.ORC | Race.UNDEAD;
 
 /* [T1 building, T2 building, T3 building] */
 const TECH_MAP = {
@@ -129,7 +129,7 @@ const buildResearchData = (
     .filter((building) => building.upgrade_progress_percent > 0)
     .filter(({ id }) => getNextTechId(race, id))
     .map(({ id, upgrade_progress_percent }) => ({
-      id: getNextTechId(race, id),
+      id: getNextTechId(race, id) as string,
       progress_percent: upgrade_progress_percent,
     }))
     .concat(

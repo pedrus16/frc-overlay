@@ -8,12 +8,21 @@
   gap: var(--grid-gap);
   width: fit-content;
   padding: 0.25rem;
+  border-radius: calc(var(--border-radius) * 2);
+}
+
+.container.border {
   border-radius: 0 calc(var(--border-radius) * 2) calc(var(--border-radius) * 2)
     0;
   border-left: var(--border-width) solid var(--team-color);
 }
 
-.container.reverse {
+.container.compact {
+  --grid-gap: 0.25rem;
+  grid-template: auto / auto;
+}
+
+.container.border.reverse {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
   border-left: none;
   border-right: var(--border-width) solid var(--team-color);
@@ -26,6 +35,10 @@
   align-items: stretch;
 }
 
+.compact .topRow {
+  grid-template: "portrait ." auto / auto auto;
+}
+
 .portrait {
   grid-area: portrait;
 }
@@ -36,6 +49,10 @@
 
 .reverse .topRow {
   grid-template-areas: "inventory . portrait";
+}
+
+.reverse.compact .topRow {
+  grid-template-areas: "portrait .";
 }
 
 .level {

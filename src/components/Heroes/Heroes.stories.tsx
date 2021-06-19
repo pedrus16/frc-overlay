@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { CSSProperties } from 'react';
 
 import Heroes, { Props } from './index';
 
@@ -7,7 +8,11 @@ export default {
   component: Heroes,
 } as Meta;
 
-const Template: Story<Props> = (args) => <Heroes {...args} />;
+const Template: Story<Props> = (args) => (
+  <div style={{ '--team-color': '#FF00FF' } as CSSProperties}>
+    <Heroes {...args} />
+  </div>
+);
 
 export const Base = Template.bind({});
 Base.args = {
@@ -71,4 +76,17 @@ export const Reversed = Template.bind({});
 Reversed.args = {
   ...Base.args,
   reverse: true,
+};
+
+export const Compact = Template.bind({});
+Compact.args = {
+  ...Base.args,
+  compact: true,
+};
+
+export const ReversedCompact = Template.bind({});
+ReversedCompact.args = {
+  ...Base.args,
+  reverse: true,
+  compact: true,
 };

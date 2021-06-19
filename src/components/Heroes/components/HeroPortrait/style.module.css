@@ -1,15 +1,26 @@
 .container {
-  width: 4rem;
   height: 100%;
   display: grid;
   grid-template: auto 1fr 1fr / auto;
   gap: 0.25rem;
 }
 
+.container.compact {
+  gap: 0.125rem;
+}
+
 .cameoContainer {
   position: relative;
   min-width: 4rem;
   min-height: 4rem;
+}
+
+.compact .cameoContainer {
+  --width: 3rem;
+  min-width: var(--width);
+  min-height: var(--width);
+  width: var(--width);
+  height: var(--width);
 }
 
 .level {
@@ -70,4 +81,9 @@
 
 .progressBackground {
   background: var(--white-20);
+  min-height: 0.75rem;
+}
+
+.compact .progressBackground {
+  min-height: 0.5rem;
 }

@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { CSSProperties } from 'react';
 
 import HeroCard, { Props } from './index';
 
@@ -7,7 +8,11 @@ export default {
   component: HeroCard,
 } as Meta;
 
-const Template: Story<Props> = (args) => <HeroCard {...args} />;
+const Template: Story<Props> = (args) => (
+  <div style={{ '--team-color': '#FF00FF' } as CSSProperties}>
+    <HeroCard {...args} />
+  </div>
+);
 
 export const Base = Template.bind({});
 Base.args = {
@@ -43,4 +48,45 @@ export const Reversed = Template.bind({});
 Reversed.args = {
   ...Base.args,
   reverse: true,
+};
+
+export const Compact = Template.bind({});
+Compact.args = {
+  ...Base.args,
+  compact: true,
+};
+
+export const ReversedCompact = Template.bind({});
+ReversedCompact.args = {
+  ...Base.args,
+  reverse: true,
+  compact: true,
+};
+
+export const Border = Template.bind({});
+Border.args = {
+  ...Base.args,
+  showBorder: true,
+};
+
+export const BorderReverse = Template.bind({});
+BorderReverse.args = {
+  ...Base.args,
+  reverse: true,
+  showBorder: true,
+};
+
+export const CompactBorder = Template.bind({});
+CompactBorder.args = {
+  ...Base.args,
+  compact: true,
+  showBorder: true,
+};
+
+export const CompactBorderReverse = Template.bind({});
+CompactBorderReverse.args = {
+  ...Base.args,
+  compact: true,
+  reverse: true,
+  showBorder: true,
 };

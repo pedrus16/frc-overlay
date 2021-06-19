@@ -11,6 +11,7 @@ export interface Props {
   healthPercent: number;
   manaPercent: number;
   respawn: { totalDurationSec: number; timeLeftSec: number } | null;
+  compact?: boolean;
   className?: string;
 }
 
@@ -19,9 +20,11 @@ const HeroPortrait = ({
   healthPercent,
   manaPercent,
   respawn,
+  compact = false,
   className = '',
 }: Props) => {
   const isDead = useMemo(() => healthPercent <= 0, [healthPercent]);
+  const compactClass = compact ? style.compact : '';
 
   const [realTimeMs, setRealtimeMs] = useRealTimeMs(
     (respawn?.timeLeftSec || 0) * 1000,
@@ -37,7 +40,7 @@ const HeroPortrait = ({
   );
 
   return (
-    <div className={`${className} ${style.container}`}>
+    <div className={`${className} ${style.container} ${compactClass}`}>
       <div className={style.cameoContainer}>
         <Cameo id={id} width={64} height={64} />
         <Cameo

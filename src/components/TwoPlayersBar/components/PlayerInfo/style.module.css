@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  min-height: 2rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto auto auto;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.reverse .info {
+  margin-left: 0;
+  justify-content: flex-end;
+}
+
+.emblem {
+  height: 2.5rem;
+}
+
+.playerName {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1em;
+  font-weight: 700;
+  width: 18ch;
+  background: rgba(255 255 255 / 10%);
+  padding: 0.25rem 0;
+  text-align: center;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.horizontalContainer {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto auto auto;
+  justify-content: flex-start;
+}
+
+.container.reverse .horizontalContainer {
+  justify-content: flex-end;
+}
+
+.separator {
+  border-left: 1px solid var(--gray-2);
+  width: 0;
+  margin: 0.25rem 0;
+}
+
+.techLevel {
+  color: var(--gray-5);
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin: 0.25rem 0;
+}
+
+.armySummary {
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: auto auto;
+  margin-left: -0.5rem;
+
+  background: rgba(255 255 255 / 10%);
+  padding: 0 0.25rem 0 0;
+  border-radius: 0.25rem;
+}
+
+.armySummary > div {
+  display: flex;
+  align-items: center;
+}
+
+.armySummary > div > svg {
+  color: var(--gray-4);
+
+  width: 1rem;
+  height: 1rem;
+  margin: 0.25rem 0.5rem 0.25rem 0.25rem;
+}
+
+.armySummary > div > span {
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
