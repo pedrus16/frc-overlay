@@ -14,7 +14,7 @@ const concatTeamHeroes = (players: Player[], teamIndex: number) => {
 
 const useExperienceDifferenceData = (state: State) => {
   const { gameSpeed } = useContext(GameStateContext);
-  const prevGameTime = useRef(state.content.game.game_time);
+  const prevGameTime = useRef(state.game.game_time);
   const [data, addData, resetData] = useDataHistory<{
     value: number;
     gameTime: number;
@@ -23,30 +23,27 @@ const useExperienceDifferenceData = (state: State) => {
   useEffect(() => {
     if (gameSpeed === 0) return;
 
-    const team1Heroes = concatTeamHeroes(state.content.players, 0);
+    const team1Heroes = concatTeamHeroes(state.players, 0);
     const team1TotalExperience = team1Heroes.reduce(
       (sum, { experience }) => sum + experience,
       0
     );
-    const team2Heroes = concatTeamHeroes(state.content.players, 1);
+    const team2Heroes = concatTeamHeroes(state.players, 1);
     const team2TotalExperience = team2Heroes.reduce(
       (sum, { experience }) => sum + experience,
       0
     );
     addData({
       value: team1TotalExperience - team2TotalExperience,
-      gameTime: state.content.game.game_time,
+      gameTime: state.game.game_time,
     });
   }, [addData, gameSpeed, state]);
 
   useEffect(() => {
-    if (
-      !state.content.game.is_in_game ||
-      state.content.game.game_time < prevGameTime.current
-    ) {
+    if (!state.game.is_in_game || state.game.game_time < prevGameTime.current) {
       resetData();
     }
-    prevGameTime.current = state.content.game.game_time;
+    prevGameTime.current = state.game.game_time;
   }, [state, resetData]);
 
   return data;

@@ -13,7 +13,7 @@ const getTeamTotalGold = (players: Player[], teamIndex: number) => {
 
 const useGoldDifferenceData = (state: State) => {
   const { gameSpeed } = useContext(GameStateContext);
-  const prevGameTime = useRef(state.content.game.game_time);
+  const prevGameTime = useRef(state.game.game_time);
   const [data, addData, resetData] = useDataHistory<{
     value: number;
     gameTime: number;
@@ -22,23 +22,20 @@ const useGoldDifferenceData = (state: State) => {
   useEffect(() => {
     if (gameSpeed === 0) return;
 
-    const team1Gold = getTeamTotalGold(state.content.players, 0);
-    const team2Gold = getTeamTotalGold(state.content.players, 1);
+    const team1Gold = getTeamTotalGold(state.players, 0);
+    const team2Gold = getTeamTotalGold(state.players, 1);
 
     addData({
       value: team1Gold - team2Gold,
-      gameTime: state.content.game.game_time,
+      gameTime: state.game.game_time,
     });
   }, [addData, gameSpeed, state]);
 
   useEffect(() => {
-    if (
-      !state.content.game.is_in_game ||
-      state.content.game.game_time < prevGameTime.current
-    ) {
+    if (!state.game.is_in_game || state.game.game_time < prevGameTime.current) {
       resetData();
     }
-    prevGameTime.current = state.content.game.game_time;
+    prevGameTime.current = state.game.game_time;
   }, [state, resetData]);
 
   return data;
