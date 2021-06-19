@@ -1,45 +1,33 @@
-import React, { useEffect } from 'react';
+import { HashRouter, Route } from 'react-router-dom';
 
-import './App.css';
-import { BrowserRouter as Router, useLocation } from 'react-router-dom';
+import State from './models/State';
 import Settings from './Settings';
 import Overlay from './Overlay';
-import useCleanedDataObserver from './hooks/useCachedData';
-import useLocalStorage from './Settings/useLocalStorage';
+import useCleanedDataObserver from './hooks/useCleanedDataObserver';
+import SettingsModel from './models/Settings';
+
+import './App.css';
 
 function App() {
+  const { state, settings, setSettings } = useCleanedDataObserver();
+
+  const showOverlay = state?.game?.is_in_game;
+
+  const handleSettingsChange = (value: SettingsModel) => {
+    console.log('ONCHANGE', value);
+    setSettings(value);
+  };
+
   return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <Redirect />
-    </Router>
+    <HashRouter basename={process.env.PUBLIC_URL}>
+      <Route path="/settings" exact>
+        <Settings value={settings} onChange={handleSettingsChange} />
+      </Route>
+      <Route path="/" exact>
+        {showOverlay && <Overlay state={state as State} settings={settings} />}
+      </Route>
+    </HashRouter>
   );
 }
 
 export default App;
-
-// A custom hook that builds on useLocation to parse
-// the query string for you.
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
-const Redirect = () => {
-  const state = useCleanedDataObserver();
-  let query = useQuery();
-  const isSettings = query.get('settings') ? true : false;
-  const [, setShowGraph] = useLocalStorage('graph');
-
-  useEffect(() => {
-    setShowGraph('');
-  });
-
-  if (isSettings) {
-    return <Settings></Settings>;
-  }
-
-  if (!state || state.type !== 'state' || !state.content.game.is_in_game) {
-    return null;
-  }
-
-  return <Overlay state={state} />;
-};

@@ -4,9 +4,9 @@ import FlagSelect from '../FlagSelect';
 import style from './style.module.css';
 
 interface Props {
-  score: string | null;
+  score: number | undefined;
   country: string | null;
-  onChangeScore: (value: string) => void;
+  onChangeScore: (value: number) => void;
   onChangeCountry: (value: string) => void;
   className?: string;
 }
@@ -22,16 +22,17 @@ const PlayerSettings = ({
     <>
       <div className={style.formRow}>
         <TextField
+          type="number"
           className={style.formField}
           id="player1"
           placeholder="Score"
-          value={score}
-          onChange={(event) => onChangeScore(event.target.value)}
+          value={score === undefined ? '' : score}
+          onChange={(event) => onChangeScore(parseInt(event.target.value))}
         />
       </div>
       <div className={style.formRow}>
         <FlagSelect
-          value={country}
+          value={country || ''}
           onChange={onChangeCountry}
           className={style.flagSelector}
         />

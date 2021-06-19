@@ -6,18 +6,17 @@ import Research from '../components/Research';
 import { GameStateContext, ReforgedStyleContext } from '../contexts';
 import State from '../models/State';
 import { buildPlayerData } from './buildData';
-import useLocalStorage from '../Settings/useLocalStorage';
 import PlayerBar from '../components/PlayerBar';
-import { toBoolean } from '../utils';
 import GameTime from './components/GameTime';
 import teamColorStyle from '../utils/teamColorStyle';
 import GoldGraphModal from './components/GoldGraphModal';
 import ExperienceGraphModal from './components/ExperienceGraphModal';
 import TwoPlayersBar from '../components/TwoPlayersBar';
 import { default as ResearchModel } from '../models/Research';
+import Building from '../models/Building';
+import Settings from '../models/Settings';
 
 import style from './style.module.css';
-import Building from '../models/Building';
 
 const REFRESH_RATE_MS = 2000;
 
@@ -197,61 +196,54 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
 
 interface Props {
   state: State;
+  settings: Settings | null;
 }
 
-const Overlay = ({ state }: Props) => {
-  const [swapped] = useLocalStorage('swapped');
-  const [reforgedStyle] = useLocalStorage('reforgedStyle');
-  const [scoreTeam1] = useLocalStorage('scoreTeam1');
-  const [scoreTeam2] = useLocalStorage('scoreTeam2');
-  const [country1] = useLocalStorage('country1');
-  const [country2] = useLocalStorage('country2');
+const Overlay = ({ state, settings }: Props) => {
   const [gameSpeed, setGameSpeed] = useState(0);
-  const prevGameTime = useRef(state.content.game.game_time);
-  const [showGraph] = useLocalStorage('graph');
+  const prevGameTime = useRef(state.game.game_time);
 
   useEffect(() => {
     setGameSpeed(
-      Math.max(0, state.content.game.game_time - prevGameTime.current) /
-        REFRESH_RATE_MS
+      Math.max(0, state.game.game_time - prevGameTime.current) / REFRESH_RATE_MS
     );
-    prevGameTime.current = state.content.game.game_time;
+    prevGameTime.current = state.game.game_time;
   }, [state]);
 
   const teamsData = useMemo(() => {
     return {
       team1: {
-        players: state.content.players
+        players: state.players
           .filter((player) => player.team_index === 0)
           .map((player) => buildPlayerData(player)),
-        score: scoreTeam1 ? parseInt(scoreTeam1) : null,
-        country: country1,
+        score: settings?.scoreTeam1 === undefined ? null : settings?.scoreTeam1,
+        country: settings?.country1 || null,
       },
       team2: {
-        players: state.content.players
+        players: state.players
           .filter((player) => player.team_index === 1)
           .map((player) => buildPlayerData(player)),
-        score: scoreTeam2 ? parseInt(scoreTeam2) : null,
-        country: country2,
+        score: settings?.scoreTeam2 === undefined ? null : settings?.scoreTeam2,
+        country: settings?.country2 || null,
       },
     };
-  }, [state, scoreTeam1, scoreTeam2, country1, country2]);
+  }, [state, settings]);
 
-  const gameTime = state.content.game.game_time;
+  const gameTime = state.game.game_time;
 
   const leftSideProps = useMemo(
-    () => (toBoolean(swapped) ? teamsData.team2 : teamsData.team1),
-    [swapped, teamsData]
+    () => (settings?.swapped ? teamsData.team2 : teamsData.team1),
+    [settings, teamsData]
   );
 
   const rightSideProps = useMemo(
-    () => (toBoolean(swapped) ? teamsData.team1 : teamsData.team2),
-    [swapped, teamsData]
+    () => (settings?.swapped ? teamsData.team1 : teamsData.team2),
+    [settings, teamsData]
   );
 
   return (
     <GameStateContext.Provider value={{ gameSpeed }}>
-      <ReforgedStyleContext.Provider value={toBoolean(reforgedStyle)}>
+      <ReforgedStyleContext.Provider value={settings?.reforgedIcons || false}>
         <div className={style.gameTimeContainer}>
           <GameTime time={gameTime} />
         </div>
@@ -260,7 +252,7 @@ const Overlay = ({ state }: Props) => {
           <TeamPanel {...rightSideProps} side="right" />
         </div>
         <ExperienceGraphModal
-          show={showGraph === 'xp'}
+          show={settings?.graph === 'experience'}
           state={state}
           team1Label={buildGraphLabel(teamsData.team1.players)}
           team1Color={teamsData.team1.players[0].color}
@@ -268,7 +260,7 @@ const Overlay = ({ state }: Props) => {
           team2Color={teamsData.team2.players[0].color}
         />
         <GoldGraphModal
-          show={showGraph === 'gold'}
+          show={settings?.graph === 'gold'}
           state={state}
           team1Label={buildGraphLabel(teamsData.team1.players)}
           team1Color={teamsData.team1.players[0].color}

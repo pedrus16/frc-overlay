@@ -10,9 +10,6 @@ interface Game {
 }
 
 export default interface State {
-  type: 'state';
-  content: {
-    game: Game;
-    players: Player[];
-  };
+  game: Game;
+  players: Player[];
 }

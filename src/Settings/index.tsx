@@ -1,4 +1,3 @@
-import useLocalStorage from './useLocalStorage';
 import {
   Grid,
   Paper,
@@ -8,53 +7,55 @@ import {
   ButtonGroup,
 } from '@material-ui/core';
 
-import style from './style.module.css';
-import { ReactComponent as SwapIcon } from './swap.svg';
-import { toBoolean } from '../utils';
-
 import PlayerSettings from './components/PlayerSettings';
-interface Props {}
+import { default as SettingsModel } from '../models/Settings';
 
-const Settings = (props: Props) => {
-  const [swapped, setSwapped] = useLocalStorage('swapped');
-  const [reforgedStyle, setReforgedStyle] = useLocalStorage('reforgedStyle');
-  const [scoreTeam1, setScoreTeam1] = useLocalStorage('scoreTeam1');
-  const [scoreTeam2, setScoreTeam2] = useLocalStorage('scoreTeam2');
-  const [country1, setCountry1] = useLocalStorage('country1');
-  const [country2, setCountry2] = useLocalStorage('country2');
-  const [, setGraph] = useLocalStorage('graph');
+import { ReactComponent as SwapIcon } from './swap.svg';
 
+import style from './style.module.css';
+
+interface Props {
+  value: SettingsModel | null;
+  onChange?: (value: SettingsModel) => void;
+}
+
+const Settings = ({ value: settings, onChange }: Props) => {
   const swapPlayer = () => {
-    setSwapped((currentValue) => {
-      return currentValue === 'true' ? 'false' : 'true';
-    });
+    handleChange('swapped')(!settings?.swapped);
   };
 
   const swapHd = () => {
-    setReforgedStyle((currentValue) => {
-      return currentValue === 'true' ? 'false' : 'true';
-    });
+    handleChange('reforgedIcons')(!settings?.reforgedIcons);
   };
 
-  const handleGraphClick = (graph: string) => () => {
-    setGraph(graph);
+  const handleGraphClick = (value: 'gold' | 'experience' | null) => () => {
+    handleChange('graph')(value);
+  };
+
+  const handleChange = (key: string) => (value: unknown) => {
+    if (!onChange) return;
+
+    onChange({
+      ...settings,
+      [key]: value,
+    });
   };
 
   const player1Settings = (
     <PlayerSettings
-      score={scoreTeam1}
-      onChangeScore={setScoreTeam1}
-      country={country1}
-      onChangeCountry={setCountry1}
+      score={settings?.scoreTeam1}
+      onChangeScore={handleChange('scoreTeam1')}
+      country={settings?.country1 || null}
+      onChangeCountry={handleChange('country1')}
     />
   );
 
   const player2Settings = (
     <PlayerSettings
-      score={scoreTeam2}
-      onChangeScore={setScoreTeam2}
-      country={country2}
-      onChangeCountry={setCountry2}
+      score={settings?.scoreTeam2}
+      onChangeScore={handleChange('scoreTeam2')}
+      country={settings?.country2 || null}
+      onChangeCountry={handleChange('country2')}
     />
   );
   return (
@@ -78,9 +79,9 @@ const Settings = (props: Props) => {
               color="primary"
               aria-label="contained primary button group"
             >
-              <Button onClick={handleGraphClick('xp')}>XP</Button>
+              <Button onClick={handleGraphClick('experience')}>XP</Button>
               <Button onClick={handleGraphClick('gold')}>Gold</Button>
-              <Button onClick={handleGraphClick('none')}>Close</Button>
+              <Button onClick={handleGraphClick(null)}>Close</Button>
             </ButtonGroup>
           </Paper>
         </Grid>
@@ -90,7 +91,7 @@ const Settings = (props: Props) => {
               <FormControlLabel
                 control={
                   <Switch
-                    checked={toBoolean(reforgedStyle)}
+                    checked={settings?.reforgedIcons}
                     onChange={swapHd}
                     name="reforgedStyle"
                     size="small"
@@ -104,13 +105,13 @@ const Settings = (props: Props) => {
         <Grid item xs={6}>
           <Paper className={style.paper}>
             <h2>Left Player</h2>
-            {toBoolean(swapped) ? player2Settings : player1Settings}
+            {settings?.swapped ? player2Settings : player1Settings}
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={style.paper}>
             <h2>Right Player</h2>
-            {toBoolean(swapped) ? player1Settings : player2Settings}
+            {settings?.swapped ? player1Settings : player2Settings}
           </Paper>
         </Grid>
       </Grid>
