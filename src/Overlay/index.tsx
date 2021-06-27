@@ -59,14 +59,6 @@ const ProductionAndResearch = ({
             style={player1ColorStyle}
           />
         ))}
-        {player2?.buildings.map((building, index) => (
-          <Production
-            key={index}
-            id={building.id}
-            progressPercent={building.progress_percent}
-            style={player2ColorStyle}
-          />
-        ))}
       </div>
       <div className={style.production}>
         {player1.units.map((unit, index) => (
@@ -77,33 +69,65 @@ const ProductionAndResearch = ({
             style={player1ColorStyle}
           />
         ))}
-        {player2?.units.map((unit, index) => (
-          <Production
-            key={index}
-            id={unit.id}
-            progressPercent={unit.progress_percent}
-            style={player2ColorStyle}
-          />
-        ))}
       </div>
-      <div className={style.research}>
-        {player1.researches.map((upgrade, index) => (
-          <Research
-            key={index}
-            id={upgrade.id}
-            progressPercent={upgrade.progress_percent}
-            style={player1ColorStyle}
-          />
-        ))}
-        {player2?.researches.map((upgrade, index) => (
-          <Research
-            key={index}
-            id={upgrade.id}
-            progressPercent={upgrade.progress_percent}
-            style={player2ColorStyle}
-          />
-        ))}
-      </div>
+      {!player2 ? (
+        <div className={style.research}>
+          {player1.researches.map((upgrade, index) => (
+            <Research
+              key={index}
+              id={upgrade.id}
+              progressPercent={upgrade.progress_percent}
+              style={player1ColorStyle}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={style.production}>
+          {player1.researches.map((upgrade, index) => (
+            <Production
+              key={index}
+              id={upgrade.id}
+              progressPercent={upgrade.progress_percent}
+              style={player1ColorStyle}
+            />
+          ))}
+        </div>
+      )}
+
+      {player2 && (
+        <>
+          <div className={style.production}>
+            {player2.buildings.map((building, index) => (
+              <Production
+                key={index}
+                id={building.id}
+                progressPercent={building.progress_percent}
+                style={player2ColorStyle}
+              />
+            ))}
+          </div>
+          <div className={style.production}>
+            {player2.units.map((unit, index) => (
+              <Production
+                key={index}
+                id={unit.id}
+                progressPercent={unit.progress_percent}
+                style={player2ColorStyle}
+              />
+            ))}
+          </div>
+          <div className={style.production}>
+            {player2.researches.map((upgrade, index) => (
+              <Production
+                key={index}
+                id={upgrade.id}
+                progressPercent={upgrade.progress_percent}
+                style={player2ColorStyle}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -166,7 +190,9 @@ const TeamPanel = ({ players, score, country, side = 'left' }: SideProps) => {
         />
       )}
       <div className={`${style.heroes} ${twoPlayers ? style.compact : ''}`}>
-        {side === 'left' && <div className={style.ingameHeroCover} />}
+        {side === 'left' && players.length === 1 && (
+          <div className={style.ingameHeroCover} />
+        )}
         <Heroes
           heroes={players[0].heroes}
           reverse={side === 'right'}
@@ -211,17 +237,25 @@ const Overlay = ({ state, settings }: Props) => {
   }, [state]);
 
   const teamsData = useMemo(() => {
+    const indexes = state.players.reduce((indexes, player) => {
+      if (!indexes.includes(player.team_index)) {
+        return indexes.concat(player.team_index);
+      }
+
+      return indexes;
+    }, [] as number[]);
+
     return {
       team1: {
         players: state.players
-          .filter((player) => player.team_index === 0)
+          .filter((player) => player.team_index === indexes[0])
           .map((player) => buildPlayerData(player)),
         score: settings?.scoreTeam1 === undefined ? null : settings?.scoreTeam1,
         country: settings?.country1 || null,
       },
       team2: {
         players: state.players
-          .filter((player) => player.team_index === 1)
+          .filter((player) => player.team_index === indexes[1])
           .map((player) => buildPlayerData(player)),
         score: settings?.scoreTeam2 === undefined ? null : settings?.scoreTeam2,
         country: settings?.country2 || null,
