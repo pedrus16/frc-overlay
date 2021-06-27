@@ -9,15 +9,15 @@ import { ReactComponent as HammerIcon } from '../../../../images/hammer.svg';
 import style from './style.module.css';
 
 interface ArmySummaryProps {
-  soldiers: number;
+  population: number;
   workers: number;
 }
 
-const ArmySummary = ({ soldiers, workers }: ArmySummaryProps) => (
+const ArmySummary = ({ population, workers }: ArmySummaryProps) => (
   <div className={style.armySummary}>
     <div>
       <HelmetIcon />
-      <span>{soldiers}</span>
+      <span>{population}</span>
     </div>
     <div>
       <HammerIcon />
@@ -29,7 +29,7 @@ const ArmySummary = ({ soldiers, workers }: ArmySummaryProps) => (
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   race: RaceEnum.HUMAN | RaceEnum.NIGHTELF | RaceEnum.ORC | RaceEnum.UNDEAD;
   army: {
-    soldiers: number;
+    population: number;
     workers: number;
   };
   playerName: string;
@@ -57,7 +57,7 @@ const PlayerInfo = ({
     >
       <div className={style.info}>
         <RaceEmblem race={race} className={style.emblem} />
-        <ArmySummary soldiers={army.soldiers} workers={army.workers} />
+        <ArmySummary population={army.population} workers={army.workers} />
         <span className={style.playerName}>{playerName}</span>
       </div>
       <div className={style.horizontalContainer}>
