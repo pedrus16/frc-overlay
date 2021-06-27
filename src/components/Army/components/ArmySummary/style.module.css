@@ -34,5 +34,5 @@
 .raceEmblem {
   display: block;
   width: var(--height);
-  height: auto;
+  height: var(--height);
 }
