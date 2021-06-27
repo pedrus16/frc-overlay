@@ -29,7 +29,7 @@ const TwoPlayersBar = ({ players, reverse = false }: Props) => {
           className={reverse ? '' : style.marginLeft}
           race={players[0].army.race}
           army={{
-            soldiers: players[0].army.soldiers.length,
+            population: players[0].army.population,
             workers: players[0].army.workers.count,
           }}
           playerName={players[0].playerName}
@@ -42,7 +42,7 @@ const TwoPlayersBar = ({ players, reverse = false }: Props) => {
           className={reverse ? style.marginRight : ''}
           race={players[1].army.race}
           army={{
-            soldiers: players[1].army.soldiers.length,
+            population: players[1].army.population,
             workers: players[1].army.workers.count,
           }}
           playerName={players[1].playerName}
