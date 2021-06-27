@@ -3,21 +3,24 @@ import { useCallback, useRef } from 'react';
 import useDataObserver from './useDataObserver';
 import State from '../models/State';
 import Settings from '../models/Settings';
-import Player from '../models/Player';
 
-const isDataCorrupt = (data: any) => {
-  const corruptedPlayer =
-    data?.content?.players?.some(
-      (player: Player) =>
-        player.heroes.length + player.units_on_map.length === 0
-    ) ?? 0;
+const isStateCorrupt = (state: State, lastValidState: State) => {
+  const playerCorrupt = state.players.some((player) => {
+    const lastPlayerState = lastValidState.players.find(
+      (p) => p.id === player.id
+    );
+    const lastHeroesLength = lastPlayerState?.heroes.length || 0;
 
-  return (
-    data &&
-    data.type === 'state' &&
-    data.content.game.is_in_game &&
-    corruptedPlayer
-  );
+    return (
+      (player.units_on_map.length === 0 &&
+        player.buildings_on_map.length === 0 &&
+        player.researches_in_progress.length === 0 &&
+        player.upgrades_completed.length === 0) ||
+      player.heroes.length < lastHeroesLength
+    );
+  });
+
+  return playerCorrupt;
 };
 
 const useCleanedDataObserver = () => {
@@ -37,7 +40,11 @@ const useCleanedDataObserver = () => {
     [sendMessage]
   );
 
-  if (data?.type === 'state' && !isDataCorrupt(data)) {
+  if (
+    data?.type === 'state' &&
+    (!lastValidState.current ||
+      !isStateCorrupt(data.content, lastValidState.current))
+  ) {
     lastValidState.current = data ? (data.content as State) : null;
   }
 
