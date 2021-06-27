@@ -14,7 +14,7 @@ export const Base = Template.bind({});
 Base.args = {
   race: Race.HUMAN,
   army: {
-    soldiers: 42,
+    population: 42,
     workers: 99,
   },
   playerName: 'Foobar',
