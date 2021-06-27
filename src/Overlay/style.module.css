@@ -86,7 +86,7 @@
 
 .ingameHeroCover {
   position: absolute;
-  top: 0;
+  top: -0.5rem;
   left: 0;
   background: linear-gradient(
     90deg,
