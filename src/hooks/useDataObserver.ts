@@ -9,7 +9,9 @@ const useDataObserver = process.env.REACT_APP_MOCK_DATA
         'ws://localhost:8124/',
         {
           onOpen: () => console.log('opened'),
+          retryOnError: true,
           shouldReconnect: () => true,
+          reconnectAttempts: 9999999,
         }
       );
 
